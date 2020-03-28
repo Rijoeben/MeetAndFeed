@@ -20,5 +20,10 @@ namespace MAFDB
         {
             optionsBuilder.UseSqlite("Data Source=MafDatabase");
         }
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            modelbuilder.Entity<UserPost>()
+                .HasKey(up => new { up.UserId, up.PostId });
+        }
     }
 }
