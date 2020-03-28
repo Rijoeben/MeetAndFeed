@@ -12,6 +12,6 @@ namespace MAFDB
         public string Address { get; set; }
         public string EmailAddress { get; set; }
         public bool Preference { get; set; }
-        public float DickSize { get; set; }
+        public float VaginaSize { get; set; }
     }
 }
