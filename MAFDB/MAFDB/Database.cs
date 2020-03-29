@@ -27,8 +27,11 @@ namespace MAFDB
             modelbuilder.Entity<UserAllergy>()
                 .HasKey(ua => new { ua.AllergyId, ua.UserId });
             modelbuilder.Entity<PostProduct>()
-                .HasKey(pp => new { pp.PostId, pp.ProductId});
+                .HasKey(pp => new { pp.PostId, pp.ProductId });
             modelbuilder.Entity<ProductAllergy>()
+                .HasKey(pa => new { pa.AllergyId, pa.ProductId });
+            modelbuilder.Entity<UserAllergy>()
+                .HasKey(pa => new { pa.UserId, pa.AllergyId });
         }
     }
 }

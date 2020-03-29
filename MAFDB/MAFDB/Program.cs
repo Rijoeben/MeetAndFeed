@@ -8,18 +8,19 @@ namespace MAFDB
         {
             using (var db = new Database())
             {
-                //User Yannick = new User
-                //{
-                //    FirstName = "yannick",
-                //    LastName = "Robijn",
-                //    Preference = true,
-                //    UserId = 1,
-                //    Address = "ergens in de buurt",
-                //    DickSize = 2,
-                //    EmailAddress = "yannick@test.com"
-                //};
-                //db.Add(Yannick);
-                //db.SaveChanges();
+                User Ruben = new User
+                {
+                    FirstName = "Ruben",
+                    LastName = "Laureys",
+                    Preference = false,
+                    UserId = 2,
+                    Address = "Niet in de buurt",
+                    DickSize = 18,
+                    EmailAddress = "Rijoeben@gmail.br"
+                };
+                db.Add(Ruben);
+                db.SaveChanges();
+
 
                 Post TestPost = new Post
                 {
@@ -29,6 +30,12 @@ namespace MAFDB
                     PostId = 1,
                     Score = 3.4
                 };
+                Allergy TestAllergy = new Allergy
+                {
+                    AllergyId = 1,
+                    AllergyName = "testallergy"
+                };
+                PostProduct TestPostProduct new PostProduct
             }
         }
     }
