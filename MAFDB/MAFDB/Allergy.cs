@@ -11,5 +11,7 @@ namespace MAFDB
         
         public string vincenttest { get; set; }
         public string nogistesten { get; set; }
+        public string laatstekeer { get; set; }
+        
     }   
 }
