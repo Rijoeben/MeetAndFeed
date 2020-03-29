@@ -13,5 +13,6 @@ namespace MAFDB
         public string EmailAddress { get; set; }
         public bool Preference { get; set; }
         public float DickSize { get; set; }
+        public string Password { get; set; }
     }
 }

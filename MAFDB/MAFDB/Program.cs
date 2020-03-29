@@ -16,7 +16,8 @@ namespace MAFDB
                     UserId = 2,
                     Address = "Niet in de buurt",
                     DickSize = 18,
-                    EmailAddress = "Rijoeben@gmail.br"
+                    EmailAddress = "Rijoeben@gmail.br",
+                    Password = "Password123"
                 };
                 db.Add(user);
                 db.SaveChanges();
@@ -36,7 +37,7 @@ namespace MAFDB
                     Post = TestPost,
                     UserId = user.UserId,
 
-                }
+                };
 
                 Allergy TestAllergy = new Allergy
                 {
