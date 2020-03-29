@@ -10,6 +10,6 @@ namespace MAFDB
         public string AllergyName { get; set; } 
         
         public string vincenttest { get; set; }
-        public string piemels { get; set; }
+        public string nogistesten { get; set; }
     }   
 }

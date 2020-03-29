@@ -8,7 +8,7 @@ namespace MAFDB
         {
             using (var db = new Database())
             {
-                User Ruben = new User
+                User user = new User
                 {
                     FirstName = "Ruben",
                     LastName = "Laureys",
@@ -18,9 +18,8 @@ namespace MAFDB
                     DickSize = 18,
                     EmailAddress = "Rijoeben@gmail.br"
                 };
-                db.Add(Ruben);
+                db.Add(user);
                 db.SaveChanges();
-
 
                 Post TestPost = new Post
                 {
@@ -30,12 +29,21 @@ namespace MAFDB
                     PostId = 1,
                     Score = 3.4
                 };
+
+                UserPost TestUserPost = new UserPost
+                {
+                    PostId = TestPost.PostId,
+                    Post = TestPost,
+                    UserId = user.UserId,
+
+                }
+
                 Allergy TestAllergy = new Allergy
                 {
                     AllergyId = 1,
                     AllergyName = "testallergy"
                 };
-                PostProduct TestPostProduct new PostProduct
+                
             }
         }
     }
