@@ -10,6 +10,6 @@ namespace MAFDB
         public DateTime Date { get; set; }
         public string Dish { get; set; }
         public int AmountOfPeople { get; set; }
-        public int Score { get; set; }
+        public double Score { get; set; }
     }
 }

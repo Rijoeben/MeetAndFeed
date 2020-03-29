@@ -24,6 +24,11 @@ namespace MAFDB
         {
             modelbuilder.Entity<UserPost>()
                 .HasKey(up => new { up.UserId, up.PostId });
+            modelbuilder.Entity<UserAllergy>()
+                .HasKey(ua => new { ua.AllergyId, ua.UserId });
+            modelbuilder.Entity<PostProduct>()
+                .HasKey(pp => new { pp.PostId, pp.ProductId});
+            modelbuilder.Entity<ProductAllergy>()
         }
     }
 }
