@@ -15,7 +15,6 @@ namespace MAFDB
                     Preference = false,
                     UserId = 2,
                     Address = "Niet in de buurt",
-                    DickSize = 18,
                     EmailAddress = "Rijoeben@gmail.br",
                     Password = "Password123"
                 };
