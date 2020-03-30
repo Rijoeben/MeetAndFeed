@@ -1,6 +1,10 @@
 ﻿using System;
+using MAFDB;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DAL
 {
@@ -13,13 +17,19 @@ namespace DAL
             if (!_hasRunDuringApplicationExecution)
             {
                 if (forceDropCreateDatabase)
-                    context.Database.EnsureDeleted();
+                    context..ensureDeleted();
 
                 if (context.Database.EnsureCreated())
                     Seed(context);
 
                 _hasRunDuringApplicationExecution = true;
             }
+        }
+        private static void Seed(MeetAndFeedDbContext context)
+        {
+            //User
+            
+            
         }
     }
 }
