@@ -1,15 +1,13 @@
 ﻿using System;
-using MAFDB.Tabels;
-using System;
+using MAFDB;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class MeetAndFeedDbContext 
+    public class MeetAndFeedDbContext  
     {
-
         public MeetAndFeedDbContext()
         {
             MeetAndFeedDbContext.Initialize(this, true);
@@ -25,12 +23,12 @@ namespace DAL
         public DbSet<ProductAllergy> ProductAllergies { get; set; }
         public DbSet<PostProduct> PostProducts { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=MafDatabase");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        protected void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<UserPost>()
                 .HasKey(up => new { up.UserId, up.PostId });

@@ -1,33 +1,38 @@
 ﻿using System;
 using MAFDB;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections;
 
-
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Net.Mime;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace DAL
 {
-    class MeetAndFeedDBInitializer
+    public class MeetAndFeedDBInitializer
     {
         private static bool _hasRunDuringApplicationExecution;
 
-        public static void Initialize(MeetAndFeedDbContext context, bool forceDropCreateDatabase = false)
+        public void Initialize(MeetAndFeedDbContext database, bool forceDropCreateDatabase = false)
         {
             if (!_hasRunDuringApplicationExecution)
             {
-                if (forceDropCreateDatabase)
-                    context..ensureDeleted();
+                if (forceDropCreateDatabase) //bool
+                    //verwuhdere
 
-                if (context.Database.EnsureCreated())
-                    Seed(context);
+                    if (database.Database. ;//database naam ? 
+                    Seed(context); // zelfgemaakte functie 
 
                 _hasRunDuringApplicationExecution = true;
             }
         }
-        private static void Seed(MeetAndFeedDbContext context)
+        public static void Seed(MeetAndFeedDbContext context)
         {
             //User
+            User jord = new User();
             
             
         }
