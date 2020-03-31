@@ -15,12 +15,13 @@ namespace DAL
             if (!_hasRunDuringApplicationExecution)
             {
                 if (forceDropCreateDatabase)
-                    context.Database.ens
+                    context.Database.EnsureDeleted();
 
                 if (context.Database.EnsureCreated())
-                    Seed(context);
-
-                _hasRunDuringApplicationExecution = true;
+                    Seed();
+               
+                    
+             _hasRunDuringApplicationExecution = true;
             }
         }
     }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class MeetAndFeedDbContext 
+    public class MeetAndFeedDbContext : DbContext 
     {
         public MeetAndFeedDbContext()
         {
