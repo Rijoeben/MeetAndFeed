@@ -8,21 +8,29 @@ namespace DAL
 {
     class MeetAndFeedInitializer
     {
-        private static bool _hasRunDuringApplicationExecution;
+        //private static bool _hasRunDuringApplicationExecution;
 
         public static void Initialize(MeetAndFeedDbContext context, bool forceDropCreateDatabase = false)
         {
-            if (!_hasRunDuringApplicationExecution)
-            {
-                if (forceDropCreateDatabase)
-                    context.Database.EnsureDeleted();
+            if (forceDropCreateDatabase) context.Database.EnsureDeleted();
 
-                if (context.Database.EnsureCreated())
-                    Seed();
-               
-                    
-             _hasRunDuringApplicationExecution = true;
-            }
+            if (context.Database.EnsureCreated())
+        }
+
+        public static void Testwaarden(MeetAndFeedDbContext context)
+        {
+            User test = new User()
+            {
+                Address = "test 2452 test test",
+                DickSize = 25,
+                EmailAddress = "test@gmail.com",
+                FirstName = "Johnny",
+                LastName = "Test",
+                Password = "testing123",
+                Preference = true,
+                UserId = 1
+            };
         }
     }
 }
+
