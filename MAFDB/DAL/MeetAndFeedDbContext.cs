@@ -41,6 +41,5 @@ namespace DAL
             modelbuilder.Entity<UserAllergy>()
                 .HasKey(pa => new { pa.UserId, pa.AllergyId });
         }
-
     }
 }
