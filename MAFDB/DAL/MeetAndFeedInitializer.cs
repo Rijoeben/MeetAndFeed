@@ -14,7 +14,8 @@ namespace DAL
         {
             if (forceDropCreateDatabase) context.Database.EnsureDeleted();
 
-            if (context.Database.EnsureCreated())
+            //if (context.Database.EnsureCreated())
+                 
         }
 
         public static void Testwaarden(MeetAndFeedDbContext context)

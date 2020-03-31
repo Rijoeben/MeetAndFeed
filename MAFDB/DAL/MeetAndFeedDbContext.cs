@@ -10,7 +10,7 @@ namespace DAL
     {
         public MeetAndFeedDbContext()
         {
-            MeetAndFeedDbContext.Initialize(this, true);
+           // MeetAndFeedDbContext.Initialize(this, true);
         }
 
         public DbSet<User> Users { get; set; }
