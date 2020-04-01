@@ -23,12 +23,12 @@ namespace DAL
         public DbSet<ProductAllergy> ProductAllergies { get; set; }
         public DbSet<PostProduct> PostProducts { get; set; }
 
-        protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=MafDatabase");
         }
 
-        protected void OnModelCreating(ModelBuilder modelbuilder)
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<UserPost>()
                 .HasKey(up => new { up.UserId, up.PostId });

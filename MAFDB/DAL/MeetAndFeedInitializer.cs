@@ -8,22 +8,23 @@ namespace DAL
 {
     class MeetAndFeedInitializer
     {
+        //enkel usefull voor migrations over te slagen
+
         //private static bool _hasRunDuringApplicationExecution;
 
-        public static void Initialize(MeetAndFeedDbContext context, bool forceDropCreateDatabase = false)
-        {
-            if (forceDropCreateDatabase) context.Database.EnsureDeleted();
+        //public static void Initialize(MeetAndFeedDbContext context, bool forceDropCreateDatabase = false)
+        //{
+        //    if (forceDropCreateDatabase) context.Database.EnsureDeleted();
 
-            //if (context.Database.EnsureCreated())
+        //    if (context.Database.EnsureCreated())
                  
-        }
+        //}
 
         public static void Testwaarden(MeetAndFeedDbContext context)
         {
             User test = new User()
             {
                 Address = "test 2452 test test",
-                DickSize = 25,
                 EmailAddress = "test@gmail.com",
                 FirstName = "Johnny",
                 LastName = "Test",

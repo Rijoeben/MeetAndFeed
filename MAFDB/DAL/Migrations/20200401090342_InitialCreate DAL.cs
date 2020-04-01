@@ -1,35 +1,103 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MAFDB.Migrations
+namespace DAL.Migrations
 {
-    public partial class SecondMigration : Migration
+    public partial class InitialCreateDAL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<float>(
-                name: "DickSize",
-                table: "Users",
-                nullable: false,
-                defaultValue: 0f);
+            migrationBuilder.CreateTable(
+                name: "Allergies",
+                columns: table => new
+                {
+                    AllergyId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AllergyName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Allergies", x => x.AllergyId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Posts",
+                columns: table => new
+                {
+                    PostId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Dish = table.Column<string>(nullable: true),
+                    AmountOfPeople = table.Column<int>(nullable: false),
+                    Score = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.PostId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    ReviewId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(nullable: false),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.ReviewId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    Preference = table.Column<bool>(nullable: false),
+                    DickSize = table.Column<float>(nullable: false),
+                    Password = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "PostProducts",
                 columns: table => new
                 {
-                    PostId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    PostId1 = table.Column<int>(nullable: true),
+                    PostId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostProducts", x => x.PostId);
+                    table.PrimaryKey("PK_PostProducts", x => new { x.PostId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_PostProducts_Posts_PostId1",
-                        column: x => x.PostId1,
+                        name: "FK_PostProducts_Posts_PostId",
+                        column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "PostId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PostProducts_Products_ProductId",
                         column: x => x.ProductId,
@@ -42,14 +110,12 @@ namespace MAFDB.Migrations
                 name: "ProductAllergies",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProductId1 = table.Column<int>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false),
                     AllergyId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductAllergies", x => x.ProductId);
+                    table.PrimaryKey("PK_ProductAllergies", x => new { x.AllergyId, x.ProductId });
                     table.ForeignKey(
                         name: "FK_ProductAllergies_Allergies_AllergyId",
                         column: x => x.AllergyId,
@@ -57,11 +123,11 @@ namespace MAFDB.Migrations
                         principalColumn: "AllergyId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductAllergies_Products_ProductId1",
-                        column: x => x.ProductId1,
+                        name: "FK_ProductAllergies_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,7 +139,7 @@ namespace MAFDB.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAllergies", x => new { x.AllergyId, x.UserId });
+                    table.PrimaryKey("PK_UserAllergies", x => new { x.UserId, x.AllergyId });
                     table.ForeignKey(
                         name: "FK_UserAllergies_Allergies_AllergyId",
                         column: x => x.AllergyId,
@@ -113,29 +179,19 @@ namespace MAFDB.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PostProducts_PostId1",
-                table: "PostProducts",
-                column: "PostId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PostProducts_ProductId",
                 table: "PostProducts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductAllergies_AllergyId",
+                name: "IX_ProductAllergies_ProductId",
                 table: "ProductAllergies",
-                column: "AllergyId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductAllergies_ProductId1",
-                table: "ProductAllergies",
-                column: "ProductId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserAllergies_UserId",
+                name: "IX_UserAllergies_AllergyId",
                 table: "UserAllergies",
-                column: "UserId");
+                column: "AllergyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserPosts_PostId",
@@ -152,14 +208,25 @@ namespace MAFDB.Migrations
                 name: "ProductAllergies");
 
             migrationBuilder.DropTable(
+                name: "Reviews");
+
+            migrationBuilder.DropTable(
                 name: "UserAllergies");
 
             migrationBuilder.DropTable(
                 name: "UserPosts");
 
-            migrationBuilder.DropColumn(
-                name: "DickSize",
-                table: "Users");
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Allergies");
+
+            migrationBuilder.DropTable(
+                name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
