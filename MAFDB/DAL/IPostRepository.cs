@@ -15,6 +15,5 @@ namespace DAL
 
         void DeletePost(Post post);
 
-
     }
 }

@@ -17,11 +17,6 @@ namespace DAL
             ctx = new MeetAndFeedDbContext();
         }
 
-        public UserRepository(UnitOfWork unitOfWork) // Not 
-        {
-            ctx = unitOfWork.Context;
-        }
-
         public IEnumerable<User> ReadUsers()
         {
             return ctx.Users.AsEnumerable();
