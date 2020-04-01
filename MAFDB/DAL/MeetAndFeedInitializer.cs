@@ -20,7 +20,7 @@ namespace DAL
                  
         //}
 
-        public static void Testwaarden(MeetAndFeedDbContext context)
+        public static void Testwaarden(MeetAndFeedDbContext db)
         {
             User test = new User()
             {
@@ -32,6 +32,8 @@ namespace DAL
                 Preference = true,
                 UserId = 1
             };
+            db.Add(test);
+            db.SaveChanges();
         }
     }
 }
