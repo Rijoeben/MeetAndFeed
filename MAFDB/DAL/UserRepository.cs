@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository  
     {
 
         private readonly MeetAndFeedDbContext ctx;
@@ -17,7 +17,7 @@ namespace DAL
             ctx = new MeetAndFeedDbContext();
         }
 
-        public UserRepository(UnitOfWork unitOfWork)
+        public UserRepository(UnitOfWork unitOfWork) // Not 
         {
             ctx = unitOfWork.Context;
         }
@@ -27,10 +27,11 @@ namespace DAL
             return ctx.Users.AsEnumerable();
         }
 
-        public void CreateUser(User user)
+        public User CreateUser(User user)
         {
             ctx.Add(user);
             ctx.SaveChanges();
+            return user;
         }
 
         public void UpdateUser(User user)

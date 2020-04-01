@@ -10,8 +10,9 @@ namespace DAL
         IEnumerable<User> ReadUsers();
 
         User CreateUser(User user);
-        User UpdateUser(User user);
+        void UpdateUser(User user);
         void DeleteUser(User user);
         //void ReadUser(int? userID);
+        
     }
 }
