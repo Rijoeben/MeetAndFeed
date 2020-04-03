@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAFDB", "MAFDB\MAFDB.csproj", "{64DEF9A8-868F-4C08-A8D2-F9AB03FF74ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5C3BF9A4-CBF3-4CA7-A2F7-93B3706E9726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{5C3BF9A4-CBF3-4CA7-A2F7-93B3706E9726}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
