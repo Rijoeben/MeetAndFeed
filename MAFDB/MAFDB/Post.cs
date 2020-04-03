@@ -6,7 +6,7 @@ namespace MAFDB
 {
     public class Post
     {
-        public int PostId { get; set; }
+        public string PostId { get; set; }
         public DateTime Date { get; set; }
         public string Dish { get; set; }
         public int AmountOfPeople { get; set; }

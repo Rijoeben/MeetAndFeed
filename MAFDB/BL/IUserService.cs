@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Text;
 using MAFDB;
@@ -10,11 +10,11 @@ namespace BL
     {
         IEnumerable<User> ListOfUsers();
 
-        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender);
+        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth);
 
-        public void DeleteUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender);
+        public void RemoveUser(string userID);
 
-        public void UpdateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender);
+        public void UpdateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth);
 
 
     }

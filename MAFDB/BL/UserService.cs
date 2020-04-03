@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DAL;
 
 namespace BL
 {
     public class UserService : IUserService
     {
-        private IUserService _repo;
+        private IUserRepository _repo;
 
-        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender)
+        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             User newUser = new User();
 
@@ -20,19 +21,23 @@ namespace BL
             newUser.Preference = preference;
             newUser.Password = password;
             newUser.Gender = gender;
+            newUser.Birthday = dayOfBirth;
+
+            _repo.CreateUser(newUser);
+            return newUser;
         }
 
-        public void DeleteUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender)
+        public void RemoveUser(string userID)
         {
-            throw new NotImplementedException();
+            _repo.DeleteUser(userID);
         }
 
         public IEnumerable<User> ListOfUsers()
         {
-            throw new NotImplementedException();
+            return _repo.ReadUsers();
         }
 
-        public void UpdateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender)
+        public void UpdateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             throw new NotImplementedException();
         }
