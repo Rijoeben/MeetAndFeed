@@ -37,9 +37,9 @@ namespace BL
             return _repo.ReadUsers();
         }
 
-        public void UpdateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
+        public void ChangeUser(User user)
         {
-            throw new NotImplementedException();
+            _repo.UpdateUser(user);
         }
     }
 }
