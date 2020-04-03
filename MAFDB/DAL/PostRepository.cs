@@ -34,7 +34,7 @@ namespace DAL
             ctx.Remove(post);
             ctx.SaveChanges();
         }
-
+        public Post GetPost()
 
     }
 }

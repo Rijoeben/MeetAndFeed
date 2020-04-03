@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class UserRepository : IUserRepository  
+    public class UserRepository : IUserRepository
     {
 
         private readonly MeetAndFeedDbContext ctx;
@@ -35,10 +35,15 @@ namespace DAL
             ctx.SaveChanges();
         }
 
-        public void DeleteUser(User user)
+        public void DeleteUser(string userID)
         {
-            ctx.Users.Remove(user);
+            ctx.Users.Remove(GetUser(userID));
             ctx.SaveChanges();
+        }
+
+        public User GetUser(string userID)
+        {
+            return ctx.Users.Find(userID);
         }
     }
 }

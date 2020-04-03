@@ -7,9 +7,9 @@ namespace MAFDB
 {
     public class ProductAllergy
     {
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         public Product Product { get; set; }
-        public int AllergyId { get; set; }
+        public string AllergyId { get; set; }
         public Allergy Allergy { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace MAFDB
 {
     public class PostProduct
     {
-        public int PostId { get; set; }
+        public string PostId { get; set; }
         public Post Post { get; set; }
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         public Product ProductName { get; set; }
     }
 }

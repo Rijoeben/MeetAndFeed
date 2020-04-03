@@ -7,9 +7,9 @@ namespace MAFDB
 {
     public class UserAllergy
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
-        public int AllergyId { get; set; }
+        public string AllergyId { get; set; }
         public Allergy Allergy { get; set; }
     }
 }
