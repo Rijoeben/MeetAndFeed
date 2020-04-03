@@ -19,7 +19,7 @@ namespace BL
             newUser.EmailAddress = emailAddress;
             newUser.Preference = preference;
             newUser.Password = password;
-            newUser.Gender = gender;
+            newUser.MaleOrFemale = gender;
         }
 
         public void DeleteUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender)
