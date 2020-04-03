@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using MAFDB;
+using DAL;
 namespace BL
 {
-    class IPostService
+    public interface IPostService
     {
+        public Post AddPost()
     }
 }
