@@ -14,5 +14,6 @@ namespace MAFDB
         public bool Preference { get; set; }
         public string Password { get; set; }
         public char Gender { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }
