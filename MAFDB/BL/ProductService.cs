@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DAL;
 
 namespace BL
 {
@@ -9,16 +10,15 @@ namespace BL
     {
         private IProductService _repo;
 
-        public Product AddProduct(int productID, string productName)
+        public Product AddProduct(string productID, string productName)
         {
-            throw new NotImplementedException();
-        }
+            Product newProduct = new Product();
 
-        public void CreateProduct(int productID, string productName)
-        {
-            throw new NotImplementedException();
-        }
+            newProduct.ProductId = productID;
+            newProduct.ProductName = productName;
 
+            _repo.CreateProduct(newProduct)
+        }
         public void DeleteProduct(int productID, string productName)
         {
             throw new NotImplementedException();
@@ -32,6 +32,11 @@ namespace BL
         public void ReadProducts(int productID, string productName)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Product> ReadProducts()
+        {
+            return _repo.ReadProducts();
         }
 
         public 
