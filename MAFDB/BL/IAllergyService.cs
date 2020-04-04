@@ -8,6 +8,5 @@ namespace BL
     public interface IAllergyService
     {
         IEnumerable<Allergy> ListOfAllergies();
-
     }
 }
