@@ -28,6 +28,10 @@ namespace DAL
             ctx.Add(allergy);
             ctx.SaveChanges();
         }
+        public Allergy GetAllergy(string allergyID)
+        {
+            return ctx.Allergies.Find(allergyID);
+        }
 
         public void DeleteAllergy(Allergy allergy)
         {
