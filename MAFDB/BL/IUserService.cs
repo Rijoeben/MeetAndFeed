@@ -16,6 +16,8 @@ namespace BL
 
         public void ChangeUser(User user);
 
+        public User FindUserByEmailAddress(string emailAddress);
+
 
     }
 }

@@ -45,5 +45,13 @@ namespace DAL
         {
             return ctx.Users.Find(userID);
         }
+
+        public User SearchUserByEmailAddres(string emailAddress)
+        {
+            User searchedUser = ctx.Users
+                .FirstOrDefault(u => string.Equals(u.EmailAddress, emailAddress)); //Zoekt naar de user met het gegeven email address
+
+            return searchedUser;       
+        }
     }
 }

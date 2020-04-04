@@ -13,6 +13,7 @@ namespace DAL
         User GetUser(string userID);
         void DeleteUser(string userID);
         //void ReadUser(int? userID);
+        User SearchUserByEmailAddres(string emailAddress);
 
     }
 }

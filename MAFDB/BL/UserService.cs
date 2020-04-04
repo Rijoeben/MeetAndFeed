@@ -41,5 +41,10 @@ namespace BL
         {
             _repo.UpdateUser(user);
         }
+
+        public User FindUserByEmailAddress(string emailAddress)
+        {
+           return _repo.SearchUserByEmailAddres(emailAddress);
+        }
     }
 }
