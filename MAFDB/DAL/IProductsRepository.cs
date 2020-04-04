@@ -9,7 +9,7 @@ namespace DAL
     {
         IEnumerable<Product> ReadProducts();
 
-        Allergy CreateProduct(Product product);
+        Product CreateProduct(Product product);
 
         void UpdateProduct(Product product);
 
