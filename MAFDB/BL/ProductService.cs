@@ -8,8 +8,12 @@ namespace BL
 {
     public class ProductService : IProductService
     {
-        private IProductService _repo;
+        private IProductsRepository _repo;
 
+        public IEnumerable<Product> ListOfProducts()
+        {
+            return _repo.ReadProducts();
+        }
         public Product AddProduct(string productID, string productName)
         {
             Product newProduct = new Product();
@@ -17,28 +21,12 @@ namespace BL
             newProduct.ProductId = productID;
             newProduct.ProductName = productName;
 
-            _repo.CreateProduct(newProduct)
+            _repo.CreateProduct(newProduct);
+            return newProduct;
         }
-        public void DeleteProduct(int productID, string productName)
+        public void DeleteProduct(string productID)
         {
-            throw new NotImplementedException();
+            _repo.DeleteProduct(productID);
         }
-
-        public IEnumerable<Product> ListOfProducts()
-        {
-            return _repo.ReadProducts();
-        }
-
-        public void ReadProducts(int productID, string productName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Product> ReadProducts()
-        {
-            return _repo.ReadProducts();
-        }
-
-        public 
     }
 }

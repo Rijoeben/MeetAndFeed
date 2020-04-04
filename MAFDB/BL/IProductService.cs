@@ -11,8 +11,6 @@ namespace BL
         IEnumerable<Product> ListOfProducts();
 
         public Product AddProduct(string productID, string productName);
-        public void DeleteProduct(string productID, string productName);
-        public void ReadProducts(string productID, string productName);
-        IEnumerable<Product> ReadProducts();
+        public void DeleteProduct(string productID);
     }
 }
