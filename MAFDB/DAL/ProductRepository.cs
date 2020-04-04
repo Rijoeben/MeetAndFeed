@@ -21,9 +21,9 @@ namespace DAL
             return product;
         }
 
-        public void DeleteProduct(Product product)
+        public void DeleteProduct(string productID)
         {
-            ctx.Products.Remove(product);
+            ctx.Products.Remove(GetProduct(productID));
             ctx.SaveChanges();
         }
 

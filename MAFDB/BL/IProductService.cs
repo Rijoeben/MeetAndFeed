@@ -9,8 +9,7 @@ namespace BL
     public interface IProductService
     {
         IEnumerable<Product> ListOfProducts();
-
-        public Product AddProduct(int productID, string productName);
-
+        public Product AddProduct(string productName);
+        public void DeleteProduct(string productID);
     }
 }
