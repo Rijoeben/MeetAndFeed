@@ -7,12 +7,9 @@ namespace DAL
 {
     public interface IUserRepository
     {
-        IEnumerable<User> ReadUsers();
-       
-
+        IEnumerable<User> ReadUsers();       
         User CreateUser(User user);
         void UpdateUser(User user);
-        void DeleteUser(User user);
         User GetUser(string userID);
         void DeleteUser(string userID);
         //void ReadUser(int? userID);

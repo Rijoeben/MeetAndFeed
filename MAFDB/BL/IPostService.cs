@@ -7,6 +7,12 @@ namespace BL
 {
     public interface IPostService
     {
-        public Post AddPost()
+        IEnumerable<Post> ListOfPosts();
+        public Post AddPost(string title, string dish, string description, DateTime date, int amountOfPeople, double score);
+
+        public void RemovePost(string postID);
+
+        public void ChangePost(Post post);
+
     }
 }

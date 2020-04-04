@@ -5,7 +5,7 @@ using MAFDB;
 
 namespace DAL
 {
-    public interface IpostRepository
+    public interface IPostRepository
     {
         IEnumerable<Post> ReadPosts();
 
@@ -13,7 +13,9 @@ namespace DAL
 
         void UpdatePost(Post post);
 
-        void DeletePost(Post post);
+        void DeletePost(string postID);
+
+        Post GetPost(string postID);
 
     }
 }

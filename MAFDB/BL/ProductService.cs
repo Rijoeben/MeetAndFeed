@@ -26,7 +26,7 @@ namespace BL
 
         public IEnumerable<Product> ListOfProducts()
         {
-            return _repo.ReadProducts();
+            return _repo.();
         }
 
         public void ReadProducts(int productID, string productName)
