@@ -7,7 +7,7 @@ namespace MeetAndFeedAPI.Models
 {
     public class PostModul
     {
-        public int PostId { get; set; }
+        
         public DateTime Date { get; set; }
         public string Dish { get; set; }
         public int AmountOfPeople { get; set; }

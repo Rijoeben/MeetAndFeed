@@ -7,7 +7,7 @@ namespace MeetAndFeedAPI.Models
 {
     public class AllergyModul
     {
-        public int AllergyId { get; set; }
+        
         public string AllergyName { get; set; }
     }
 }
