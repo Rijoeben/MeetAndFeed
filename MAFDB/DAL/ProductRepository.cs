@@ -23,14 +23,18 @@ namespace DAL
 
         public void DeleteProduct(Product product)
         {
-            ctx.Remove(product);
+            ctx.Products.Remove(product);
             ctx.SaveChanges();
         }
 
         public void UpdateProduct(Product product)
         {
-            ctx.Add(product);
+            ctx.Products.Update(product);
             ctx.SaveChanges();
+        }
+        public Product GetProduct(string productid)
+        {
+            return ctx.Products.Find(productid);
         }
     }
 }

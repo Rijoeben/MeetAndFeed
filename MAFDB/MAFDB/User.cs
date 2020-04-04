@@ -12,6 +12,8 @@ namespace MAFDB
         public string Address { get; set; }
         public string EmailAddress { get; set; }
         public bool Preference { get; set; }
+        public char Gender { get; set; }
         public string Password { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }
