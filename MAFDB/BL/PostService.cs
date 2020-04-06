@@ -14,6 +14,7 @@ namespace BL
         {
             Post newPost = new Post();
 
+
             newPost.Title = title;
             newPost.Dish = dish;
             newPost.Description = description;
