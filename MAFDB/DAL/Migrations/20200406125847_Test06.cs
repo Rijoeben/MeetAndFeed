@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class InitialCreateDAL : Migration
+    public partial class Test06 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,8 +11,7 @@ namespace DAL.Migrations
                 name: "Allergies",
                 columns: table => new
                 {
-                    AllergyId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    AllergyId = table.Column<string>(nullable: false),
                     AllergyName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -24,10 +23,11 @@ namespace DAL.Migrations
                 name: "Posts",
                 columns: table => new
                 {
-                    PostId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Date = table.Column<DateTime>(nullable: false),
+                    PostId = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
                     Dish = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
                     AmountOfPeople = table.Column<int>(nullable: false),
                     Score = table.Column<double>(nullable: false)
                 },
@@ -40,8 +40,7 @@ namespace DAL.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<string>(nullable: false),
                     ProductName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -53,9 +52,8 @@ namespace DAL.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    ReviewId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(nullable: false),
+                    ReviewId = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -67,15 +65,15 @@ namespace DAL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     EmailAddress = table.Column<string>(nullable: true),
                     Preference = table.Column<bool>(nullable: false),
-                    DickSize = table.Column<float>(nullable: false),
-                    Password = table.Column<string>(nullable: true)
+                    Gender = table.Column<char>(nullable: false),
+                    Password = table.Column<string>(nullable: true),
+                    Birthday = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,8 +84,8 @@ namespace DAL.Migrations
                 name: "PostProducts",
                 columns: table => new
                 {
-                    PostId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false)
+                    PostId = table.Column<string>(nullable: false),
+                    ProductId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,8 +108,8 @@ namespace DAL.Migrations
                 name: "ProductAllergies",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false),
-                    AllergyId = table.Column<int>(nullable: false)
+                    ProductId = table.Column<string>(nullable: false),
+                    AllergyId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,8 +132,8 @@ namespace DAL.Migrations
                 name: "UserAllergies",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(nullable: false),
-                    AllergyId = table.Column<int>(nullable: false)
+                    UserId = table.Column<string>(nullable: false),
+                    AllergyId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,8 +156,8 @@ namespace DAL.Migrations
                 name: "UserPosts",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(nullable: false),
-                    PostId = table.Column<int>(nullable: false)
+                    UserId = table.Column<string>(nullable: false),
+                    PostId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

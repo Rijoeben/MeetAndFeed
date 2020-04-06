@@ -18,9 +18,8 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
-                    b.Property<int>("AllergyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("AllergyId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("AllergyName")
                         .HasColumnType("TEXT");
@@ -32,14 +31,16 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Post", b =>
                 {
-                    b.Property<int>("PostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PostId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AmountOfPeople")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Dish")
@@ -48,6 +49,9 @@ namespace DAL.Migrations
                     b.Property<double>("Score")
                         .HasColumnType("REAL");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("PostId");
 
                     b.ToTable("Posts");
@@ -55,11 +59,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.PostProduct", b =>
                 {
-                    b.Property<int>("PostId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PostId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ProductId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PostId", "ProductId");
 
@@ -70,9 +74,8 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Product", b =>
                 {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ProductId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ProductName")
                         .HasColumnType("TEXT");
@@ -84,11 +87,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.ProductAllergy", b =>
                 {
-                    b.Property<int>("AllergyId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("AllergyId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ProductId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("AllergyId", "ProductId");
 
@@ -99,15 +102,14 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Review", b =>
                 {
-                    b.Property<int>("ReviewId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ReviewId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ReviewId");
 
@@ -116,20 +118,22 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.User", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("DickSize")
-                        .HasColumnType("REAL");
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<char>("Gender")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
@@ -148,11 +152,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.UserAllergy", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("AllergyId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("AllergyId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "AllergyId");
 
@@ -163,11 +167,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.UserPost", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PostId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "PostId");
 
