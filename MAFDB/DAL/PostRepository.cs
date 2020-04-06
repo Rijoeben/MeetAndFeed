@@ -6,7 +6,7 @@ using MAFDB;
 
 namespace DAL
 {
-    public class PostRepository : IpostRepository
+    public class PostRepository : IPostRepository
     {
 
         private readonly MeetAndFeedDbContext ctx;

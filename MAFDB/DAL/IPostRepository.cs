@@ -5,7 +5,7 @@ using MAFDB;
 
 namespace DAL
 {
-    public interface IpostRepository
+    public interface IPostRepository
     {
         IEnumerable<Post> ReadPosts();
 

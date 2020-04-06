@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200401093316_added test user")]
-    partial class addedtestuser
+    [Migration("20200406125227_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
