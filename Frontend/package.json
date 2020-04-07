@@ -1,11 +1,11 @@
 {
-  "name": "meetandfeed",
+  "name": "mafv3",
   "version": "0.0.1",
-  "description": "app to connect and ea",
-  "productName": "app",
+  "description": "An app to connect",
+  "productName": "Meet And Feed",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
-  "author": "alexander",
+  "author": "Alexander",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",

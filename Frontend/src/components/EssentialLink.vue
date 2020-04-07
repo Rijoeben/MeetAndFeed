@@ -5,21 +5,21 @@
     target="_blank"
     :href="link"
   >
-    <q-item-section class="link-container">
-      <q-item-label class="Link">{{ title }}</q-item-label>
+    <q-item-section
+      v-if="icon"
+      avatar
+    >
+      <q-icon :name="icon" />
+    </q-item-section>
+
+    <q-item-section>
+      <q-item-label>{{ title }}</q-item-label>
+      <q-item-label caption>
+        {{ caption }}
+      </q-item-label>
     </q-item-section>
   </q-item>
 </template>
-
-<style scoped>
-.Link {
-  font-size: 1.4em;
-  padding: 0 0 2px 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
-</style>
 
 <script>
 export default {
@@ -29,9 +29,20 @@ export default {
       type: String,
       required: true
     },
+
+    caption: {
+      type: String,
+      default: ''
+    },
+
     link: {
       type: String,
       default: '#'
+    },
+
+    icon: {
+      type: String,
+      default: ''
     }
   }
 }

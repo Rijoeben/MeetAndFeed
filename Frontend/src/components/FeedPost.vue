@@ -15,6 +15,7 @@
 <style scoped>
 .my-card {
   min-width: 200px;
+  max-width: 600px;
   width: 90vw;
   margin-top: 30px;
 }

@@ -1,6 +1,6 @@
-# app (meetandfeed)
+# Meet And Feed (mafv3)
 
-app to connect and ea
+An app to connect
 
 ## Install the dependencies
 ```bash

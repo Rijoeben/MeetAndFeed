@@ -100,9 +100,9 @@ module.exports = function (ctx) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'app',
-        short_name: 'app',
-        description: 'app to connect and ea',
+        name: 'Meet And Feed',
+        short_name: 'Meet And Feed',
+        description: 'An app to connect',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -168,7 +168,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'meetandfeed'
+        appId: 'mafv3'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
