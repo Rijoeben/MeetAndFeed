@@ -17,6 +17,7 @@ namespace MAFDB
         public DateTime Date { get; set; }
         public int AmountOfPeople { get; set; }
         public ICollection<User> Participants { get; set; }
+        //public virtual ICollection<Product> Products { get; set; }
         //public double Score { get; set; }
     }
 }

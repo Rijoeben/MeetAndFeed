@@ -18,9 +18,7 @@ namespace DAL
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
-        public DbSet<UserAllergy> UserAllergies { get; set; }
-        public DbSet<ProductAllergy> ProductAllergies { get; set; }
-        public DbSet<PostProduct> PostProducts { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

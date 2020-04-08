@@ -18,6 +18,7 @@ namespace MAFDB
         public char Gender { get; set; }
         public string Password { get; set; }
         public DateTime Birthday { get; set; }
+        public ICollection<Allergy> Allergies {get; set;}
 
     }
 }
