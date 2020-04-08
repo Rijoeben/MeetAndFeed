@@ -56,10 +56,7 @@ namespace BL
             newPost.Description = description;
             newPost.Date = date;
             newPost.AmountOfPeople = amountOfPeople;
-            newPost.Score = score;
-
-
-         
+            newPost.Score = score;         
         }
     }
 }

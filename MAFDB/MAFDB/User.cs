@@ -16,6 +16,5 @@ namespace MAFDB
         public string Password { get; set; }
         public DateTime Birthday { get; set; }
 
-        public IList<UserPost> UserPosts { get; set; }
     }
 }

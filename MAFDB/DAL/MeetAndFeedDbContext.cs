@@ -19,7 +19,6 @@ namespace DAL
         public DbSet<Post> Posts { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
         public DbSet<UserAllergy> UserAllergies { get; set; }
-        public DbSet<UserPost> UserPosts { get; set; }
         public DbSet<ProductAllergy> ProductAllergies { get; set; }
         public DbSet<PostProduct> PostProducts { get; set; }
 
@@ -30,8 +29,6 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            modelbuilder.Entity<UserPost>()
-                .HasKey(up => new { up.UserId, up.PostId });
             modelbuilder.Entity<UserAllergy>()
                 .HasKey(ua => new { ua.AllergyId, ua.UserId });
             modelbuilder.Entity<PostProduct>()
