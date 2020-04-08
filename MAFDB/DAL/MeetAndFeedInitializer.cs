@@ -30,7 +30,7 @@ namespace DAL
                 LastName = "Test",
                 Password = "testing123",
                 Preference = true,
-                UserId = "1"
+                UserId = 1
             };
             db.Add(test);
             db.SaveChanges();

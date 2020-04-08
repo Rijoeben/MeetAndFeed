@@ -13,8 +13,8 @@ namespace DAL
 
         void UpdateProduct(Product product);
 
-        void DeleteProduct(string productID);
+        void DeleteProduct(long productID);
 
-        Product GetProduct(string productID);
+        Product GetProduct(long productID);
     }
 }

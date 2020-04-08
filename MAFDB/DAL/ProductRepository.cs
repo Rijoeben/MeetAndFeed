@@ -21,7 +21,7 @@ namespace DAL
             return product;
         }
 
-        public void DeleteProduct(string productID)
+        public void DeleteProduct(long productID)
         {
             ctx.Products.Remove(GetProduct(productID));
             ctx.SaveChanges();
@@ -32,7 +32,7 @@ namespace DAL
             ctx.Products.Update(product);
             ctx.SaveChanges();
         }
-        public Product GetProduct(string productid)
+        public Product GetProduct(long productid)
         {
             return ctx.Products.Find(productid);
         }

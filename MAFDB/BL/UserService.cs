@@ -47,16 +47,5 @@ namespace BL
         {
            return _repo.SearchUserByEmailAddres(emailAddress);
         }
-
-        public Post UserCreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, double score)
-        {
-            Post newPost = new Post();
-            newPost.Title = title;
-            newPost.Dish = dish;
-            newPost.Description = description;
-            newPost.Date = date;
-            newPost.AmountOfPeople = amountOfPeople;
-            newPost.Score = score;         
-        }
     }
 }

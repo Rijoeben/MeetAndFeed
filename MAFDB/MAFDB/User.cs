@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MAFDB
 {
     public class User
     {
-        public string UserId { get; set; }
+        [Key]
+        public long UserId { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

@@ -13,9 +13,9 @@ namespace DAL
 
         void UpdatePost(Post post);
 
-        void DeletePost(string postID);
+        void DeletePost(long postID);
 
-        Post GetPost(string postID);
+        Post GetPost(long postID);
 
     }
 }
