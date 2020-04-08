@@ -29,12 +29,12 @@ namespace DAL
             ctx.SaveChanges();
         }
 
-        public void DeletePost(string postID)
+        public void DeletePost(long postID)
         {
             ctx.Posts.Remove(GetPost(postID));
             ctx.SaveChanges();
         }
-        public Post GetPost(string postID)
+        public Post GetPost(long postID)
         {
             return ctx.Posts.Find(postID);
         }

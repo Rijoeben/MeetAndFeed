@@ -17,9 +17,5 @@ namespace BL
         public void ChangeUser(User user);
 
         public User FindUserByEmailAddress(string emailAddress);
-
-        public Post UserCreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, double score);
-
-
     }
 }

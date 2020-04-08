@@ -10,6 +10,6 @@ namespace BL
     {
         IEnumerable<Product> ListOfProducts();
         public Product AddProduct(string productName);
-        public void DeleteProduct(string productID);
+        public void DeleteProduct(long productID);
     }
 }
