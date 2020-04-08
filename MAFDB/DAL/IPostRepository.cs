@@ -9,7 +9,7 @@ namespace DAL
     {
         IEnumerable<Post> ReadPosts();
 
-        Post CreatePost(Post post);
+        Post AddPost(Post post);
 
         void UpdatePost(Post post);
 

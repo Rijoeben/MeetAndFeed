@@ -16,7 +16,7 @@ namespace DAL
             return ctx.Posts.AsEnumerable();
         }
 
-        public Post CreatePost(Post post)
+        public Post AddPost(Post post)
         {
             ctx.Add(post);
             ctx.SaveChanges();

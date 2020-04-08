@@ -10,7 +10,7 @@ namespace BL
     {
         private IPostRepository _repo;
 
-        public Post AddPost(string title, string dish, string description, DateTime date, int amountOfPeople, double score)
+        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, double score) // Misschien niet nodig.
         {
             Post newPost = new Post();
 
@@ -22,7 +22,7 @@ namespace BL
             newPost.AmountOfPeople = amountOfPeople;
             newPost.Score = score;
 
-            _repo.CreatePost(newPost);
+            _repo.AddPost(newPost);
             return newPost;
         }
 

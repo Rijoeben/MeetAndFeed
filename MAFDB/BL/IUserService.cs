@@ -10,13 +10,15 @@ namespace BL
     {
         IEnumerable<User> ListOfUsers();
 
-        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth);
+        public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth);
 
         public void RemoveUser(string userID);
 
         public void ChangeUser(User user);
 
         public User FindUserByEmailAddress(string emailAddress);
+
+        public Post UserCreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, double score);
 
 
     }
