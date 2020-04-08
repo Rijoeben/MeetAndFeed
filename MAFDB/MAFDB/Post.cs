@@ -13,5 +13,7 @@ namespace MAFDB
         public DateTime Date { get; set; }
         public int AmountOfPeople { get; set; }
         public double Score { get; set; }
+
+        public IList<UserPost> UserPosts { get; set; }
     }
 }
