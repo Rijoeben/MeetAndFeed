@@ -9,8 +9,9 @@ namespace BL
     public class UserService : IUserService
     {
         private IUserRepository _repo;
+        private IPostRepository _repoPost;
 
-        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
+        public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             User newUser = new User();
 
@@ -23,7 +24,7 @@ namespace BL
             newUser.Gender = gender;
             newUser.Birthday = dayOfBirth;
 
-            _repo.CreateUser(newUser);
+            _repo.AddUser(newUser);
             return newUser;
         }
 

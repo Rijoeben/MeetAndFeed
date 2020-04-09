@@ -6,7 +6,7 @@ namespace MAFDB
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("Hey Jongens xoxo");
         }
     }
 }

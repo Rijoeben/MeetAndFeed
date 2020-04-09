@@ -6,7 +6,7 @@ using MAFDB;
 
 namespace DAL
 {
-    public class PostRepository : IpostRepository
+    public class PostRepository : IPostRepository
     {
 
         private readonly MeetAndFeedDbContext ctx;
@@ -16,7 +16,7 @@ namespace DAL
             return ctx.Posts.AsEnumerable();
         }
 
-        public Post CreatePost(Post post)
+        public Post AddPost(Post post)
         {
             ctx.Add(post);
             ctx.SaveChanges();
@@ -29,12 +29,12 @@ namespace DAL
             ctx.SaveChanges();
         }
 
-        public void DeletePost(string postID)
+        public void DeletePost(long postID)
         {
             ctx.Posts.Remove(GetPost(postID));
             ctx.SaveChanges();
         }
-        public Post GetPost(string postID)
+        public Post GetPost(long postID)
         {
             return ctx.Posts.Find(postID);
         }

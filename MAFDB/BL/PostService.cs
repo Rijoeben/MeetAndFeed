@@ -10,7 +10,7 @@ namespace BL
     {
         private IPostRepository _repo;
 
-        public Post AddPost(string title, string dish, string description, DateTime date, int amountOfPeople, double score)
+        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople) // Misschien niet nodig.
         {
             Post newPost = new Post();
 
@@ -20,9 +20,9 @@ namespace BL
             newPost.Description = description;
             newPost.Date = date;
             newPost.AmountOfPeople = amountOfPeople;
-            newPost.Score = score;
 
-            _repo.CreatePost(newPost);
+
+            _repo.AddPost(newPost);
             return newPost;
         }
 
@@ -36,7 +36,7 @@ namespace BL
             return _repo.ReadPosts();
         }
 
-        public void RemovePost(string postID)
+        public void RemovePost(long postID)
         {
             _repo.DeletePost(postID);
         }

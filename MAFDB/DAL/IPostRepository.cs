@@ -9,13 +9,13 @@ namespace DAL
     {
         IEnumerable<Post> ReadPosts();
 
-        Post CreatePost(Post post);
+        Post AddPost(Post post);
 
         void UpdatePost(Post post);
 
-        void DeletePost(string postID);
+        void DeletePost(long postID);
 
-        Post GetPost(string postID);
+        Post GetPost(long postID);
 
     }
 }

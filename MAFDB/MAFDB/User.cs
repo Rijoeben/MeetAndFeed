@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MAFDB
 {
     public class User
     {
-        public string UserId { get; set; }
+        [Key]
+        public long UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -15,5 +17,7 @@ namespace MAFDB
         public char Gender { get; set; }
         public string Password { get; set; }
         public DateTime Birthday { get; set; }
+        public ICollection<Allergy> Allergies {get; set;}
+
     }
 }
