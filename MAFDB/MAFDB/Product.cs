@@ -8,5 +8,7 @@ namespace MAFDB
     {
         public string ProductId { get; set; }
         public string ProductName { get; set; }
+
+        //public virtual ICollection<Post> Posts { get; set; }
     }
 }
