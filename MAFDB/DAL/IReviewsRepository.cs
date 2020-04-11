@@ -9,7 +9,7 @@ namespace DAL
         {
             IEnumerable<Review> ReadReview();
 
-            Review CreateReview(Review review);
+            Review AddReview(Review review);
 
             void UpdateReview(Review review);
 

@@ -14,7 +14,7 @@ namespace DAL
         {
             return ctx.Reviews.AsEnumerable();
         }
-        public Review CreateReview(Review review)
+        public Review AddReview(Review review)
         {
             ctx.Add(review);
             ctx.SaveChanges();
