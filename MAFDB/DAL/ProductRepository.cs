@@ -21,9 +21,9 @@ namespace DAL
             return product;
         }
 
-        public void DeleteProduct(long productID)
+        public void DeleteProduct(long productId)
         {
-            ctx.Products.Remove(GetProduct(productID));
+            ctx.Products.Remove(GetProduct(productId));
             ctx.SaveChanges();
         }
 
@@ -32,9 +32,9 @@ namespace DAL
             ctx.Products.Update(product);
             ctx.SaveChanges();
         }
-        public Product GetProduct(long productid)
+        public Product GetProduct(long productId)
         {
-            return ctx.Products.Find(productid);
+            return ctx.Products.Find(productId);
         }
     }
 }

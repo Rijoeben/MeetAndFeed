@@ -12,9 +12,11 @@ namespace BL
 
         public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth);
 
-        public void RemoveUser(string userID);
+        public void RemoveUser(string userId);
 
         public void ChangeUser(User user);
+
+        public User ReadUser(int userId);
 
         public User FindUserByEmailAddress(string emailAddress);
     }

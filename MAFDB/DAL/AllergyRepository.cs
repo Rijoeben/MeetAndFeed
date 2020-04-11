@@ -28,9 +28,9 @@ namespace DAL
             ctx.Add(allergy);
             ctx.SaveChanges();
         }
-        public Allergy GetAllergy(string allergyID)
+        public Allergy GetAllergy(string allergyId)
         {
-            return ctx.Allergies.Find(allergyID);
+            return ctx.Allergies.Find(allergyId);
         }
 
         public void DeleteAllergy(Allergy allergy)

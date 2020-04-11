@@ -35,15 +35,15 @@ namespace DAL
             ctx.SaveChanges();
         }
 
-        public void DeleteUser(string userID)
+        public void DeleteUser(string userId)
         {
-            ctx.Users.Remove(GetUser(userID));
+            ctx.Users.Remove(GetUser(userId));
             ctx.SaveChanges();
         }
 
-        public User GetUser(string userID)
+        public User GetUser(string userId)
         {
-            return ctx.Users.Find(userID);
+            return ctx.Users.Find(userId);
         }
 
         public User SearchUserByEmailAddres(string emailAddress)

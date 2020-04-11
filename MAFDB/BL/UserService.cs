@@ -28,9 +28,9 @@ namespace BL
             return newUser;
         }
 
-        public void RemoveUser(string userID)
+        public void RemoveUser(string userId)
         {
-            _repo.DeleteUser(userID);
+            _repo.DeleteUser(userId);
         }
 
         public IEnumerable<User> ListOfUsers()
@@ -42,6 +42,8 @@ namespace BL
         {
             _repo.UpdateUser(user);
         }
+
+        
 
         public User FindUserByEmailAddress(string emailAddress)
         {

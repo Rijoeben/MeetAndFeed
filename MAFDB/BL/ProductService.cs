@@ -25,9 +25,9 @@ namespace BL
             return newProduct;
         }
 
-        public void DeleteProduct(long productID)
+        public void DeleteProduct(long productId)
         {
-            _repo.DeleteProduct(productID);
+            _repo.DeleteProduct(productId);
         }
     }
 }

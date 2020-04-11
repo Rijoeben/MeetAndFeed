@@ -10,8 +10,8 @@ namespace DAL
         IEnumerable<User> ReadUsers();       
         User AddUser(User user);
         void UpdateUser(User user);
-        User GetUser(string userID);
-        void DeleteUser(string userID);
+        User GetUser(string userId);
+        void DeleteUser(string userId);
         //void ReadUser(int? userID);
         User SearchUserByEmailAddres(string emailAddress);
 
