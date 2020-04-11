@@ -6,7 +6,9 @@ namespace MAFDB
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public string ProductName { get; set; }
+
+        //public virtual ICollection<Post> Posts { get; set; }
     }
 }
