@@ -150,7 +150,6 @@ namespace DAL
             };
             db.Add(allergy14);
             db.SaveChanges();
-
         }
     }
 }
