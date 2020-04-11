@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using MAFDB;
 
-namespace MAFDB
+namespace API.Models
 {
-    public class Allergy
+    public class AllergyModel
     {
         [Key]
         public long AllergyId { get; set; }
@@ -13,5 +15,5 @@ namespace MAFDB
         public string AllergyName { get; set; }
         public Product ProductName { get; set; }
         public User User { get; set; }
-    }   
+    }
 }

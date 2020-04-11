@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
-namespace MAFDB
+using System.Linq;
+using System.Threading.Tasks;
+using MAFDB;
+namespace API.Models
 {
-    public class Review
+    public class ReviewModel
     {
         public long ReviewId { get; set; }
         public long UserId { get; set; }

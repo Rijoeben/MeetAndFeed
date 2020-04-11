@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
-namespace MAFDB
+using System.Linq;
+using System.Threading.Tasks;
+using MAFDB;
+namespace API.Models
 {
-    public class Product
+    public class ProductModel
     {
         public long ProductId { get; set; }
         public string ProductName { get; set; }
-
-        //public virtual ICollection<Post> Posts { get; set; }
     }
 }
