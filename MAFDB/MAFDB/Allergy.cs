@@ -8,7 +8,7 @@ namespace MAFDB
     public class Allergy
     {
         [Key]
-        public string AllergyId { get; set; }
+        public long AllergyId { get; set; }
 
         public string AllergyName { get; set; }
         public Product ProductName { get; set; }
