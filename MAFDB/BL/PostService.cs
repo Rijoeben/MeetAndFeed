@@ -11,7 +11,7 @@ namespace BL
         private IPostRepository _repo;
         private IUserService _userService;
 
-        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, long userId) // Misschien niet nodig.
+        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, long userId)
         {
             User postCreator = _userService.ReadUser(userId);
            

@@ -47,9 +47,18 @@ namespace BL
             return _repo.GetUser(userId);
          }
 
-        public User FindUserByEmailAddress(string emailAddress)
+        public User Login(string emailAddress, string password)
         {
-           return _repo.SearchUserByEmailAddres(emailAddress);
+            User userToLogin = _repo.SearchUserByEmailAddres(emailAddress);
+
+            if(userToLogin.Password == password)
+            {
+                return userToLogin;
+            }
+            else
+            {
+                return null;
+            }
         }
 
        

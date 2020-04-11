@@ -18,6 +18,6 @@ namespace BL
 
         public User ReadUser(long userId);
 
-        public User FindUserByEmailAddress(string emailAddress);
+        public User Login(string emailAddress, string password);
     }
 }
