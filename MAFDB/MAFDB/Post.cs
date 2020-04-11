@@ -7,14 +7,9 @@ namespace MAFDB
 {
     public class Post
     {
-<<<<<<< HEAD
-        public long PostId { get; set; }
-=======
         [Key]
         public long PostId { get; set; }
-
         public User Creator { get; set; }
->>>>>>> 11416422e39e612832674056d6b04233a476484f
         public string Title { get; set; }
         public string Dish { get; set; }
         public string Description { get; set; }        
