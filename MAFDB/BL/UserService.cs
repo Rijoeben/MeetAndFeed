@@ -9,7 +9,6 @@ namespace BL
     public class UserService : IUserService
     {
         private IUserRepository _repo;
-        private IPostRepository _repoPost;
 
         public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
@@ -28,7 +27,7 @@ namespace BL
             return newUser;
         }
 
-        public void RemoveUser(string userId)
+        public void RemoveUser(long userId)
         {
             _repo.DeleteUser(userId);
         }
@@ -43,11 +42,25 @@ namespace BL
             _repo.UpdateUser(user);
         }
 
-        
+         public User ReadUser(long userId)
+         {
+            return _repo.GetUser(userId);
+         }
 
-        public User FindUserByEmailAddress(string emailAddress)
+        public User Login(string emailAddress, string password)
         {
-           return _repo.SearchUserByEmailAddres(emailAddress);
+            User userToLogin = _repo.SearchUserByEmailAddres(emailAddress);
+
+            if(userToLogin.Password == password)
+            {
+                return userToLogin;
+            }
+            else
+            {
+                return null;
+            }
         }
+
+       
     }
 }

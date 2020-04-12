@@ -8,7 +8,7 @@ namespace BL
     public interface IPostService
     {
         IEnumerable<Post> ListOfPosts();
-        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople);
+        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, long userId);
 
         public void RemovePost(long postId);
 

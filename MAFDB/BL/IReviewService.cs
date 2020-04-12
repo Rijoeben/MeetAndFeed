@@ -7,6 +7,6 @@ namespace BL
 {
     public interface IReviewService
     {
-        public Review AddReview(string content);
+        public Review CreateReview(string content);
     }
 }

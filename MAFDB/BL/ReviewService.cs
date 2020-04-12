@@ -11,13 +11,13 @@ namespace BL
     {
         private IReviewRepository _repo;
 
-        public Review AddReview(string content)
+        public Review CreateReview(string content)
         {
             Review newReview = new Review();
 
             newReview.Content = content;
 
-            _repo.CreateReview(newReview);
+            _repo.AddReview(newReview);
             return newReview;
         }
     }

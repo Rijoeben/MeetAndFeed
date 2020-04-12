@@ -35,13 +35,13 @@ namespace DAL
             ctx.SaveChanges();
         }
 
-        public void DeleteUser(string userId)
+        public void DeleteUser(long userId)
         {
             ctx.Users.Remove(GetUser(userId));
             ctx.SaveChanges();
         }
 
-        public User GetUser(string userId)
+        public User GetUser(long userId)
         {
             return ctx.Users.Find(userId);
         }

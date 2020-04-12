@@ -14,7 +14,7 @@ namespace BL
         {
             return _repo.ReadProducts();
         }
-        public Product AddProduct(string productName)
+        public Product CreateProduct(string productName)
         {
             Product newProduct = new Product();
 
