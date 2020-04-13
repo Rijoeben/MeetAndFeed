@@ -9,9 +9,7 @@ namespace API.Models
 {
     public class AllergyModel
     {
-        [Key]
         public long AllergyId { get; set; }
-
         public string AllergyName { get; set; }
         public Product ProductName { get; set; }
         public User User { get; set; }

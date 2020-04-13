@@ -25,7 +25,11 @@ namespace DAL
         {
             optionsBuilder.UseSqlite("Data Source=MafDatabase");
         }
+        public MeetAndFeedDbContext(DbContextOptions<MeetAndFeedDbContext> options)
+            : base(options)
+        {
 
+        }
         //protected override void OnModelCreating(ModelBuilder modelbuilder)
         //{
         //    modelbuilder.Entity<UserAllergy>()

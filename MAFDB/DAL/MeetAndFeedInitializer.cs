@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using MAFDB;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace DAL
 {
     class MeetAndFeedInitializer
     {
+        public static void Creator(MeetAndFeedDbContext context)
+        {
+            if (context.Database.EnsureCreated())
+            {
+                AllergyValues(context);
+            }
+        }
         //enkel usefull voor migrations over te slagen
 
         //private static bool _hasRunDuringApplicationExecution;
@@ -17,8 +26,10 @@ namespace DAL
         //    if (forceDropCreateDatabase) context.Database.EnsureDeleted();
 
         //    if (context.Database.EnsureCreated())
-                 
+
         //}
+
+
 
         public static void TestUsers(MeetAndFeedDbContext db)
         {

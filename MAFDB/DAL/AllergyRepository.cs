@@ -10,7 +10,10 @@ namespace DAL
     public class AllergyRepository : IAllergyRepository
     {
         private readonly MeetAndFeedDbContext ctx;
-
+        public AllergyRepository()
+        {
+            ctx = new MeetAndFeedDbContext();
+        }
         public IEnumerable<Allergy> ReadAllergy()
         {
             return ctx.Allergies.AsEnumerable();

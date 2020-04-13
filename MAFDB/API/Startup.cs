@@ -12,8 +12,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using API.Models;
+using BL;
+using Microsoft.EntityFrameworkCore.Storage;
 using DAL;
-
 
 namespace API
 {
@@ -26,14 +27,23 @@ namespace API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        private IWebHostEnvironment _appHost;
+
+        public Startup(IWebHostEnvironment appHost)
+        {
+            _appHost = appHost;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MeetAndFeedDbContext>(opt => opt.UseInMemoryDatabase("MafDatabase"));
+            services.AddEntityFrameworkSqlite()
+                .AddDbContext<MeetAndFeedDbContext>(
+                    options => { options.UseSqlite($"Data Source={_appHost.ContentRootPath}/MafDatabase"); });
+            services.AddDbContext<MeetAndFeedDbContext>();
+            services.AddScoped<IAllergyService, AllergyService>();
             services.AddControllers();
-
-         
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

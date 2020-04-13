@@ -8,6 +8,10 @@ namespace BL
     public class AllergyService : IAllergyService
     {
         private IAllergyRepository _repo;
+        public AllergyService()
+        {
+           _repo = new AllergyRepository();
+        }
 
         public IEnumerable<Allergy> ListOfAllergies()
         {
