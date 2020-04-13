@@ -138,20 +138,6 @@ namespace DAL.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("MAFDB.Product", b =>
-                {
-                    b.Property<long>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("MAFDB.Review", b =>
                 {
                     b.Property<long>("ReviewId")
@@ -207,6 +193,44 @@ namespace DAL.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1L,
+                            Address = "EersteStraat",
+                            Birthday = new DateTime(2000, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailAddress = "ruben.laureys@gmail.com",
+                            FirstName = "Ruben",
+                            Gender = 'M',
+                            LastName = "Laureys",
+                            Password = "Password123",
+                            Preference = false
+                        },
+                        new
+                        {
+                            UserId = 2L,
+                            Address = "TweedeStraat",
+                            Birthday = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailAddress = "jord.goossens@gmail.com",
+                            FirstName = "Jord",
+                            Gender = 'X',
+                            LastName = "Goossens",
+                            Password = "Password",
+                            Preference = true
+                        },
+                        new
+                        {
+                            UserId = 3L,
+                            Address = "DerdeStraat",
+                            Birthday = new DateTime(1969, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailAddress = "yannick.robijn@gmail.com",
+                            FirstName = "Yannick",
+                            Gender = 'V',
+                            LastName = "Robijn",
+                            Password = "StinkHoer",
+                            Preference = true
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.Allergy", b =>

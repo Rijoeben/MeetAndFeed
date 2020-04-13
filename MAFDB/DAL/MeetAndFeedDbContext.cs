@@ -15,7 +15,6 @@ namespace DAL
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
@@ -46,7 +45,8 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Seed();
+            modelBuilder.SeedAllergies();
+            modelBuilder.SeedUsers();
         }
     }
 }
