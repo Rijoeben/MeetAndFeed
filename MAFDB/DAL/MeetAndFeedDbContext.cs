@@ -42,7 +42,8 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Seed();
+            modelBuilder.SeedAllergies();
+            modelBuilder.SeedUsers();
         }
     }
 }

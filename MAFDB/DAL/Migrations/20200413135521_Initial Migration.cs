@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,32 +107,27 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 2L, "Crustaceans", null });
+                values: new object[] { 14L, "Molluscs", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 3L, "Eggs", null });
+                values: new object[] { 13L, "Luping", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 4L, "Fish", null });
+                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 5L, "Peanuts", null });
+                values: new object[] { 11L, "Sesame", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 6L, "Soya", null });
-
-            migrationBuilder.InsertData(
-                table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 7L, "Lactose(Milk)", null });
+                values: new object[] { 10L, "Mustad", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -147,27 +142,47 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 10L, "Mustad", null });
+                values: new object[] { 6L, "Soya", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 11L, "Sesame", null });
+                values: new object[] { 5L, "Peanuts", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
+                values: new object[] { 4L, "Fish", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 13L, "Luping", null });
+                values: new object[] { 3L, "Eggs", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 14L, "Molluscs", null });
+                values: new object[] { 2L, "Crustaceans", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 7L, "Lactose(Milk)", null });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "Address", "Birthday", "EmailAddress", "FirstName", "Gender", "LastName", "Password", "PostId", "Preference" },
+                values: new object[] { 2L, "TweedeStraat", new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jord.goossens@gmail.com", "Jord", 'X', "Goossens", "Password", null, true });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "Address", "Birthday", "EmailAddress", "FirstName", "Gender", "LastName", "Password", "PostId", "Preference" },
+                values: new object[] { 1L, "EersteStraat", new DateTime(2000, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "ruben.laureys@gmail.com", "Ruben", 'M', "Laureys", "Password123", null, false });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "Address", "Birthday", "EmailAddress", "FirstName", "Gender", "LastName", "Password", "PostId", "Preference" },
+                values: new object[] { 3L, "DerdeStraat", new DateTime(1969, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "yannick.robijn@gmail.com", "Yannick", 'V', "Robijn", "StinkHoer", null, true });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Allergies_UserId",
