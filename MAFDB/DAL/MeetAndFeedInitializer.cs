@@ -20,7 +20,7 @@ namespace DAL
                  
         //}
 
-        public static void Testwaarden(MeetAndFeedDbContext db)
+        public static void TestUsers(MeetAndFeedDbContext db)
         {
             User test = new User()
             {

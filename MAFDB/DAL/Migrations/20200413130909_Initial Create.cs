@@ -11,7 +11,8 @@ namespace DAL.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<string>(nullable: false),
+                    ProductId = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ProductName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -23,8 +24,9 @@ namespace DAL.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    ReviewId = table.Column<string>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
+                    ReviewId = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(nullable: false),
                     Content = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -57,20 +59,14 @@ namespace DAL.Migrations
                 name: "Allergies",
                 columns: table => new
                 {
-                    AllergyId = table.Column<string>(nullable: false),
+                    AllergyId = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     AllergyName = table.Column<string>(nullable: true),
-                    ProductNameProductId = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Allergies", x => x.AllergyId);
-                    table.ForeignKey(
-                        name: "FK_Allergies_Products_ProductNameProductId",
-                        column: x => x.ProductNameProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Allergies_Users_UserId",
                         column: x => x.UserId,
@@ -103,10 +99,75 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Allergies_ProductNameProductId",
+            migrationBuilder.InsertData(
                 table: "Allergies",
-                column: "ProductNameProductId");
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 1L, "Cereals containing gluten", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 2L, "Crustaceans", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 3L, "Eggs", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 4L, "Fish", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 5L, "Peanuts", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 6L, "Soya", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 7L, "Lactose(Milk)", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 8L, "Nuts(Tree Nuts)", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 9L, "Celery", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 10L, "Mustad", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 11L, "Sesame", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 13L, "Luping", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 14L, "Molluscs", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Allergies_UserId",
@@ -142,10 +203,10 @@ namespace DAL.Migrations
                 name: "Allergies");
 
             migrationBuilder.DropTable(
-                name: "Reviews");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Users");

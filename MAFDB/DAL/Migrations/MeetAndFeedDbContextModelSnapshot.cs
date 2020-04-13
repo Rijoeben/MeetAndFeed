@@ -18,13 +18,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
-                    b.Property<string>("AllergyId")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("AllergyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("AllergyName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ProductNameProductId")
                         .HasColumnType("TEXT");
 
                     b.Property<long?>("UserId")
@@ -32,11 +30,81 @@ namespace DAL.Migrations
 
                     b.HasKey("AllergyId");
 
-                    b.HasIndex("ProductNameProductId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Allergies");
+
+                    b.HasData(
+                        new
+                        {
+                            AllergyId = 1L,
+                            AllergyName = "Cereals containing gluten"
+                        },
+                        new
+                        {
+                            AllergyId = 2L,
+                            AllergyName = "Crustaceans"
+                        },
+                        new
+                        {
+                            AllergyId = 3L,
+                            AllergyName = "Eggs"
+                        },
+                        new
+                        {
+                            AllergyId = 4L,
+                            AllergyName = "Fish"
+                        },
+                        new
+                        {
+                            AllergyId = 5L,
+                            AllergyName = "Peanuts"
+                        },
+                        new
+                        {
+                            AllergyId = 6L,
+                            AllergyName = "Soya"
+                        },
+                        new
+                        {
+                            AllergyId = 7L,
+                            AllergyName = "Lactose(Milk)"
+                        },
+                        new
+                        {
+                            AllergyId = 8L,
+                            AllergyName = "Nuts(Tree Nuts)"
+                        },
+                        new
+                        {
+                            AllergyId = 9L,
+                            AllergyName = "Celery"
+                        },
+                        new
+                        {
+                            AllergyId = 10L,
+                            AllergyName = "Mustad"
+                        },
+                        new
+                        {
+                            AllergyId = 11L,
+                            AllergyName = "Sesame"
+                        },
+                        new
+                        {
+                            AllergyId = 12L,
+                            AllergyName = "Sulphur Dioxide(Sulphite"
+                        },
+                        new
+                        {
+                            AllergyId = 13L,
+                            AllergyName = "Luping"
+                        },
+                        new
+                        {
+                            AllergyId = 14L,
+                            AllergyName = "Molluscs"
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.Post", b =>
@@ -72,8 +140,9 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Product", b =>
                 {
-                    b.Property<string>("ProductId")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ProductName")
                         .HasColumnType("TEXT");
@@ -85,14 +154,15 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Review", b =>
                 {
-                    b.Property<string>("ReviewId")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("ReviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ReviewId");
 
@@ -141,11 +211,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
-                    b.HasOne("MAFDB.Product", "ProductName")
-                        .WithMany()
-                        .HasForeignKey("ProductNameProductId");
-
-                    b.HasOne("MAFDB.User", "User")
+                    b.HasOne("MAFDB.User", null)
                         .WithMany("Allergies")
                         .HasForeignKey("UserId");
                 });

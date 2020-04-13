@@ -39,6 +39,10 @@ namespace DAL
         //    modelbuilder.Entity<Post>()
         //        .HasOne(u => u.Creator)
         //        .WithMany(p => p.Posts);
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
     }
 }
