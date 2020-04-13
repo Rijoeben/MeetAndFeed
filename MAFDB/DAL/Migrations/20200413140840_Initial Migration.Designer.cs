@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200413135521_Initial Migration")]
+    [Migration("20200413140840_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,20 +138,6 @@ namespace DAL.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("MAFDB.Product", b =>
-                {
-                    b.Property<long>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("MAFDB.Review", b =>

@@ -138,20 +138,6 @@ namespace DAL.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("MAFDB.Product", b =>
-                {
-                    b.Property<long>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("MAFDB.Review", b =>
                 {
                     b.Property<long>("ReviewId")
