@@ -23,29 +23,19 @@ namespace DAL
         {
             optionsBuilder.UseSqlite("Data Source=MafDatabase");
         }
+
         public MeetAndFeedDbContext(DbContextOptions<MeetAndFeedDbContext> options)
             : base(options)
         {
 
         }
-        //protected override void OnModelCreating(ModelBuilder modelbuilder)
-        //{
-        //    modelbuilder.Entity<UserAllergy>()
-        //        .HasKey(ua => new { ua.AllergyId, ua.UserId });
-        //    modelbuilder.Entity<PostProduct>()
-        //        .HasKey(pp => new { pp.PostId, pp.ProductId });
-        //    modelbuilder.Entity<ProductAllergy>()
-        //        .HasKey(pa => new { pa.AllergyId, pa.ProductId });
-        //    modelbuilder.Entity<UserAllergy>()
-        //        .HasKey(pa => new { pa.UserId, pa.AllergyId });
-        //    modelbuilder.Entity<Post>()
-        //        .HasOne(u => u.Creator)
-        //        .WithMany(p => p.Posts);
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.SeedAllergies();
             modelBuilder.SeedUsers();
+            modelBuilder.SeedPost();
+            modelBuilder.SeedReview();
         }
     }
 }

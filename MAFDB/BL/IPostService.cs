@@ -12,7 +12,9 @@ namespace BL
 
         public void RemovePost(long postId);
 
-        public void ChangePost(Post post);
+        public Post ChangePost(string title, string dish, string description, DateTime date, int amountOfPeople, long postId);
+
+        public Post ReadPost(long postId);
 
     }
 }

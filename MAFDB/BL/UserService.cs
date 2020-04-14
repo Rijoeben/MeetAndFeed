@@ -37,9 +37,28 @@ namespace BL
             return _repo.ReadUsers();
         }
 
-        public void ChangeUser(User user)
+        public User ChangeUser(long userId, string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
-            _repo.UpdateUser(user);
+            User userToChange = ReadUser(userId);
+            if (userToChange != null) // Checkt of er een user is gevonden met de mee gegeven id
+            {
+                userToChange.FirstName = firstName;
+                userToChange.LastName = lastName;
+                userToChange.Address = address;
+                userToChange.EmailAddress = emailAddress;
+                userToChange.Preference = preference;
+                userToChange.Password = password;
+                userToChange.Gender = gender;
+                userToChange.Birthday = dayOfBirth;
+
+                _repo.UpdateUser(userToChange);
+                return userToChange;
+            }
+            else
+            {
+                return null;
+
+            }
         }
 
          public User ReadUser(long userId)
@@ -49,7 +68,7 @@ namespace BL
 
         public User Login(string emailAddress, string password)
         {
-            User userToLogin = _repo.SearchUserByEmailAddres(emailAddress);
+            User userToLogin = _repo.SearchUserByEmailAddres(emailAddress); // User gaan zoeken aan de hanv van het gegeven email address
 
             if(userToLogin.Password == password)
             {
