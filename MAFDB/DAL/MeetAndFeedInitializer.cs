@@ -10,26 +10,13 @@ namespace DAL
 {
     class MeetAndFeedInitializer
     {
-        public static void Creator(MeetAndFeedDbContext context)
-        {
-            if (context.Database.EnsureCreated())
-            {
-                AllergyValues(context);
-            }
-        }
-        //enkel usefull voor migrations over te slagen
-
-        //private static bool _hasRunDuringApplicationExecution;
-
-        //public static void Initialize(MeetAndFeedDbContext context, bool forceDropCreateDatabase = false)
+        //public static void Creator(MeetAndFeedDbContext context)
         //{
-        //    if (forceDropCreateDatabase) context.Database.EnsureDeleted();
-
         //    if (context.Database.EnsureCreated())
-
+        //    {
+        //        AllergyValues(context);
+        //    }
         //}
-
-
 
         public static void TestUsers(MeetAndFeedDbContext db)
         {

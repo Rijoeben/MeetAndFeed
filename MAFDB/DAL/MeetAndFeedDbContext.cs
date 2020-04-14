@@ -25,10 +25,10 @@ namespace DAL
         }
 
         public MeetAndFeedDbContext(DbContextOptions<MeetAndFeedDbContext> options)
-            : base(options)
-        {
+        : base(options)
+        { }
 
-        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

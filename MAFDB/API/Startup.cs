@@ -27,20 +27,19 @@ namespace API
 
         public IConfiguration Configuration { get; }
 
-        private IWebHostEnvironment _appHost;
 
-        public Startup(IWebHostEnvironment appHost)
-        {
-            _appHost = appHost;
-        }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkSqlite()
-                .AddDbContext<MeetAndFeedDbContext>(
-                    options => { options.UseSqlite($"Data Source={_appHost.ContentRootPath}/MafDatabase"); });
+            services.AddRazorPages();
+
+            services.AddDbContext<MeetAndFeedDbContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("MafDatabase")));
+        
             services.AddScoped<IAllergyService, AllergyService>();
-            services.AddControllers();
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
 
