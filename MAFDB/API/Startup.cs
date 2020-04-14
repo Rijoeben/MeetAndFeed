@@ -36,11 +36,11 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MeetAndFeedDbContext>();
             services.AddEntityFrameworkSqlite()
                 .AddDbContext<MeetAndFeedDbContext>(
-                    options => { options.UseSqlite($"Data Source={_appHost.ContentRootPath}/MafDatabase"); });
-            services.AddDbContext<MeetAndFeedDbContext>();
-            services.AddScoped<IAllergyService, AllergyService>();
+                    options => { options.UseSqlite($"Data Source={System.Environment.CurrentDirectory}/MafDatabase"); });
+            services.AddScoped<MeetAndFeedDbContext>();
             services.AddControllers();
         }
 

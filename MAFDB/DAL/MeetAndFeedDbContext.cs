@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace DAL
 {
     public class MeetAndFeedDbContext : DbContext 
     {
         public MeetAndFeedDbContext()
         {
-           // MeetAndFeedDbContext.Initialize(this, true);
+    
         }
 
         public DbSet<User> Users { get; set; }
