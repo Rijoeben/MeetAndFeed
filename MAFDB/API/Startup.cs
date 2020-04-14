@@ -34,12 +34,19 @@ namespace API
             services.AddRazorPages();
 
             services.AddDbContext<MeetAndFeedDbContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("MafDatabase")));
+            options.UseSqlServer(Configuration.GetConnectionString("MafDatabase")));
         
             services.AddScoped<IAllergyService, AllergyService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IUserService, UserService>();
+
+            // Geen idee of dit nodig is dacht mss onbreekt dit nog 
+            services.AddScoped<IAllergyRepository, AllergyRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
         }
 
 
