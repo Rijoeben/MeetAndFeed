@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -104,17 +104,17 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
-
-            migrationBuilder.InsertData(
-                table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
                 values: new object[] { 11L, "Sesame", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 10L, "Mustad", null });
+                values: new object[] { 10L, "Mustard", null });
+
+            migrationBuilder.InsertData(
+                table: "Allergies",
+                columns: new[] { "AllergyId", "AllergyName", "UserId" },
+                values: new object[] { 9L, "Celery", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -124,7 +124,7 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 9L, "Celery", null });
+                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -155,6 +155,36 @@ namespace DAL.Migrations
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
                 values: new object[] { 7L, "Lactose(Milk)", null });
+
+            migrationBuilder.InsertData(
+                table: "Posts",
+                columns: new[] { "PostId", "AmountOfPeople", "CreatorUserId", "Date", "Description", "Dish", "Title" },
+                values: new object[] { 1L, 3, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus", "test" });
+
+            migrationBuilder.InsertData(
+                table: "Posts",
+                columns: new[] { "PostId", "AmountOfPeople", "CreatorUserId", "Date", "Description", "Dish", "Title" },
+                values: new object[] { 2L, 2, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus met vegetarische saus", "Ballen in tomatensaus", "test1" });
+
+            migrationBuilder.InsertData(
+                table: "Posts",
+                columns: new[] { "PostId", "AmountOfPeople", "CreatorUserId", "Date", "Description", "Dish", "Title" },
+                values: new object[] { 3L, 5, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus", "test2" });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "ReviewId", "Content", "UserId" },
+                values: new object[] { 1L, "Ik vond het lekker", 1L });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "ReviewId", "Content", "UserId" },
+                values: new object[] { 2L, "Ik vond het niet zo lekker", 2L });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "ReviewId", "Content", "UserId" },
+                values: new object[] { 3L, "Hij kon niet van mijn lijf blijven, wel lekker eten", 3L });
 
             migrationBuilder.InsertData(
                 table: "Users",

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200413140840_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20200414122448_Initial Create")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace DAL.Migrations
                         new
                         {
                             AllergyId = 10L,
-                            AllergyName = "Mustad"
+                            AllergyName = "Mustard"
                         },
                         new
                         {
@@ -138,6 +138,35 @@ namespace DAL.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            PostId = 1L,
+                            AmountOfPeople = 3,
+                            Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ballen in tomatensaus maar zonder saus",
+                            Dish = "Ballen in tomatensaus",
+                            Title = "test"
+                        },
+                        new
+                        {
+                            PostId = 2L,
+                            AmountOfPeople = 2,
+                            Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ballen in tomatensaus met vegetarische saus",
+                            Dish = "Ballen in tomatensaus",
+                            Title = "test1"
+                        },
+                        new
+                        {
+                            PostId = 3L,
+                            AmountOfPeople = 5,
+                            Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ballen in tomatensaus maar zonder Ballen",
+                            Dish = "Ballen in tomatensaus",
+                            Title = "test2"
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.Review", b =>
@@ -155,6 +184,26 @@ namespace DAL.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            ReviewId = 1L,
+                            Content = "Ik vond het lekker",
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            ReviewId = 2L,
+                            Content = "Ik vond het niet zo lekker",
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            ReviewId = 3L,
+                            Content = "Hij kon niet van mijn lijf blijven, wel lekker eten",
+                            UserId = 3L
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.User", b =>
