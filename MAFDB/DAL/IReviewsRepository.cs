@@ -14,5 +14,9 @@ namespace DAL
             void UpdateReview(Review review);
 
             void DeleteReview(Review review);
+
+            Review GetReview(long reviewId);
+
+
         }
 }

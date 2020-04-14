@@ -14,7 +14,7 @@ namespace BL
 
         public void RemoveUser(long userId);
 
-        public void ChangeUser(User user);
+        public User ChangeUser(long userId, string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth);
 
         public User ReadUser(long userId);
 

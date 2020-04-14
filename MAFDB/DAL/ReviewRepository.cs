@@ -32,5 +32,10 @@ namespace DAL
             ctx.Remove(review);
             ctx.SaveChanges();
         }
+
+        public Review GetReview(long reviewId)
+        {
+            return ctx.Reviews.Find(reviewId);
+        }
     }
 }

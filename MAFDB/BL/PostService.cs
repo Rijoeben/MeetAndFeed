@@ -27,9 +27,26 @@ namespace BL
             return newPost;
         }
 
-        public void ChangePost(Post post)
+        public Post ChangePost(string title, string dish, string description, DateTime date, int amountOfPeople, long postId)
         {
-            _repo.UpdatePost(post);
+            Post postToChange = ReadPost(postId);
+
+            if(postToChange != null)
+            {
+                postToChange.Title = title;
+                postToChange.Dish = dish;
+                postToChange.Description = description;
+                postToChange.Date = date;
+                postToChange.AmountOfPeople = amountOfPeople;
+
+                _repo.UpdatePost(postToChange);
+                return postToChange;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public IEnumerable<Post> ListOfPosts()
@@ -40,6 +57,11 @@ namespace BL
         public void RemovePost(long postId)
         {
             _repo.DeletePost(postId);
+        }
+
+        public Post ReadPost(long postId)
+        {
+            return _repo.GetPost(postId);
         }
     }
 }
