@@ -47,6 +47,8 @@ namespace DAL
         {
             modelBuilder.SeedAllergies();
             modelBuilder.SeedUsers();
+            modelBuilder.SeedPost();
+            modelBuilder.SeedReview();
         }
     }
 }

@@ -33,6 +33,21 @@ namespace DAL
             MakeUser(3, "Yannick", "Robijn", "DerdeStraat", "yannick.robijn@gmail.com", true, 'V', "StinkHoer", "06/9/1969", modelBuilder);
         }
 
+        public static void SeedPost(this ModelBuilder modelBuilder)
+        {
+            // User nog aanpassen
+            MakePost(1, null, "test" , "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder saus", "20/05/2020", 3, modelBuilder);
+            MakePost(2, null, "test1", "Ballen in tomatensaus", "Ballen in tomatensaus met vegetarische saus", "20/05/2020", 2, modelBuilder);
+            MakePost(3, null, "test2", "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder Ballen", "20/05/2020", 5, modelBuilder);
+        }
+
+        public static void SeedReview(this ModelBuilder modelBuilder)
+        {
+            MakeReview(1, 1, "Ik vond het lekker", modelBuilder);
+            MakeReview(2, 2, "Ik vond het niet zo lekker", modelBuilder);
+            MakeReview(3, 3, "Hij kon niet van mijn lijf blijven, wel lekker eten", modelBuilder);
+        }
+
         public static void MakeAllergy(long id, string name, ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Allergy>().HasData(
@@ -61,7 +76,35 @@ namespace DAL
                 }
             ); 
         }
-    
+        public static void MakePost(long id, User creator, string title, string dish, string description, string date, int amountOfPeople, ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Post>().HasData(
+                new Post()
+                {
+                    PostId = id,
+                    Creator = creator,
+                    Title = title,
+                    Dish = dish,
+                    Description = description,
+                    Date = Convert.ToDateTime(date),
+                    AmountOfPeople = amountOfPeople
+
+                }
+             );
+        }
+
+        public static void MakeReview(long reviewId, long userId, string content, ModelBuilder modelbuilder)
+        {
+            modelbuilder.Entity<Review>().HasData(
+                new Review()
+                {
+                    ReviewId = reviewId,
+                    UserId = userId,
+                    Content = content
+                }
+            );
+        }
+        
     }
     
 }
