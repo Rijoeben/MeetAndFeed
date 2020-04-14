@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DAL": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\32473\\Desktop\\MeetAndFeed\\MeetAndFeed\\MAFDB\\DAL"
+    }
+  }
+}
