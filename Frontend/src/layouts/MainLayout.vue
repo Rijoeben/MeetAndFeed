@@ -55,10 +55,12 @@
 .link {
   color: #F5F5F5;
   margin-top: 30px;
+  font-size: 1.2em;
+  font-weight: 500;
 }
 .special_link {
-  background: white;
-  color: #2489FF;
+  background: #F5F5F5;
+  color: #4A9DFF;
   border-radius: 3px;
   display: grid;
   align-items: center;
@@ -94,11 +96,11 @@ export default {
       essentialLinks: [
         {
           title: 'Home',
-          link: '#/UserFeed'
+          link: '#/feed'
         },
         {
           title: 'Faq',
-          link: ''
+          link: '#/faq'
         },
         {
           title: 'Account',
@@ -112,7 +114,7 @@ export default {
       specialLinks: [
         {
           title: 'Meet And Feed',
-          link: 'https://twitter.quasar.dev'
+          link: '#/createpost'
         }
       ]
     }

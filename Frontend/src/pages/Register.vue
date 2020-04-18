@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md" style="max-width: 400px">
     <div class="row justify-center">
-      <h5>Login</h5>
+      <h5>Register</h5>
     </div>
 
     <q-form
@@ -23,12 +23,9 @@
 
       <q-toggle v-model="accept" label="I accept the license and terms" />
 
-      <div>
-        <q-btn label="Login" type="submit" color="primary"/>
-        <q-btn label="Forgot password?" color="primary" flat class="RegBut"/>
-      </div>
-      <div>
-        <q-btn label="Don't have an account? Register" @click="$router.push('register')" color="primary" flat class="RegBut" />
+      <div class="fit row wrap justify-start items-end content-end">
+        <q-btn label="Register" type="submit" color="primary"/>
+        <q-btn label="Already have an account? Login" @click="$router.push('/')" color="primary" flat class="RegBut" />
       </div>
     </q-form>
 
