@@ -11,12 +11,11 @@ namespace BL
         private IPostRepository _repo;
         private IUserService _userService;
 
-        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, long userId)
+        public Post CreatePost(string dish, string description, DateTime date, int amountOfPeople, long userId)
         {
             User postCreator = _userService.ReadUser(userId);
            
             Post newPost = new Post();
-            newPost.Title = title;
             newPost.Creator = postCreator;
             newPost.Dish = dish;
             newPost.Description = description;
@@ -27,13 +26,12 @@ namespace BL
             return newPost;
         }
 
-        public Post ChangePost(string title, string dish, string description, DateTime date, int amountOfPeople, long postId)
+        public Post ChangePost( string dish, string description, DateTime date, int amountOfPeople, long postId)
         {
             Post postToChange = ReadPost(postId);
 
             if(postToChange != null)
             {
-                postToChange.Title = title;
                 postToChange.Dish = dish;
                 postToChange.Description = description;
                 postToChange.Date = date;

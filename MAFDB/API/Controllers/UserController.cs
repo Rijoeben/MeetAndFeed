@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOS;
+using BL;
 using DAL;
 using MAFDB;
 using Microsoft.AspNetCore.Http;
@@ -16,23 +18,38 @@ namespace API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly MeetAndFeedDbContext _context;
+        private IUserService _userService;
 
-        public UserController(MeetAndFeedDbContext context)
+        public UserController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetListOfUsers()
+        public IActionResult GetListOfUsers()
         {
-            return await _context.Users.ToListAsync();
+            var users =  _userService.ListOfUsers();
+            if (users == null) return NotFound();
+            return Ok(users);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUserById(long id)
+        public IActionResult GetUserById(long id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user =_userService.ReadUser(id);
             if (user == null) return NotFound();
-            return user;
+            return Ok(user);
         }
+        [HttpPost]
+        public IActionResult Registering(string firstname, string lastname , string adress, string emailadress, bool preference, string password, char gender, DateTime dayOfBirth)
+        {
+            var user = _userService.CreateUser(firstname, lastname, adress, emailadress, preference, password, gender, dayOfBirth);
+            return Ok(user);
+        }
+        [HttpPut]
+        public IActionResult EditingUser(long userid)
+        {
+            var Usertochange = _userService.ReadUser(userid);
+            
+        }
+
     }
 }
