@@ -15,7 +15,7 @@ using API.Models;
 using BL;
 using Microsoft.EntityFrameworkCore.Storage;
 using DAL;
-
+using Swashbuckle.AspNetCore;
 namespace API
 {
     public class Startup
@@ -43,6 +43,9 @@ namespace API
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IUserService, UserService>();
 
+            services.AddSwaggerGen(options => { options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API-testing", Version = "V1" }); });
+
+
             services.AddControllers();
         }
 
@@ -55,6 +58,10 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint(@"/swagger/v1/swagger.json", "API-testing"); 
+                                    c.RoutePrefix = string.Empty; });
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
