@@ -45,11 +45,13 @@ namespace API.Controllers
             return Ok(user);
         }
         [HttpPut]
-        public IActionResult EditingUser(long userid)
+        public IActionResult EditingUser(long userid, string FirstName, string Lastname, string Address, string EmailAddress, bool Preference, string Password, char Gender, DateTime dayOfBirth)
         {
-            var Usertochange = _userService.ReadUser(userid);
-            
-        }
+            var UserTochange = _userService.ReadUser(userid);
 
+            UserTochange = _userService.ChangeUser(userid, FirstName, Lastname, Address, EmailAddress, Preference, Password, Gender, dayOfBirth);
+
+            return Ok(UserTochange);
+        }
     }
 }

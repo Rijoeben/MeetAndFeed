@@ -33,7 +33,7 @@ namespace API.Controllers
         //[HttpGet("{id}")]
         //public IActionResult GetAllergyById(long id)
         //{
-        //    var allergy = _allergyService.Read;
+        //    var allergy = _allergyService.;
         //    if (allergy == null) return NotFound();
         //    return allergy;
         //}
