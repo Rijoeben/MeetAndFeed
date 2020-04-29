@@ -41,12 +41,12 @@ namespace DAL
             MakePost(3, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder Ballen", "20/05/2020", 5, modelBuilder);
         }
 
-        public static void SeedReview(this ModelBuilder modelBuilder)
-        {
-            MakeReview(1, 1, "Ik vond het lekker", modelBuilder);
-            MakeReview(2, 2, "Ik vond het niet zo lekker", modelBuilder);
-            MakeReview(3, 3, "Hij kon niet van mijn lijf blijven, wel lekker eten", modelBuilder);
-        }
+        //public static void SeedReview(this ModelBuilder modelBuilder)
+        //{
+        //    MakeReview(1, 1, "Ik vond het lekker", modelBuilder);
+        //    MakeReview(2, 2, "Ik vond het niet zo lekker", modelBuilder);
+        //    MakeReview(3, 3, "Hij kon niet van mijn lijf blijven, wel lekker eten", modelBuilder);
+        //}
 
         public static void MakeAllergy(long id, string name, ModelBuilder modelBuilder)
         {

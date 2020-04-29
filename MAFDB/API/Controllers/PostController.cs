@@ -15,11 +15,14 @@ namespace API.Controllers
     public class PostController : ControllerBase
     {
         private IPostService _postService;
+        private IReviewService _reviewService; //meerdere services in 1 controller, waarom niet? kutding
         
-        public PostController(IPostService postService)
+        public PostController(IPostService postService,IReviewService reviewService)
         {
             _postService = postService;
+            _reviewService = reviewService;
         }
+    
         [HttpGet]
         public IActionResult GetListOfPosts()
         {
@@ -27,7 +30,7 @@ namespace API.Controllers
             if (posts == null) return NotFound();
             return Ok(posts);
         }
-        [HttpGet("{id}")]     /*!Vragen!*/
+        [HttpGet("{Id}")]     /*!Vragen!*/
         public IActionResult GetPostByID(long Id)
         {
             var post = _postService.ReadPost(Id);
@@ -54,6 +57,15 @@ namespace API.Controllers
 
             return NotFound();
         }
+
+        //[HttpPut]
+        //public IActionResult AddReviewToPost(long userid, string content,float score)
+        //{
+        //    var reviewtoadd = _reviewService.CreateReview(content, score);
+
+        //    return Ok(reviewtoadd);
+        //}
+
         [HttpDelete]
         public IActionResult DeletePost(long postId)
         {
