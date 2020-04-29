@@ -9,6 +9,9 @@
 </template>
 <!--get started cd naar deze map en quasar dev-->
 <style scoped>
+div.q-expansion-item:hover {
+  transition: unset;
+}
 </style>
 <script>
 import FaqElement from 'components/FaqElement'

@@ -3,16 +3,8 @@
         <div class="row justify-center">
             <h5>Create Post</h5>
         </div>
-        <q-form
-      @submit="onSubmit"
-      @cancel="onCancel"
-      class="q-gutter-md"
-    >
-      <q-input
-        filled
-        v-model="name"
-        label="Name of the dish"
-      />
+        <q-form class="q-gutter-md">
+      <q-input filled dense v-model="name" label="Name of the dish" />
       <h6>
         Allergies
       </h6>
@@ -26,12 +18,46 @@
       <q-input
         v-model="text"
         filled
+        dense
         type="textarea"
         label="Description"
       />
       <div>
-        <q-btn label="Create post" type="submit" color="primary"/>
+        <q-btn label="Create post" type="submit" color="primary" @click="Post"/>
+        <q-dialog v-model="createAlert">
+          <q-card>
+            <q-card-section>
+              <div class="text-h6">Succes</div>
+            </q-card-section>
+
+            <q-card-section class="q-pt-none">
+              Your post has been created
+            </q-card-section>
+
+            <q-card-actions align="right">
+              <q-btn flat label="OK" color="primary" v-close-popup @click="PushRouter"/>
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
+
         <q-btn label="Cancel" type="cancel" color="primary" @click="Cancel" flat class="q-ml-sm" />
+
+        <q-dialog v-model="cancelAlert">
+          <q-card>
+            <q-card-section>
+              <div class="text-h6">Succes</div>
+            </q-card-section>
+
+            <q-card-section class="q-pt-none">
+              Are you sure you want to cancel?
+            </q-card-section>
+
+            <q-card-actions align="right">
+              <q-btn label="YES" color="primary" v-close-popup @click="PushRouter"/>
+              <q-btn flat label="NO" color="primary" v-close-popup/>
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
       </div>
     </q-form>
     </div>
@@ -49,6 +75,9 @@ h6 {
 .allergies-checkbox-container {
     margin-top: 0;
 }
+.text-h6 {
+  color: #4A9DFF;
+}
 </style>
 
 <script>
@@ -56,15 +85,27 @@ export default {
   name: 'CreatePost',
   data () {
     return {
+      name: '',
+      text: '',
       milk: false,
       eggs: false,
       nuts: false,
       shellfish: false,
-      fish: false
+      fish: false,
+      createAlert: false,
+      cancelAlert: false
     }
   },
   methods: {
     Cancel () {
+      this.cancelAlert = true
+    },
+    Post () {
+      if (this.name !== '' && this.text !== '') {
+        this.createAlert = true
+      }
+    },
+    PushRouter () {
       this.$router.push({ name: 'feed' })
     }
   }

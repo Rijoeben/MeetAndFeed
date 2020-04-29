@@ -104,11 +104,11 @@ export default {
         },
         {
           title: 'Account',
-          link: 'https://chat.quasar.dev'
+          link: '#/account'
         },
         {
           title: 'Contact',
-          link: 'https://forum.quasar.dev'
+          link: '#/contact'
         }
       ],
       specialLinks: [
