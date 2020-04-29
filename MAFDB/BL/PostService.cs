@@ -45,8 +45,7 @@ namespace BL
             else
             {
                 return null;
-            }
-            
+            }            
         }
 
         public IEnumerable<Post> ListOfPosts()
