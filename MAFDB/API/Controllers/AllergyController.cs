@@ -31,9 +31,9 @@ namespace API.Controllers
             return Ok(allergies);
         }
         //[HttpGet("{id}")]
-        //public async Task<ActionResult<Allergy>> GetAllergyById(long id)
+        //public IActionResult GetAllergyById(long id)
         //{
-        //    var allergy = await allergyService.Allergies.FindAsync(id);
+        //    var allergy = _allergyService.;
         //    if (allergy == null) return NotFound();
         //    return allergy;
         //}

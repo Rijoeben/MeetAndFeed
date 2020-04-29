@@ -11,6 +11,10 @@ namespace DAL
 
         private readonly MeetAndFeedDbContext ctx;
 
+        public PostRepository()
+        {
+            ctx = new MeetAndFeedDbContext();
+        }
         public IEnumerable<Post> ReadPosts()
         {
             return ctx.Posts.AsEnumerable();

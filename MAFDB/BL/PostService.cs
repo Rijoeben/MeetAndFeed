@@ -8,16 +8,20 @@ namespace BL
 {
     public class PostService : IPostService
     {
-        private IPostRepository _repo;
+        private IPostRepository _repo; // is nodig om de hier iets in te zetten. zonder dit krijg je null exception! geldt voor alle repositories
+        public PostService()
+        {
+            _repo = new PostRepository();  //maakt gewoon een nieuwe repo aan zodat deze met de service laag kan communiceren. Dit verhelpt de Nullexception die je zou krijgen anders.
+        }
+        //zelfde principe geldt voor de repositories.
         private IUserService _userService;
 
-        public Post CreatePost(string title, string dish, string description, DateTime date, int amountOfPeople, long userId)
+        public Post CreatePost(string dish, string description, DateTime date, int amountOfPeople) //long userId)
         {
-            User postCreator = _userService.ReadUser(userId);
+            //User postCreator = _userService.ReadUser(userId); _userservice is null? even nakijken die handel, eerst alles werkend krijgen
            
             Post newPost = new Post();
-            newPost.Title = title;
-            newPost.Creator = postCreator;
+            //newPost.Creator = postCreator;
             newPost.Dish = dish;
             newPost.Description = description;
             newPost.Date = date;
@@ -27,13 +31,12 @@ namespace BL
             return newPost;
         }
 
-        public Post ChangePost(string title, string dish, string description, DateTime date, int amountOfPeople, long postId)
+        public Post ChangePost( string dish, string description, DateTime date, int amountOfPeople, long postId)
         {
             Post postToChange = ReadPost(postId);
 
             if(postToChange != null)
             {
-                postToChange.Title = title;
                 postToChange.Dish = dish;
                 postToChange.Description = description;
                 postToChange.Date = date;
@@ -50,7 +53,7 @@ namespace BL
 
         public IEnumerable<Post> ListOfPosts()
         {
-            return _repo.ReadPosts();
+            return _repo.ReadPosts(); 
         }
 
         public void RemovePost(long postId)

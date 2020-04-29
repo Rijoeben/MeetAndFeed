@@ -8,13 +8,30 @@ namespace DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Posts",
+                columns: table => new
+                {
+                    PostId = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Dish = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    AmountOfPeople = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.PostId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
                     ReviewId = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<long>(nullable: false),
-                    Content = table.Column<string>(nullable: true)
+                    Content = table.Column<string>(nullable: true),
+                    Score = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,6 +57,12 @@ namespace DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_Posts_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Posts",
+                        principalColumn: "PostId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,30 +80,6 @@ namespace DAL.Migrations
                     table.ForeignKey(
                         name: "FK_Allergies_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Posts",
-                columns: table => new
-                {
-                    PostId = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CreatorUserId = table.Column<long>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Dish = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false),
-                    AmountOfPeople = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Posts", x => x.PostId);
-                    table.ForeignKey(
-                        name: "FK_Posts_Users_CreatorUserId",
-                        column: x => x.CreatorUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
@@ -158,33 +157,33 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "CreatorUserId", "Date", "Description", "Dish", "Title" },
-                values: new object[] { 1L, 3, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus", "test" });
+                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish" },
+                values: new object[] { 1L, 3, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus" });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "CreatorUserId", "Date", "Description", "Dish", "Title" },
-                values: new object[] { 2L, 2, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus met vegetarische saus", "Ballen in tomatensaus", "test1" });
+                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish" },
+                values: new object[] { 2L, 2, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus met vegetarische saus", "Ballen in tomatensaus" });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "CreatorUserId", "Date", "Description", "Dish", "Title" },
-                values: new object[] { 3L, 5, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus", "test2" });
+                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish" },
+                values: new object[] { 3L, 5, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus" });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "ReviewId", "Content", "UserId" },
-                values: new object[] { 1L, "Ik vond het lekker", 1L });
+                columns: new[] { "ReviewId", "Content", "Score", "UserId" },
+                values: new object[] { 1L, "Ik vond het lekker", 0f, 1L });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "ReviewId", "Content", "UserId" },
-                values: new object[] { 2L, "Ik vond het niet zo lekker", 2L });
+                columns: new[] { "ReviewId", "Content", "Score", "UserId" },
+                values: new object[] { 2L, "Ik vond het niet zo lekker", 0f, 2L });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "ReviewId", "Content", "UserId" },
-                values: new object[] { 3L, "Hij kon niet van mijn lijf blijven, wel lekker eten", 3L });
+                columns: new[] { "ReviewId", "Content", "Score", "UserId" },
+                values: new object[] { 3L, "Hij kon niet van mijn lijf blijven, wel lekker eten", 0f, 3L });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -207,30 +206,13 @@ namespace DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_CreatorUserId",
-                table: "Posts",
-                column: "CreatorUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_PostId",
                 table: "Users",
                 column: "PostId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Users_Posts_PostId",
-                table: "Users",
-                column: "PostId",
-                principalTable: "Posts",
-                principalColumn: "PostId",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Posts_Users_CreatorUserId",
-                table: "Posts");
-
             migrationBuilder.DropTable(
                 name: "Allergies");
 

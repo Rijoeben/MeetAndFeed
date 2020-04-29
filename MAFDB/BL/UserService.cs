@@ -9,7 +9,10 @@ namespace BL
     public class UserService : IUserService
     {
         private IUserRepository _repo;
-
+        public UserService()
+        {
+            _repo = new UserRepository();
+        }
         public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             User newUser = new User();
