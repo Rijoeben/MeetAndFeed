@@ -36,9 +36,9 @@ namespace DAL
         public static void SeedPost(this ModelBuilder modelBuilder)
         {
             // User nog aanpassen
-            MakePost(1, null, "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder saus", "20/05/2020", 3, modelBuilder);
-            MakePost(2, null, "Ballen in tomatensaus", "Ballen in tomatensaus met vegetarische saus", "20/05/2020", 2, modelBuilder);
-            MakePost(3, null, "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder Ballen", "20/05/2020", 5, modelBuilder);
+            MakePost(1, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder saus", "20/05/2020", 3, modelBuilder);
+            MakePost(2, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus met vegetarische saus", "20/05/2020", 2, modelBuilder);
+            MakePost(3, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder Ballen", "20/05/2020", 5, modelBuilder);
         }
 
         public static void SeedReview(this ModelBuilder modelBuilder)
@@ -76,13 +76,13 @@ namespace DAL
                 }
             ); 
         }
-        public static void MakePost(long id, User creator, string dish, string description, string date, int amountOfPeople, ModelBuilder modelBuilder)
+        public static void MakePost(long id, /*User creator,*/ string dish, string description, string date, int amountOfPeople, ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().HasData(
                 new Post()
                 {
                     PostId = id,
-                    Creator = creator,
+                    //Creator = creator,
                     Dish = dish,
                     Description = description,
                     Date = Convert.ToDateTime(date),

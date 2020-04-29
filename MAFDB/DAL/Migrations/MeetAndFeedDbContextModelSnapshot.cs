@@ -116,9 +116,6 @@ namespace DAL.Migrations
                     b.Property<int>("AmountOfPeople")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -128,12 +125,7 @@ namespace DAL.Migrations
                     b.Property<string>("Dish")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("PostId");
-
-                    b.HasIndex("CreatorUserId");
 
                     b.ToTable("Posts");
 
@@ -144,8 +136,7 @@ namespace DAL.Migrations
                             AmountOfPeople = 3,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus maar zonder saus",
-                            Dish = "Ballen in tomatensaus",
-                            Title = "test"
+                            Dish = "Ballen in tomatensaus"
                         },
                         new
                         {
@@ -153,8 +144,7 @@ namespace DAL.Migrations
                             AmountOfPeople = 2,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus met vegetarische saus",
-                            Dish = "Ballen in tomatensaus",
-                            Title = "test1"
+                            Dish = "Ballen in tomatensaus"
                         },
                         new
                         {
@@ -162,8 +152,7 @@ namespace DAL.Migrations
                             AmountOfPeople = 5,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus maar zonder Ballen",
-                            Dish = "Ballen in tomatensaus",
-                            Title = "test2"
+                            Dish = "Ballen in tomatensaus"
                         });
                 });
 
@@ -175,6 +164,9 @@ namespace DAL.Migrations
 
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
+
+                    b.Property<float>("Score")
+                        .HasColumnType("REAL");
 
                     b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
@@ -188,18 +180,21 @@ namespace DAL.Migrations
                         {
                             ReviewId = 1L,
                             Content = "Ik vond het lekker",
+                            Score = 0f,
                             UserId = 1L
                         },
                         new
                         {
                             ReviewId = 2L,
                             Content = "Ik vond het niet zo lekker",
+                            Score = 0f,
                             UserId = 2L
                         },
                         new
                         {
                             ReviewId = 3L,
                             Content = "Hij kon niet van mijn lijf blijven, wel lekker eten",
+                            Score = 0f,
                             UserId = 3L
                         });
                 });
@@ -287,13 +282,6 @@ namespace DAL.Migrations
                     b.HasOne("MAFDB.User", null)
                         .WithMany("Allergies")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("MAFDB.Post", b =>
-                {
-                    b.HasOne("MAFDB.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorUserId");
                 });
 
             modelBuilder.Entity("MAFDB.User", b =>
