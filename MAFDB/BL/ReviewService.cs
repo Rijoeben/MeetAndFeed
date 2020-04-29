@@ -10,6 +10,10 @@ namespace BL
     public class ReviewService : IReviewService
     {
         private IReviewRepository _repo;
+        public ReviewService()
+        {
+            _repo = new ReviewRepository();
+        }
 
         public Review ChangeReview(long reviewId, string content, float score)
         {

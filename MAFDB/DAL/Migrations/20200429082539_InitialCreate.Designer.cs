@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200429061451_InitialCreate")]
+    [Migration("20200429082539_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -167,6 +167,9 @@ namespace DAL.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("PostId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<float>("Score")
                         .HasColumnType("REAL");
 
@@ -175,30 +178,9 @@ namespace DAL.Migrations
 
                     b.HasKey("ReviewId");
 
-                    b.ToTable("Reviews");
+                    b.HasIndex("PostId");
 
-                    b.HasData(
-                        new
-                        {
-                            ReviewId = 1L,
-                            Content = "Ik vond het lekker",
-                            Score = 0f,
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            ReviewId = 2L,
-                            Content = "Ik vond het niet zo lekker",
-                            Score = 0f,
-                            UserId = 2L
-                        },
-                        new
-                        {
-                            ReviewId = 3L,
-                            Content = "Hij kon niet van mijn lijf blijven, wel lekker eten",
-                            Score = 0f,
-                            UserId = 3L
-                        });
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("MAFDB.User", b =>
@@ -284,6 +266,13 @@ namespace DAL.Migrations
                     b.HasOne("MAFDB.User", null)
                         .WithMany("Allergies")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("MAFDB.Review", b =>
+                {
+                    b.HasOne("MAFDB.Post", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("PostId");
                 });
 
             modelBuilder.Entity("MAFDB.User", b =>

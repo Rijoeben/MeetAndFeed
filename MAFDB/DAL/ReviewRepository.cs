@@ -10,6 +10,11 @@ namespace DAL
     {
         private readonly MeetAndFeedDbContext ctx;
 
+        public ReviewRepository()
+        {
+            ctx = new MeetAndFeedDbContext();
+        }
+
         public IEnumerable<Review> ReadReview()
         {
             return ctx.Reviews.AsEnumerable();

@@ -31,11 +31,18 @@ namespace DAL.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<long>(nullable: false),
                     Content = table.Column<string>(nullable: true),
-                    Score = table.Column<float>(nullable: false)
+                    Score = table.Column<float>(nullable: false),
+                    PostId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reviews", x => x.ReviewId);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Posts_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Posts",
+                        principalColumn: "PostId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,12 +110,12 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 11L, "Sesame", null });
+                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 10L, "Mustard", null });
+                values: new object[] { 11L, "Sesame", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -123,7 +130,7 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
+                values: new object[] { 10L, "Mustard", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -171,21 +178,6 @@ namespace DAL.Migrations
                 values: new object[] { 3L, 5, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus" });
 
             migrationBuilder.InsertData(
-                table: "Reviews",
-                columns: new[] { "ReviewId", "Content", "Score", "UserId" },
-                values: new object[] { 1L, "Ik vond het lekker", 0f, 1L });
-
-            migrationBuilder.InsertData(
-                table: "Reviews",
-                columns: new[] { "ReviewId", "Content", "Score", "UserId" },
-                values: new object[] { 2L, "Ik vond het niet zo lekker", 0f, 2L });
-
-            migrationBuilder.InsertData(
-                table: "Reviews",
-                columns: new[] { "ReviewId", "Content", "Score", "UserId" },
-                values: new object[] { 3L, "Hij kon niet van mijn lijf blijven, wel lekker eten", 0f, 3L });
-
-            migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Address", "Birthday", "EmailAddress", "FirstName", "Gender", "LastName", "Password", "PostId", "Preference" },
                 values: new object[] { 2L, "TweedeStraat", new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jord.goossens@gmail.com", "Jord", 'X', "Goossens", "Password", null, true });
@@ -204,6 +196,11 @@ namespace DAL.Migrations
                 name: "IX_Allergies_UserId",
                 table: "Allergies",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_PostId",
+                table: "Reviews",
+                column: "PostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_PostId",
