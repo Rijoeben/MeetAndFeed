@@ -15,7 +15,7 @@ namespace API
         {
             Configuration = configuration;
         }
-
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
         private Microsoft.AspNetCore.Hosting.IHostingEnvironment _apphost;
@@ -27,6 +27,8 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddRazorPages();
            
             //services.AddDbContext<MeetAndFeedDbContext>(options =>
@@ -41,6 +43,20 @@ namespace API
             services.AddScoped<IUserService, UserService>();
 
             services.AddSwaggerGen(options => { options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API-testing", Version = "V1" }); });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:8080",
+                                            "http://localhost:59119/api/Post")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
+
+
 
             services.AddControllers();
         }
@@ -61,12 +77,12 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins);
             });
         }
     }
