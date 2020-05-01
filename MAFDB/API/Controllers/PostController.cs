@@ -30,7 +30,7 @@ namespace API.Controllers
             if (posts == null) return NotFound();
             return Ok(posts);
         }
-        [HttpGet("{Id}")]     /*!Vragen!*/
+        [HttpGet("{Id}")]    
         public IActionResult GetPostByID(long Id)
         {
             var post = _postService.ReadPost(Id);

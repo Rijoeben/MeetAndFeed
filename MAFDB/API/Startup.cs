@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using API.Models;
 using BL;
 using Microsoft.EntityFrameworkCore.Storage;
 using DAL;

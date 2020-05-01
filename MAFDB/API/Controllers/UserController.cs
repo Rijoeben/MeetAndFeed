@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using API.DTOS;
 using BL;
 using DAL;
 using MAFDB;
@@ -53,5 +52,19 @@ namespace API.Controllers
 
             return Ok(UserTochange);
         }
+        [HttpGet]
+        public IActionResult InLoggingding(string email, string password)
+        {
+            bool userToLoginBool = _userService.LoginBool(email, password);
+
+            long userToLoginId = _userService.LoginId(email, password);
+
+            if (userToLoginBool == true)
+            {
+                return Ok(userToLoginId);
+            }
+            else return Ok(false);
+        }
+        
     }
 }

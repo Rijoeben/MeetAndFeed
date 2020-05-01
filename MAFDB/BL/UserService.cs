@@ -69,18 +69,24 @@ namespace BL
             return _repo.GetUser(userId);
          }
 
-        public User Login(string emailAddress, string password)
+        public bool LoginBool(string emailAddress, string password)
         {
             User userToLogin = _repo.SearchUserByEmailAddres(emailAddress); // User gaan zoeken aan de hanv van het gegeven email address
 
             if(userToLogin.Password == password)
             {
-                return userToLogin;
+                return true;
             }
             else
             {
-                return null;
+                return false;
             }
+        }
+        public long LoginId(string email,string password)
+        {
+            User userToLogin = _repo.SearchUserByEmailAddres(email);
+            if (userToLogin.Password == password) return userToLogin.UserId;
+            else return 0;
         }
 
        
