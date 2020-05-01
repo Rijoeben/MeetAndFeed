@@ -17,6 +17,8 @@
 </style>
 <script>
 import FeedPost from 'components/FeedPost'
+import { RepositoryFactory } from './../repositories/repositoryFactory'
+const PostRepository = RepositoryFactory.get('posts')
 
 export default {
   name: 'Feed',
@@ -25,72 +27,21 @@ export default {
   },
   data () {
     return {
-      Posts: [
-        {
-          DishName: 'Steak with french fries',
-          Cheff: 'Mastercheff Alexander'
-        },
-
-        {
-          DishName: 'Moms spaghetti',
-          Cheff: 'Eminem'
-        },
-
-        {
-          DishName: 'Batsoup',
-          Cheff: 'COVID-19'
-        },
-        {
-          DishName: 'Steak with french fries',
-          Cheff: 'Mastercheff Alexander'
-        },
-
-        {
-          DishName: 'Moms spaghetti',
-          Cheff: 'Eminem'
-        },
-
-        {
-          DishName: 'Batsoup',
-          Cheff: 'COVID-19'
-        }
-      ]
+      Posts: []
     }
   },
+  created () {
+    this.fetch()
+  },
   methods: {
+    async fetch () {
+      const { data } = await PostRepository.get()
+      this.Posts = data
+    },
     onLoad (index, done) {
       setTimeout(() => {
         if (this.Posts) {
-          this.Posts.push(
-            {
-              DishName: 'Steak with french fries',
-              Cheff: 'Mastercheff Alexander'
-            },
-
-            {
-              DishName: 'Moms spaghetti',
-              Cheff: 'Eminem'
-            },
-
-            {
-              DishName: 'Batsoup',
-              Cheff: 'COVID-19'
-            },
-            {
-              DishName: 'Steak with french fries',
-              Cheff: 'Mastercheff Alexander'
-            },
-
-            {
-              DishName: 'Moms spaghetti',
-              Cheff: 'Eminem'
-            },
-
-            {
-              DishName: 'Batsoup',
-              Cheff: 'COVID-19'
-            }
-          )
+          this.Posts.push()
           done()
         }
       }, 1000)
