@@ -25,14 +25,12 @@ namespace DAL
             MakeAllergy(13, "Luping", modelBuilder);
             MakeAllergy(14, "Molluscs", modelBuilder);
         }
-
         public static void SeedUsers(this ModelBuilder modelBuilder)
         {
             MakeUser(1, "Ruben", "Laureys", "EersteStraat", "ruben.laureys@gmail.com", false, 'M', "Password123", "27/07/2000", modelBuilder);
             MakeUser(2, "Jord", "Goossens", "TweedeStraat", "jord.goossens@gmail.com", true, 'X', "Password", "01/01/1999", modelBuilder);
             MakeUser(3, "Yannick", "Robijn", "DerdeStraat", "yannick.robijn@gmail.com", true, 'V', "StinkHoer", "06/9/1969", modelBuilder);
         }
-
         public static void SeedPost(this ModelBuilder modelBuilder)
         {
             // User nog aanpassen
@@ -40,14 +38,12 @@ namespace DAL
             MakePost(2, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus met vegetarische saus", "20/05/2020", 2, modelBuilder);
             MakePost(3, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder Ballen", "20/05/2020", 5, modelBuilder);
         }
-
         //public static void SeedReview(this ModelBuilder modelBuilder)
         //{
         //    MakeReview(1, 1, "Ik vond het lekker", modelBuilder);
         //    MakeReview(2, 2, "Ik vond het niet zo lekker", modelBuilder);
         //    MakeReview(3, 3, "Hij kon niet van mijn lijf blijven, wel lekker eten", modelBuilder);
         //}
-
         public static void MakeAllergy(long id, string name, ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Allergy>().HasData(
@@ -58,8 +54,7 @@ namespace DAL
                }
            );
         }
-
-        public static void MakeUser(long id, string firstName, string lastName,string address, string emailAddress, bool preference, char gender, string password, string birthday, ModelBuilder modelBuilder)
+        public static void MakeUser(long id, string firstName, string lastName, string address, string emailAddress, bool preference, char gender, string password, string birthday, ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
                 new User()
@@ -74,7 +69,7 @@ namespace DAL
                     Password = password,
                     Birthday = Convert.ToDateTime(birthday)
                 }
-            ); 
+            );
         }
         public static void MakePost(long id, /*User creator,*/ string dish, string description, string date, int amountOfPeople, ModelBuilder modelBuilder)
         {
@@ -91,7 +86,6 @@ namespace DAL
                 }
              );
         }
-
         public static void MakeReview(long reviewId, long userId, string content, ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Review>().HasData(
@@ -103,7 +97,5 @@ namespace DAL
                 }
             );
         }
-        
     }
-    
 }

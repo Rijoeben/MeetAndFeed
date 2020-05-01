@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MAFDB;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using MAFDB;
 
 namespace DAL
 {
@@ -33,7 +27,6 @@ namespace DAL
             db.Add(test);
             db.SaveChanges();
         }
-
         public static void AllergyValues(MeetAndFeedDbContext db) // De main allergenen in de database voorzien
         {
             Allergy allergy1 = new Allergy()

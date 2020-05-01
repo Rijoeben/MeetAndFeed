@@ -10,6 +10,5 @@ namespace MAFDB
         public long UserId { get; set; }
         public string Content { get; set; }
         public float Score { get; set; }
-        
     }
 }

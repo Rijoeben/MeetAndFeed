@@ -14,7 +14,6 @@ namespace BL
         {
             _repo = new ReviewRepository();
         }
-
         public Review ChangeReview(long reviewId, string content, float score)
         {
             Review reviewToChange = ReadReview(reviewId);

@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using BL;
-using DAL;
-using MAFDB;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
 
 namespace API.Controllers
 {
@@ -52,19 +43,15 @@ namespace API.Controllers
 
             return Ok(UserTochange);
         }
-        [HttpGet]
+        [HttpGet("{email},{password}")]
         public IActionResult InLoggingding(string email, string password)
         {
             bool userToLoginBool = _userService.LoginBool(email, password);
 
             long userToLoginId = _userService.LoginId(email, password);
 
-            if (userToLoginBool == true)
-            {
-                return Ok(userToLoginId);
-            }
+            if (userToLoginBool == true) return Ok(true);
             else return Ok(false);
         }
-        
     }
 }

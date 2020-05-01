@@ -19,20 +19,17 @@ namespace DAL
         {
             return ctx.Posts.AsEnumerable();
         }
-
         public Post AddPost(Post post)
         {
             ctx.Add(post);
             ctx.SaveChanges();
             return post;
         }
-
         public void UpdatePost(Post post)
         {
             ctx.Add(post);
             ctx.SaveChanges();
         }
-
         public void DeletePost(long postId)
         {
             ctx.Posts.Remove(GetPost(postId));
@@ -42,6 +39,5 @@ namespace DAL
         {
             return ctx.Posts.Find(postId);
         }
-
     }
 }

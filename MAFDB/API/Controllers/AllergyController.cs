@@ -17,7 +17,6 @@ namespace API.Controllers
     {
 
         private IAllergyService _allergyService;
-
         public AllergyController(IAllergyService allergyService)
         {
             _allergyService = allergyService;

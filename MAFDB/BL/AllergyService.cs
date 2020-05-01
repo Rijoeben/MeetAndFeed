@@ -12,7 +12,6 @@ namespace BL
         {
            _repo = new AllergyRepository();
         }
-
         public IEnumerable<Allergy> ListOfAllergies()
         {
             return _repo.ReadAllergy();

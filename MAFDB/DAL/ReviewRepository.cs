@@ -14,7 +14,6 @@ namespace DAL
         {
             ctx = new MeetAndFeedDbContext();
         }
-
         public IEnumerable<Review> ReadReview()
         {
             return ctx.Reviews.AsEnumerable();
@@ -25,19 +24,16 @@ namespace DAL
             ctx.SaveChanges();
             return review;
         }
-
         public void UpdateReview(Review review)
         {
             ctx.Add(review);
             ctx.SaveChanges();
         }
-
         public void DeleteReview(Review review)
         {
             ctx.Remove(review);
             ctx.SaveChanges();
         }
-
         public Review GetReview(long reviewId)
         {
             return ctx.Reviews.Find(reviewId);

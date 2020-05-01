@@ -18,14 +18,12 @@ namespace DAL
         {
             return ctx.Allergies.AsEnumerable();
         }
-
         public Allergy CreateAllergy(Allergy allergy)
         {
             ctx.Add(allergy);
             ctx.SaveChanges();
             return allergy;
         }
-
         public void UpdateAllergy(Allergy allergy)
         {
             ctx.Add(allergy);
@@ -35,7 +33,6 @@ namespace DAL
         {
             return ctx.Allergies.Find(allergyId);
         }
-
         public void DeleteAllergy(Allergy allergy)
         {
             ctx.Remove(allergy);

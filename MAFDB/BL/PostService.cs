@@ -15,7 +15,6 @@ namespace BL
         }
         //zelfde principe geldt voor de repositories.
         private IUserService _userService;
-
         public Post CreatePost(string dish, string description, DateTime date, int amountOfPeople) //long userId)
         {
             //User postCreator = _userService.ReadUser(userId); _userservice is null? even nakijken die handel, eerst alles werkend krijgen
@@ -30,7 +29,6 @@ namespace BL
             _repo.AddPost(newPost);
             return newPost;
         }
-
         public Post ChangePost( string dish, string description, DateTime date, int amountOfPeople, long postId)
         {
             Post postToChange = ReadPost(postId);
@@ -50,17 +48,14 @@ namespace BL
                 return null;
             }            
         }
-
         public IEnumerable<Post> ListOfPosts()
         {
             return _repo.ReadPosts(); 
         }
-
         public void RemovePost(long postId)
         {
             _repo.DeletePost(postId);
         }
-
         public Post ReadPost(long postId)
         {
             return _repo.GetPost(postId);
