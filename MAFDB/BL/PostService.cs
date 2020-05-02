@@ -14,22 +14,22 @@ namespace BL
             _repo = new PostRepository();  //maakt gewoon een nieuwe repo aan zodat deze met de service laag kan communiceren. Dit verhelpt de Nullexception die je zou krijgen anders.
         }
         //zelfde principe geldt voor de repositories.
-        private IUserService _userService;
-        public Post CreatePost(string dish, string description, DateTime date, int amountOfPeople) //long userId)
+        public Post CreatePost(string chef, string dish, string description, DateTime date, int amountOfPeople, long userId)
         {
             //User postCreator = _userService.ReadUser(userId); _userservice is null? even nakijken die handel, eerst alles werkend krijgen
            
             Post newPost = new Post();
-            //newPost.Creator = postCreator;
+            newPost.Cheff = chef;
             newPost.Dish = dish;
             newPost.Description = description;
             newPost.Date = date;
             newPost.AmountOfPeople = amountOfPeople;
+            newPost.UserId = userId;
 
             _repo.AddPost(newPost);
             return newPost;
         }
-        public Post ChangePost( string dish, string description, DateTime date, int amountOfPeople, long postId)
+        public Post ChangePost(string dish, string description, DateTime date, int amountOfPeople, long postId)
         {
             Post postToChange = ReadPost(postId);
 

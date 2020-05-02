@@ -37,9 +37,9 @@ namespace API.Controllers
             return Ok(post);
         }
         [HttpPost]
-        public IActionResult AddingPost(string dish, string description, DateTime date, int amountOfPeople)//long userId)
+        public IActionResult AddingPost(string chef, string dish, string description, DateTime date, int amountOfPeople, long userId)
         {
-            var newPost = _postService.CreatePost(dish, description, date, amountOfPeople);
+            var newPost = _postService.CreatePost(chef, dish, description, date, amountOfPeople,userId);
             return Ok(newPost);
         }
         [HttpPut]
