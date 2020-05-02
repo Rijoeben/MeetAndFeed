@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
-
+using Microsoft.AspNetCore.Cors;
 namespace API.Controllers
 {
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class AllergyController : ControllerBase

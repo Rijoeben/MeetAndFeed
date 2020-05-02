@@ -1,8 +1,8 @@
 <template>
   <q-card class="my-card">
     <q-card-section>
-      <div class="text-h6">{{DishName}}</div>
-      <div class="text-subtitle2">{{Cheff}}</div>
+      <div class="text-h6">{{ dish }}</div>
+      <div class="text-subtitle2">{{ postId }}</div>
     </q-card-section>
     <q-card-actions class="buttons">
       <q-btn outline color="primary">Contact</q-btn>
@@ -37,12 +37,11 @@
 export default {
   name: 'FeedPost',
   props: {
-    DishName: {
+    dish: {
       type: String,
       required: true
     },
-
-    Cheff: {
+    chef: {
       type: String,
       required: true
     }

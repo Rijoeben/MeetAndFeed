@@ -1,9 +1,11 @@
 ﻿using System;
 using BL;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

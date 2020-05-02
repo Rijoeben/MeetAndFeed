@@ -6,9 +6,11 @@ using BL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SQLitePCL;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewController : ControllerBase

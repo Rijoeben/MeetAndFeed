@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using BL;
 using DAL;
+using Microsoft.AspNetCore.Cors;
 
 namespace API
 {
@@ -52,7 +53,8 @@ namespace API
                         builder.WithOrigins("http://localhost:8080",
                                             "http://localhost:59119")
                                             .AllowAnyHeader()
-                                            .AllowAnyMethod();
+                                            .AllowAnyMethod()
+                                            .WithMethods("PUT", "DELETE", "GET");
                     });
             });
 

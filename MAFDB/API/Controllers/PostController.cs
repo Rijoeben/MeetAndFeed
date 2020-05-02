@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using BL;
 using MAFDB;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase

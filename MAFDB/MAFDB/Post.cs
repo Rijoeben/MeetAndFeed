@@ -9,8 +9,8 @@ namespace MAFDB
     {
         [Key]
         public long PostId { get; set; }
-        public string Cheff { get; set; }
-        public string DishName { get; set; }
+        public string chef { get; set; }
+        public string Dish { get; set; }
         public string Description { get; set; }        
         public DateTime Date { get; set; }
         public int AmountOfPeople { get; set; }
