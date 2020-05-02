@@ -27,6 +27,7 @@ export default {
   },
   data () {
     return {
+      temp: [],
       Posts: []
     }
   },
@@ -36,10 +37,17 @@ export default {
   methods: {
     async fetch () {
       const { data } = await PostRepository.getAllPosts()
-      this.Posts = data
-      console.log(data)
+      this.temp = data
+      this.InitialFillPost()
     },
-    onLoad (index, done) {
+    InitialFillPost () {
+      for (let index = 0; index < this.temp.length; index++) {
+        console.log(this.temp[index].dish)
+        this.Posts.DishName += this.temp[index].dish
+        this.Posts.Cheff += this.temp[index].postId
+      }
+    }
+    /* onLoad (index, done) {
       setTimeout(() => {
         if (this.Posts) {
           this.Posts.push()
@@ -47,7 +55,7 @@ export default {
         }
       }, 1000)
       console.log('loaded')
-    }
+    } */
   }
 }
 </script>
