@@ -12,9 +12,18 @@
           <q-checkbox v-model="milk" label="Milk" />
           <q-checkbox v-model="eggs" label="Eggs" />
           <q-checkbox v-model="nuts" label="Nuts" />
-          <q-checkbox v-model="shellfish" label="Shellfish" />
+          <q-checkbox v-model="crustaceans" label="Crustaceans" />
           <q-checkbox v-model="fish" label="Fish" />
       </div>
+      <q-input filled v-model="date" mask="date" :rules="['date']">
+        <template v-slot:append>
+          <q-icon name="event" class="cursor-pointer">
+            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+              <q-date v-model="date" @input="() => $refs.qDateProxy.hide()" />
+            </q-popup-proxy>
+          </q-icon>
+        </template>
+      </q-input>
       <q-input
         v-model="text"
         filled
@@ -62,6 +71,7 @@
     </q-form>
     </div>
 </template>
+
 <style scoped>
 h5 {
     color: #4A9DFF;
@@ -81,6 +91,9 @@ h6 {
 </style>
 
 <script>
+import { RepositoryFactory } from './../repositories/repositoryFactory'
+const PostRepository = RepositoryFactory.get('posts')
+
 export default {
   name: 'CreatePost',
   data () {
@@ -90,10 +103,11 @@ export default {
       milk: false,
       eggs: false,
       nuts: false,
-      shellfish: false,
+      crustaceans: false,
       fish: false,
       createAlert: false,
-      cancelAlert: false
+      cancelAlert: false,
+      date: null
     }
   },
   methods: {
@@ -103,6 +117,8 @@ export default {
     Post () {
       if (this.name !== '' && this.text !== '') {
         this.createAlert = true
+        const res = PostRepository.createPost(this.dish, this.description, this.date)
+        console.log(res.data)
       }
     },
     PushRouter () {

@@ -41,8 +41,8 @@ export default {
       type: String,
       required: true
     },
-    postId: {
-      type: Number,
+    chef: {
+      type: String,
       required: true
     }
   }

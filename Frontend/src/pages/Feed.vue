@@ -39,7 +39,7 @@ export default {
       for (let i = 0; i < this.Temp.length; i++) {
         this.Posts.push({
           dish: this.Temp[i].dish,
-          postId: this.Temp[i].postId
+          chef: this.Temp[i].chef
         })
       }
       console.log(this.Posts)
