@@ -45,22 +45,31 @@ h5 {
 }
 </style>
 <script>
+import { RepositoryFactory } from './../repositories/repositoryFactory'
+const UserRepository = RepositoryFactory.get('user')
+
 export default {
   data () {
     return {
       email: null,
       password: null,
-
       accept: true,
       isPwd: true
     }
   },
 
   methods: {
-    onSubmit () {
+    async CheckCredentials () {
+      const { data } = await UserRepository.checkCredentials(this.email, this.password)
+      console.log(data)
+      return data
+    },
+    async onSubmit () {
+      console.log(this.email + ' ' + this.password)
       if (this.accept === true) {
         if (this.email !== '' && this.password !== '') {
-          if (this.email === 'test@fuck.com' && this.password === 'test') {
+          const response = await this.CheckCredentials()
+          if (response === true) {
             console.log('succes')
             this.$emit('authenticated', true)
             this.$router.push({ name: 'feed' })

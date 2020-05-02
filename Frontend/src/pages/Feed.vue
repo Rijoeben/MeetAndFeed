@@ -1,16 +1,11 @@
 <template>
-  <q-infinite-scroll @load="onLoad" :offset="250">
-    <div v-for="(Post, index) in Posts" :key="index" class="caption full-width column wrap justify-start items-center content-center">
+  <div class="q-pa-md" v-if="!isFetching">
+    <div v-for="(Post, index) in this.Posts" :key="index" class="caption">
       <FeedPost
         v-bind="Post"
       />
     </div>
-    <template v-slot:loading>
-      <div class="row justify-center q-my-md">
-        <q-spinner-dots color="primary" size="40px" />
-      </div>
-    </template>
-  </q-infinite-scroll>
+  </div>
 </template>
 <!--get started cd naar deze map en quasar dev-->
 <style scoped>
@@ -27,24 +22,27 @@ export default {
   },
   data () {
     return {
+      isFetching: true,
+      Temp: [],
       Posts: []
     }
   },
-  created () {
-    this.fetch()
+  mounted () {
+    this.fetchData().then(() => {
+      this.isFetching = false
+    })
   },
   methods: {
-    async fetch () {
-      const { data } = await PostRepository.get()
-      this.Posts = data
-    },
-    onLoad (index, done) {
-      setTimeout(() => {
-        if (this.Posts) {
-          this.Posts.push()
-          done()
-        }
-      }, 1000)
+    async fetchData () {
+      const { data } = await PostRepository.getAllPosts()
+      this.Temp = data
+      for (let i = 0; i < this.Temp.length; i++) {
+        this.Posts.push({
+          dish: this.Temp[i].dish,
+          postId: this.Temp[i].postId
+        })
+      }
+      console.log(this.Posts)
     }
   }
 }

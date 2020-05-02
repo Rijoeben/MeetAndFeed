@@ -1,7 +1,9 @@
 import PostRepository from './postsRepository'
+import UserRepository from './UserRepository'
 
 const repositories = {
-  posts: PostRepository
+  posts: PostRepository,
+  user: UserRepository
 }
 
 export const RepositoryFactory = {
