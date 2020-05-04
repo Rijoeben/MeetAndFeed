@@ -34,16 +34,18 @@ namespace DAL
         public static void SeedPost(this ModelBuilder modelBuilder)
         {
             // User nog aanpassen
-            MakePost(1, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder saus", "20/05/2020", 3, modelBuilder);
-            MakePost(2, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus met vegetarische saus", "20/05/2020", 2, modelBuilder);
-            MakePost(3, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder Ballen", "20/05/2020", 5, modelBuilder);
+            MakePost(1, /*null,*/ "Ballen in tomatensaus", "Ballen in tomatensaus maar zonder saus", "20/05/2020", 3,1, modelBuilder);
+            MakePost(2, /*null,*/ "Spaghetti bolognaise", "Spaghetti Bolognaise met gehak", "20/05/2020", 2,2, modelBuilder);
+            MakePost(3, /*null,*/ "Macaroni", "Mijn geheime macaroni", "20/05/2020", 5,3, modelBuilder);
         }
+       
         //public static void SeedReview(this ModelBuilder modelBuilder)
         //{
         //    MakeReview(1, 1, "Ik vond het lekker", modelBuilder);
         //    MakeReview(2, 2, "Ik vond het niet zo lekker", modelBuilder);
         //    MakeReview(3, 3, "Hij kon niet van mijn lijf blijven, wel lekker eten", modelBuilder);
         //}
+
         public static void MakeAllergy(long id, string name, ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Allergy>().HasData(
@@ -71,7 +73,7 @@ namespace DAL
                 }
             );
         }
-        public static void MakePost(long id, /*User creator,*/ string dish, string description, string date, int amountOfPeople, ModelBuilder modelBuilder)
+        public static void MakePost(long id, /*User creator,*/ string dish, string description, string date, int amountOfPeople,long userId, ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().HasData(
                 new Post()
@@ -81,7 +83,8 @@ namespace DAL
                     Dish = dish,
                     Description = description,
                     Date = Convert.ToDateTime(date),
-                    AmountOfPeople = amountOfPeople
+                    AmountOfPeople = amountOfPeople,
+                    UserId = userId
 
                 }
              );

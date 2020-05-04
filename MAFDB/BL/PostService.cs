@@ -19,7 +19,7 @@ namespace BL
             //User postCreator = _userService.ReadUser(userId); _userservice is null? even nakijken die handel, eerst alles werkend krijgen
            
             Post newPost = new Post();
-            newPost.chef = chef;
+            newPost.Chef = chef;
             newPost.Dish = dish;
             newPost.Description = description;
             newPost.Date = date;
