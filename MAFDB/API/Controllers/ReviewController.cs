@@ -20,6 +20,13 @@ namespace API.Controllers
         {
             _reviewService = reviewService;
         }
+        [HttpGet]
+        public IActionResult GetAllReviews()
+        {
+            var reviews = _reviewService.ListOfReviews();
+            if (reviews == null) return NotFound();
+            return Ok(reviews);
+        }
         [HttpGet("{Id}")]
         public IActionResult GetReviewById(long Id)
         {

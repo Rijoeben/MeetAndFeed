@@ -17,8 +17,8 @@ namespace MAFDB
         public DateTime Date { get; set; }
         public int AmountOfPeople { get; set; }
         public long UserId { get; set; }
-        public ICollection<User> Participants { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public List<User> Participants { get; set; }
+        public List<Review> Reviews { get; set; }
         //public double Score { get; set; }
     }
 }

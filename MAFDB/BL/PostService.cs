@@ -5,6 +5,7 @@ using System.Text;
 using DAL;
 using System.Runtime.InteropServices.ComTypes;
 
+
 namespace BL
 {
     public class PostService : IPostService
@@ -28,7 +29,8 @@ namespace BL
             newPost.Date = date;
             newPost.AmountOfPeople = amountOfPeople;
             newPost.UserId = userId;
-
+            newPost.Reviews = new List<Review>();
+            newPost.Participants = new List<User>();
             _repo.AddPost(newPost);
             return newPost;
         }
@@ -55,10 +57,18 @@ namespace BL
         {
             var addedReview = _revService.ReadReview(revId);
             var postToAdd = _repo.GetPost(postId);
-            postToAdd.Reviews.Add(addedReview);
+            //als review er al in zit -> gooi error
+            if (postToAdd.Reviews != null) {
+                postToAdd.Reviews.Add(addedReview);
+            } else
+            {
+                postToAdd.Reviews = new List<Review>() { addedReview };
+            }
+            
             _repo.UpdatePost(postToAdd);
             return postToAdd;
         }
+
         public IEnumerable<Post> ListOfPosts()
         {
             return _repo.ReadPosts(); 

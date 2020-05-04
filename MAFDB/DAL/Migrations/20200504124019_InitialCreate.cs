@@ -13,7 +13,7 @@ namespace DAL.Migrations
                 {
                     PostId = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    chef = table.Column<string>(nullable: true),
+                    Chef = table.Column<string>(nullable: true),
                     Dish = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
@@ -112,12 +112,12 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
+                values: new object[] { 11L, "Sesame", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 11L, "Sesame", null });
+                values: new object[] { 10L, "Mustard", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -132,7 +132,7 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Allergies",
                 columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 10L, "Mustard", null });
+                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
@@ -166,18 +166,33 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish", "UserId", "chef" },
-                values: new object[] { 1L, 3, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus", 0L, null });
+                columns: new[] { "PostId", "AmountOfPeople", "Chef", "Date", "Description", "Dish", "UserId" },
+                values: new object[] { 1L, 3, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus", 1L });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish", "UserId", "chef" },
-                values: new object[] { 2L, 2, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus met vegetarische saus", "Ballen in tomatensaus", 0L, null });
+                columns: new[] { "PostId", "AmountOfPeople", "Chef", "Date", "Description", "Dish", "UserId" },
+                values: new object[] { 2L, 2, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Spaghetti Bolognaise met gehak", "Spaghetti bolognaise", 2L });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish", "UserId", "chef" },
-                values: new object[] { 3L, 5, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus", 0L, null });
+                columns: new[] { "PostId", "AmountOfPeople", "Chef", "Date", "Description", "Dish", "UserId" },
+                values: new object[] { 3L, 5, null, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mijn geheime macaroni", "Macaroni", 3L });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "ReviewId", "Content", "PostId", "Score", "UserId" },
+                values: new object[] { 1L, "Ik vond het lekker", null, 0f, 1L });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "ReviewId", "Content", "PostId", "Score", "UserId" },
+                values: new object[] { 2L, "Ik vond het niet zo lekker", null, 0f, 2L });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "ReviewId", "Content", "PostId", "Score", "UserId" },
+                values: new object[] { 3L, "Hij kon niet van mijn lijf blijven, wel lekker eten", null, 0f, 3L });
 
             migrationBuilder.InsertData(
                 table: "Users",

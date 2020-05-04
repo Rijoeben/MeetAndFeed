@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
@@ -16,7 +17,7 @@ namespace DAL
         }
         public IEnumerable<Review> ReadReview()
         {
-            return ctx.Reviews.AsEnumerable();
+            return ctx.Reviews.AsNoTracking().AsEnumerable();
         }
         public Review AddReview(Review review)
         {

@@ -25,21 +25,21 @@ namespace DAL
             return allergy;
         }
 
-        //public void UpdateAllergy(Allergy allergy)
-        //{
-        //    ctx.Allergies.Add(allergy);
-        //    ctx.SaveChanges();
-        //}
+        public void UpdateAllergy(Allergy allergy)
+        {
+            ctx.Allergies.Add(allergy);
+            ctx.SaveChanges();
+        }
 
         public Allergy GetAllergy(string allergyId)
         {
             return ctx.Allergies.Find(allergyId);
         }
 
-        //public void DeleteAllergy(Allergy allergy) *Dit is voorzien. We gaan het waarschijnlijk niet gebruiken, maar we laten het staan stel we hebben het nog nodig*
-        //{
-        //    ctx.Allergies.Remove(allergy);
-        //    ctx.SaveChanges();
-        //}
-    }
+        public void DeleteAllergy(Allergy allergy) /*Dit is voorzien.We gaan het waarschijnlijk niet gebruiken, maar we laten het staan stel we hebben het nog nodig*/
+        {
+            ctx.Allergies.Remove(allergy);
+            ctx.SaveChanges();
+        }
+}
 }

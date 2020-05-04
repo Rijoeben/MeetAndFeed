@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MAFDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
@@ -15,9 +16,10 @@ namespace DAL
         {
             ctx = new MeetAndFeedDbContext();
         }
+        //Include(p => p.Participants).ThenInclude(p => p.Allergies) dees is echt nice want hier kunde leuke dingen mee doen 
         public IEnumerable<Post> ReadPosts()
         {
-            return ctx.Posts.AsEnumerable();
+            return ctx.Posts.Include(p => p.Reviews).Include(p => p.Participants).AsEnumerable();
         }
         public Post AddPost(Post post)
         {
@@ -37,7 +39,7 @@ namespace DAL
         }
         public Post GetPost(long postId)
         {
-            return ctx.Posts.Find(postId);
+            return ctx.Posts.Include(p => p.Reviews).First(p => p.PostId == postId);
         }
     }
 }

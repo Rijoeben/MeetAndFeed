@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200504083846_InitialCreate")]
+    [Migration("20200504124019_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,6 +118,9 @@ namespace DAL.Migrations
                     b.Property<int>("AmountOfPeople")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Chef")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -129,9 +132,6 @@ namespace DAL.Migrations
 
                     b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("chef")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("PostId");
 
@@ -145,25 +145,25 @@ namespace DAL.Migrations
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus maar zonder saus",
                             Dish = "Ballen in tomatensaus",
-                            UserId = 0L
+                            UserId = 1L
                         },
                         new
                         {
                             PostId = 2L,
                             AmountOfPeople = 2,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Ballen in tomatensaus met vegetarische saus",
-                            Dish = "Ballen in tomatensaus",
-                            UserId = 0L
+                            Description = "Spaghetti Bolognaise met gehak",
+                            Dish = "Spaghetti bolognaise",
+                            UserId = 2L
                         },
                         new
                         {
                             PostId = 3L,
                             AmountOfPeople = 5,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Ballen in tomatensaus maar zonder Ballen",
-                            Dish = "Ballen in tomatensaus",
-                            UserId = 0L
+                            Description = "Mijn geheime macaroni",
+                            Dish = "Macaroni",
+                            UserId = 3L
                         });
                 });
 
@@ -190,6 +190,29 @@ namespace DAL.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            ReviewId = 1L,
+                            Content = "Ik vond het lekker",
+                            Score = 0f,
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            ReviewId = 2L,
+                            Content = "Ik vond het niet zo lekker",
+                            Score = 0f,
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            ReviewId = 3L,
+                            Content = "Hij kon niet van mijn lijf blijven, wel lekker eten",
+                            Score = 0f,
+                            UserId = 3L
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.User", b =>
