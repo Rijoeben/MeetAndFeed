@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using DAL;
 using System.Runtime.InteropServices.ComTypes;
-
+using System.Net;
+using MaxMind.GeoIP2.Exceptions;
 
 namespace BL
 {
@@ -60,17 +61,27 @@ namespace BL
             var addedReview = _revService.ReadReview(revId);
             var postToAdd = _repo.GetPost(postId);
 
-            if (postToAdd.Reviews != null)
+            //als review er al in zit -> gooi error
+            if(postToAdd.Reviews.Contains(addedReview))
             {
-                postToAdd.Reviews.Add(addedReview);
+                //return false;           
+
             }
             else
             {
-                postToAdd.Reviews = new List<Review>() { addedReview };
+                if (postToAdd.Reviews != null)
+                {
+                    postToAdd.Reviews.Add(addedReview);
+                }
+                else
+                {
+                    postToAdd.Reviews = new List<Review>() { addedReview };
+                }
+
+                _repo.UpdatePost(postToAdd);
             }
-            
-            _repo.UpdatePost(postToAdd);
             return postToAdd;
+
         }
 
         public Post AddingParticipant(long userId,long postId)
