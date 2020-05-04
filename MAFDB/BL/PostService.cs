@@ -84,21 +84,30 @@ namespace BL
 
         }
 
-        public Post AddingParticipant(long userId,long postId)
+        public bool AddingParticipant(long userId,long postId)
         {
+            var succes = false;
             var addedUser = _userService.ReadUser(userId);
             var postToAdd = _repo.GetPostWithParticipant(postId);
-            if (postToAdd.Participants != null) 
-            { 
-                postToAdd.Participants.Add(addedUser); 
+
+            if(postToAdd.Participants.Contains(addedUser))
+            {
+                succes = false;
             }
             else
             {
-                postToAdd.Participants = new List<User>() { addedUser };
-            }
+                if (postToAdd.Participants != null)
+                {
+                    postToAdd.Participants.Add(addedUser);
+                }
+                else
+                {
+                    postToAdd.Participants = new List<User>() { addedUser };
+                }
 
-            _repo.UpdatePost(postToAdd);
-            return postToAdd;
+                _repo.UpdatePost(postToAdd);
+            }            
+            return succes;
         }
         public IEnumerable<Post> ListOfPosts()
         {
