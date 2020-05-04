@@ -62,9 +62,6 @@ namespace API
                                             .AllowAnyMethod();
                     });
             });
-
-
-
             services.AddControllers();
         }
 
