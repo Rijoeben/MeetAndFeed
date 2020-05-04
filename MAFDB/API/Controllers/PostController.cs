@@ -65,13 +65,15 @@ namespace API.Controllers
             var reviewToAppend = _postService.AddingReview(revId, postId);
             return Ok(reviewToAppend);
         }
+        [HttpPut("/Participants/{userId},{postId}")]
+        public IActionResult AppendUser(long userId, long postId)
+        {
+            //hier ook een catch pretty sure
+            var userToAppend = _postService.AddingParticipant(userId, postId);
+            return Ok(userToAppend);
+        }
+        [HttpPut]
 
-        //[HttpPut]
-        //public IActionResult AddReviewToPost(long userid, string content,float score)
-        //{
-        //    var reviewtoadd = _reviewService.CreateReview(content, score);
-        //    return Ok(reviewtoadd);
-        //}
         [HttpDelete]
         public IActionResult DeletePost(long postId)
         {
