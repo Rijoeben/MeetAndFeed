@@ -19,6 +19,7 @@ namespace MAFDB
         public long UserId { get; set; }
         public List<User> Participants { get; set; }
         public List<Review> Reviews { get; set; }
+        public List<Allergy> Allergies { get; set; }
         //public double Score { get; set; }
     }
 }

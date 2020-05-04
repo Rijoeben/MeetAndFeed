@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using MAFDB;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,10 @@ namespace DAL
         public Post GetPost(long postId)
         {
             return ctx.Posts.Include(p => p.Reviews).First(p => p.PostId == postId);
+        }
+        public Post GetPostWithParticipant(long postId)
+        {
+            return ctx.Posts.Include(p => p.Participants).First(p => p.PostId == postId);
         }
     }
 }

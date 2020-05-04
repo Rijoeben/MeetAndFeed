@@ -13,6 +13,7 @@ namespace BL
         public Post ChangePost(string dish, string description, DateTime date, int amountOfPeople, long postId);
         public Post ReadPost(long postId);
         public bool AddingReview(long revId, long postId); // Geeft true terug als de review toe werd gevoegd. Als de review er al in stond geeft het false
+        public Post AddingParticipant(long userId, long postId);
 
     }
 }

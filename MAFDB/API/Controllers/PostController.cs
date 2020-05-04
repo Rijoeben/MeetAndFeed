@@ -61,14 +61,12 @@ namespace API.Controllers
         [HttpPut("{revId},{postId}")]
         public IActionResult AppendReview(long revId,long postId)
         {
-            //catch -> 
             var reviewToAppend = _postService.AddingReview(revId, postId);
             return Ok(reviewToAppend);
         }
         [HttpPut("/Participants/{userId},{postId}")]
         public IActionResult AppendUser(long userId, long postId)
         {
-            //hier ook een catch pretty sure
             var userToAppend = _postService.AddingParticipant(userId, postId);
             return Ok(userToAppend);
         }
