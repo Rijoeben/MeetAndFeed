@@ -70,7 +70,6 @@ namespace API.Controllers
             var userToAppend = _postService.AddingParticipant(userId, postId);
             return Ok(userToAppend);
         }
-        [HttpPut]
 
         [HttpDelete]
         public IActionResult DeletePost(long postId)
