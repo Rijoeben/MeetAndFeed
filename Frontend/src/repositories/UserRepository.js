@@ -5,5 +5,9 @@ export default {
   checkCredentials (email, password) {
     const payload = email + ',' + password
     return Repository.get(`${recource}/${payload}`)
+  },
+  getId (email) {
+    const payload = email
+    return Repository.get(`${recource}/SessionId/${payload}`)
   }
 }

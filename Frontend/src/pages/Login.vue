@@ -70,6 +70,8 @@ export default {
         if (this.email !== '' && this.password !== '') {
           const response = await this.CheckCredentials()
           if (response === true) {
+            const userId = await this.getId()
+            this.$store.commit('appData/User', userId)
             console.log('succes')
             this.$emit('authenticated', true)
             this.$router.push({ name: 'feed' })
