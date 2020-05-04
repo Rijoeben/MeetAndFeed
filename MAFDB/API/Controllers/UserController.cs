@@ -20,19 +20,19 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult GetListOfUsers()
         {
-            var users =  _userService.ListOfUsers();
+            var users = _userService.ListOfUsers();
             if (users == null) return NotFound();
             return Ok(users);
         }
         [HttpGet("{id}")]
         public IActionResult GetUserById(long id)
         {
-            var user =_userService.ReadUser(id);
+            var user = _userService.ReadUser(id);
             if (user == null) return NotFound();
             return Ok(user);
         }
         [HttpPost]
-        public IActionResult Registering(string firstname, string lastname , string adress, string emailadress, bool preference, string password, char gender, DateTime dayOfBirth)
+        public IActionResult Registering(string firstname, string lastname, string adress, string emailadress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             var user = _userService.CreateUser(firstname, lastname, adress, emailadress, preference, password, gender, dayOfBirth);
             return Ok(user);
@@ -46,7 +46,13 @@ namespace API.Controllers
 
             return Ok(UserTochange);
         }
-        
+        [HttpGet("SessionId")]
+        public IActionResult LoginID(string email)
+        {
+            var Sessionhost = _userService.GetUserByEmail(email);
+            var ID = Sessionhost.UserId;
+            return Ok(ID);
+        }
         [HttpGet("{email},{password}")]
         public IActionResult InLoggingding(string email, string password)
         {

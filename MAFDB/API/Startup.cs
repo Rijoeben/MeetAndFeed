@@ -43,12 +43,6 @@ namespace API
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IUserService, UserService>();
 
-            services.AddScoped<IAllergyRepository, AllergyRepository>();
-            services.AddScoped<IPostRepository, PostRepository>();
-            services.AddScoped<IReviewRepository, ReviewRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            
-
             services.AddSwaggerGen(options => { options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API-testing", Version = "V1" }); });
 
             services.AddCors(options =>
