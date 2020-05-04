@@ -20,18 +20,18 @@ namespace DAL
         }
         public Review AddReview(Review review)
         {
-            ctx.Add(review);
+            ctx.Reviews.Add(review);
             ctx.SaveChanges();
             return review;
         }
         public void UpdateReview(Review review)
         {
-            ctx.Add(review);
+            ctx.Reviews.Add(review);
             ctx.SaveChanges();
         }
         public void DeleteReview(Review review)
         {
-            ctx.Remove(review);
+            ctx.Reviews.Remove(review);
             ctx.SaveChanges();
         }
         public Review GetReview(long reviewId)

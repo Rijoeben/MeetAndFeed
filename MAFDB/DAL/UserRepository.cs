@@ -20,7 +20,7 @@ namespace DAL
         }
         public User AddUser(User user)
         {
-            ctx.Add(user);
+            ctx.Users.Add(user);
             ctx.SaveChanges();
             return user;
         }
@@ -44,10 +44,6 @@ namespace DAL
                 .FirstOrDefault(u => string.Equals(u.EmailAddress, emailAddress)); //Zoekt naar de user met het gegeven email address
 
             return searchedUser;       
-        }
-        public void UserAddPost()
-        {
-            throw new NotImplementedException();
         }
     }
 }
