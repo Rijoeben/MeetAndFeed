@@ -21,13 +21,13 @@ namespace DAL
         }
         public Post AddPost(Post post)
         {
-            ctx.Add(post);
+            ctx.Posts.Add(post);
             ctx.SaveChanges();
             return post;
         }
         public void UpdatePost(Post post)
         {
-            ctx.Add(post);
+            ctx.Posts.Update(post);
             ctx.SaveChanges();
         }
         public void DeletePost(long postId)
