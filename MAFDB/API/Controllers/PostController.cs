@@ -11,17 +11,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [EnableCors("MyAllowSpecificOrigins")]
+    [EnableCors("MyAllowSpecificOrigins")] 
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
     {
         private IPostService _postService;
-        private IReviewService _reviewService; //meerdere services in 1 controller, waarom niet? kutding
-        public PostController(IPostService postService,IReviewService reviewService)
+        //private IReviewService _reviewService; //meerdere services in 1 controller, waarom niet? kutding
+        public PostController(IPostService postService/*,IReviewService reviewService*/)
         {
             _postService = postService;
-            _reviewService = reviewService;
+            //_reviewService = reviewService;
         }
         [HttpGet]
         public IActionResult GetListOfPosts()
@@ -30,6 +30,7 @@ namespace API.Controllers
             if (posts == null) return NotFound();
             return Ok(posts);
         }
+
         [HttpGet("{Id}")]    
         public IActionResult GetPostByID(long Id)
         {
@@ -57,11 +58,17 @@ namespace API.Controllers
 
             return NotFound();
         }
+        [HttpPut("{revId},{postId}")]
+        public IActionResult AppendReview(long revId,long postId)
+        {
+            var reviewToAppend = _postService.AddingReview(revId, postId);
+            return Ok(reviewToAppend);
+        }
+
         //[HttpPut]
         //public IActionResult AddReviewToPost(long userid, string content,float score)
         //{
         //    var reviewtoadd = _reviewService.CreateReview(content, score);
-
         //    return Ok(reviewtoadd);
         //}
         [HttpDelete]

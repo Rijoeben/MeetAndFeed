@@ -53,8 +53,7 @@ namespace API
                         builder.WithOrigins("http://localhost:8080",
                                             "http://localhost:59119")
                                             .AllowAnyHeader()
-                                            .AllowAnyMethod()
-                                            .WithMethods("PUT", "DELETE", "GET");
+                                            .AllowAnyMethod();
                     });
             });
 
