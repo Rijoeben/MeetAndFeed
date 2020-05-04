@@ -12,10 +12,12 @@ namespace BL
     {
         private IPostRepository _repo; // is nodig om de hier iets in te zetten. zonder dit krijg je null exception! geldt voor alle repositories
         private IReviewService _revService;
+        private IUserService _userService;
         public PostService()
         {
             _repo = new PostRepository();  //maakt gewoon een nieuwe repo aan zodat deze met de service laag kan communiceren. Dit verhelpt de Nullexception die je zou krijgen anders.
             _revService = new ReviewService();
+            _userService = new UserService();
         }
         //zelfde principe geldt voor de repositories.
         public Post CreatePost(string chef, string dish, string description, DateTime date, int amountOfPeople, long userId)
@@ -57,10 +59,12 @@ namespace BL
         {
             var addedReview = _revService.ReadReview(revId);
             var postToAdd = _repo.GetPost(postId);
-            //als review er al in zit -> gooi error
-            if (postToAdd.Reviews != null) {
+
+            if (postToAdd.Reviews != null)
+            {
                 postToAdd.Reviews.Add(addedReview);
-            } else
+            }
+            else
             {
                 postToAdd.Reviews = new List<Review>() { addedReview };
             }
@@ -69,6 +73,22 @@ namespace BL
             return postToAdd;
         }
 
+        public Post AddingParticipant(long userId,long postId)
+        {
+            var addedUser = _userService.ReadUser(userId);
+            var postToAdd = _repo.GetPostWithParticipant(postId);
+            if (postToAdd.Participants != null) 
+            { 
+                postToAdd.Participants.Add(addedUser); 
+            }
+            else
+            {
+                postToAdd.Participants = new List<User>() { addedUser };
+            }
+
+            _repo.UpdatePost(postToAdd);
+            return postToAdd;
+        }
         public IEnumerable<Post> ListOfPosts()
         {
             return _repo.ReadPosts(); 

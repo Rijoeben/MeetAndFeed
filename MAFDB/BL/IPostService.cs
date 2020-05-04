@@ -13,6 +13,7 @@ namespace BL
         public Post ChangePost(string dish, string description, DateTime date, int amountOfPeople, long postId);
         public Post ReadPost(long postId);
         public Post AddingReview(long revId, long postId);
+        public Post AddingParticipant(long userId, long postId);
 
     }
 }
