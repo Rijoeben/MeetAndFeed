@@ -54,14 +54,15 @@ namespace BL
                 return null;
             }            
         }
-        public Post AddingReview(long revId, long postId)
+        public bool AddingReview(long revId, long postId)
         {
+            var succes = false;
             var addedReview = _revService.ReadReview(revId);
             var postToAdd = _repo.GetPost(postId);
-            //als review er al in zit -> gooi error
+
             if(postToAdd.Reviews.Contains(addedReview))
             {
-                //return false;           
+                succes = false;
             }
             else
             {
@@ -75,8 +76,9 @@ namespace BL
                 }
 
                 _repo.UpdatePost(postToAdd);
+                succes = true;
             }
-            return postToAdd;
+            return succes;
 
         }
 
