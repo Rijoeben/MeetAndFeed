@@ -3,14 +3,16 @@ using System;
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    partial class MeetAndFeedDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200504083846_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,9 +118,6 @@ namespace DAL.Migrations
                     b.Property<int>("AmountOfPeople")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Chef")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -130,6 +129,9 @@ namespace DAL.Migrations
 
                     b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("chef")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PostId");
 

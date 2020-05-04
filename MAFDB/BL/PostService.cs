@@ -3,15 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DAL;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace BL
 {
     public class PostService : IPostService
     {
         private IPostRepository _repo; // is nodig om de hier iets in te zetten. zonder dit krijg je null exception! geldt voor alle repositories
+        private IReviewService _revService;
         public PostService()
         {
             _repo = new PostRepository();  //maakt gewoon een nieuwe repo aan zodat deze met de service laag kan communiceren. Dit verhelpt de Nullexception die je zou krijgen anders.
+            _revService = new ReviewService();
         }
         //zelfde principe geldt voor de repositories.
         public Post CreatePost(string chef, string dish, string description, DateTime date, int amountOfPeople, long userId)
@@ -19,7 +22,7 @@ namespace BL
             //User postCreator = _userService.ReadUser(userId); _userservice is null? even nakijken die handel, eerst alles werkend krijgen
            
             Post newPost = new Post();
-            newPost.chef = chef;
+            newPost.Chef = chef;
             newPost.Dish = dish;
             newPost.Description = description;
             newPost.Date = date;
@@ -47,6 +50,14 @@ namespace BL
             {
                 return null;
             }            
+        }
+        public Post AddingReview(long revId, long postId)
+        {
+            var addedReview = _revService.ReadReview(revId);
+            var postToAdd = _repo.GetPost(postId);
+            postToAdd.Reviews.Add(addedReview);
+            _repo.UpdatePost(postToAdd);
+            return postToAdd;
         }
         public IEnumerable<Post> ListOfPosts()
         {

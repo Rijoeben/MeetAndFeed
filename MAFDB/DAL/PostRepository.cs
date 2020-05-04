@@ -27,7 +27,7 @@ namespace DAL
         }
         public void UpdatePost(Post post)
         {
-            ctx.Add(post);
+            ctx.Update(post);
             ctx.SaveChanges();
         }
         public void DeletePost(long postId)

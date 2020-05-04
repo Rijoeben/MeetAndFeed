@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200429082539_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200504102426_SecondMigrate")]
+    partial class SecondMigrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -118,6 +118,9 @@ namespace DAL.Migrations
                     b.Property<int>("AmountOfPeople")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Chef")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -126,6 +129,9 @@ namespace DAL.Migrations
 
                     b.Property<string>("Dish")
                         .HasColumnType("TEXT");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PostId");
 
@@ -138,7 +144,8 @@ namespace DAL.Migrations
                             AmountOfPeople = 3,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus maar zonder saus",
-                            Dish = "Ballen in tomatensaus"
+                            Dish = "Ballen in tomatensaus",
+                            UserId = 0L
                         },
                         new
                         {
@@ -146,7 +153,8 @@ namespace DAL.Migrations
                             AmountOfPeople = 2,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus met vegetarische saus",
-                            Dish = "Ballen in tomatensaus"
+                            Dish = "Ballen in tomatensaus",
+                            UserId = 0L
                         },
                         new
                         {
@@ -154,7 +162,8 @@ namespace DAL.Migrations
                             AmountOfPeople = 5,
                             Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ballen in tomatensaus maar zonder Ballen",
-                            Dish = "Ballen in tomatensaus"
+                            Dish = "Ballen in tomatensaus",
+                            UserId = 0L
                         });
                 });
 

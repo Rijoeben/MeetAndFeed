@@ -13,10 +13,12 @@ namespace DAL.Migrations
                 {
                     PostId = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    chef = table.Column<string>(nullable: true),
                     Dish = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
-                    AmountOfPeople = table.Column<int>(nullable: false)
+                    AmountOfPeople = table.Column<int>(nullable: false),
+                    UserId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,18 +166,18 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish" },
-                values: new object[] { 1L, 3, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus" });
+                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish", "UserId", "chef" },
+                values: new object[] { 1L, 3, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder saus", "Ballen in tomatensaus", 0L, null });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish" },
-                values: new object[] { 2L, 2, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus met vegetarische saus", "Ballen in tomatensaus" });
+                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish", "UserId", "chef" },
+                values: new object[] { 2L, 2, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus met vegetarische saus", "Ballen in tomatensaus", 0L, null });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish" },
-                values: new object[] { 3L, 5, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus" });
+                columns: new[] { "PostId", "AmountOfPeople", "Date", "Description", "Dish", "UserId", "chef" },
+                values: new object[] { 3L, 5, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ballen in tomatensaus maar zonder Ballen", "Ballen in tomatensaus", 0L, null });
 
             migrationBuilder.InsertData(
                 table: "Users",
