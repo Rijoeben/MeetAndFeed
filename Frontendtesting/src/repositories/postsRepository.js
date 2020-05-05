@@ -8,13 +8,13 @@ export default {
   getPost (postId) {
     return Repository.get(`${recource}/${postId}`)
   },
-  createPost (dish, description, date) {
+  createPost (dish1, description1, date1) {
     const params = {
-      dish: dish,
-      description: description,
-      date: date,
+      dish: dish1,
+      description: description1,
+      date: date1,
       amountOfPeople: 2
     }
-    return Repository.post(`${recource}`, params)
+    return Repository.post(`${recource}`, JSON.stringify(params))
   }
 }

@@ -11,5 +11,6 @@ namespace DAL
         Allergy CreateAllergy(Allergy allergy);
         void UpdateAllergy(Allergy allergy);
         void DeleteAllergy(Allergy allergy);
+
     }
 }
