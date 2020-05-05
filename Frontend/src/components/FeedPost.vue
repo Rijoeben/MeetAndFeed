@@ -5,7 +5,7 @@
       <div class="text-subtitle2">{{ chef }}</div>
     </q-card-section>
     <q-card-actions class="buttons">
-      <q-btn outline color="primary">Contact</q-btn>
+      <q-btn outline color="primary">Participate</q-btn>
       <q-btn flat color="secondary" label="More info"></q-btn>
     </q-card-actions>
   </q-card>

@@ -24,6 +24,7 @@
           </q-icon>
         </template>
       </q-input>
+      <q-input filled dense v-model="TotalParticipants" label="How many people do you want to invite?" />
       <q-input
         v-model="text"
         filled
@@ -100,6 +101,7 @@ export default {
   data () {
     return {
       name: '',
+      TotalParticipants: null,
       text: '',
       milk: false,
       eggs: false,
@@ -126,7 +128,7 @@ export default {
         // this.date = this.date.split('-').join('/')
         console.log(this.date)
         const userId = Number(localStorage.userId)
-        const res = await postRepository.createPost(localStorage.Username, this.name, this.text, this.date.toString(), userId)
+        const res = await postRepository.createPost(localStorage.Username, this.name, this.text, this.date.toString(), Number(this.TotalParticipants), userId)
         console.log(res)
       }
     },

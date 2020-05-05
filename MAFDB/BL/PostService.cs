@@ -99,10 +99,12 @@ namespace BL
                 if (postToAdd.Participants != null)
                 {
                     postToAdd.Participants.Add(addedUser);
+                    succes = true;
                 }
                 else
                 {
                     postToAdd.Participants = new List<User>() { addedUser };
+                    succes = true;
                 }
 
                 _repo.UpdatePost(postToAdd);
