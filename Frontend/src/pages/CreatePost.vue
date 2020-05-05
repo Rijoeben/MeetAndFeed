@@ -115,15 +115,14 @@ export default {
     Cancel () {
       this.cancelAlert = true
     },
-    Post () {
+    async Post () {
       if (this.name !== '' && this.text !== '') {
         this.createAlert = true
-        this.date = this.date.toString()
-        this.date = this.date.split('-').join('')
+        this.date = this.date.split('-').join('/')
         console.log(this.date)
-        const res = postRepository.createPost(this.dish, this.description, this.date.toString()).then(() => {
-          console.log(res.data)
-        })
+        const userId = Number(localStorage.userId)
+        const res = await postRepository.createPost(localStorage.Username, this.name, this.text, this.date.toString(), userId)
+        console.log(res)
       }
     },
     PushRouter () {

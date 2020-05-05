@@ -37,6 +37,12 @@ export default {
       const { data } = await PostRepository.getAllPosts()
       this.Temp = data
       for (let i = 0; i < this.Temp.length; i++) {
+        if (this.Temp[i].dish === null) {
+          this.Temp[i].dish = 'Unknown Dish'
+        }
+        if (this.Temp[i].chef === null) {
+          this.Temp[i].chef = 'Unknow Chef'
+        }
         this.Posts.push({
           dish: this.Temp[i].dish,
           chef: this.Temp[i].chef

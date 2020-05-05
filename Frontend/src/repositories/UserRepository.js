@@ -7,7 +7,13 @@ export default {
     return Repository.get(`${recource}/${payload}`)
   },
   getId (email) {
-    const payload = email
-    return Repository.get(`${recource}/SessionId/${payload}`)
+    return Repository.get(`${recource}/SessionId`, {
+      params: {
+        email: email
+      }
+    })
+  },
+  getUserById (userId) {
+    return Repository.get(`${recource}/${userId}`)
   }
 }

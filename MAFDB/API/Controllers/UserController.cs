@@ -46,9 +46,10 @@ namespace API.Controllers
 
             return Ok(UserTochange);
         }
-        [HttpGet("SessionId")]
+        [HttpGet("{email}")]
         public IActionResult LoginID(string email)
         {
+            email = email.Replace("%40", "@");
             var Sessionhost = _userService.GetUserByEmail(email);
             var ID = Sessionhost.UserId;
             return Ok(ID);

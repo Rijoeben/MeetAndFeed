@@ -24,7 +24,7 @@
       <q-toggle v-model="accept" label="I accept the license and terms" />
 
       <div>
-        <q-btn label="Login" type="submit" color="primary"/>
+        <q-btn label="Login" type="submit" color="primary" @click="onSubmit"/>
         <q-btn label="Forgot password?" color="primary" flat class="RegBut"/>
       </div>
       <div>
@@ -57,21 +57,21 @@ export default {
       isPwd: true
     }
   },
-
+  created () {
+    localStorage.setItem('userId', 'loggedIn', 'Username')
+  },
   methods: {
-    async CheckCredentials () {
-      const { data } = await UserRepository.checkCredentials(this.email, this.password)
-      console.log(data)
-      return data
-    },
     async onSubmit () {
-      console.log(this.email + ' ' + this.password)
       if (this.accept === true) {
         if (this.email !== '' && this.password !== '') {
           const response = await this.CheckCredentials()
           if (response === true) {
-            const userId = await this.getId()
-            this.$store.commit('appData/User', userId)
+            const response = await this.getUserId()
+            const loggedIn = true
+            localStorage.userId = response
+            localStorage.loggedIn = loggedIn
+            const responsedata = await UserRepository.getUserById(localStorage.userId)
+            localStorage.Username = responsedata.data.firstName
             console.log('succes')
             this.$emit('authenticated', true)
             this.$router.push({ name: 'feed' })
@@ -82,6 +82,14 @@ export default {
           console.log('A username and password must be present')
         }
       }
+    },
+    async CheckCredentials () {
+      const { data } = await UserRepository.checkCredentials(this.email, this.password)
+      return data
+    },
+    async getUserId () {
+      const { data } = await UserRepository.getId(this.email)
+      return data
     },
     onReset () {
       this.name = null
