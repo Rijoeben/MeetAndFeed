@@ -6,7 +6,7 @@
     </q-card-section>
     <q-card-actions class="buttons">
       <q-btn outline color="primary" @click="AddParticipant">Participate</q-btn>
-      <q-btn flat color="secondary" label="More info"></q-btn>
+      <q-btn flat color="secondary" label="More info" @click="PushRouter"></q-btn>
     </q-card-actions>
   </q-card>
 </template>
@@ -57,6 +57,9 @@ export default {
     async AddParticipant () {
       const { data } = await ParticipantRepository.UpdateParticipant(Number(localStorage.userId), Number(this.postId))
       console.log(data)
+    },
+    PushRouter () {
+      this.$router.push({ name: 'post', params: { id: this.postId } })
     }
   }
 }
