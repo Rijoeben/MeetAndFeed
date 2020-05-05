@@ -106,7 +106,8 @@ namespace BL
                 }
 
                 _repo.UpdatePost(postToAdd);
-            }            
+                succes = true;
+            }
             return succes;
         }
         public IEnumerable<Post> ListOfPosts()
