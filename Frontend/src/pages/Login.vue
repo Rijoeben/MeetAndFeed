@@ -58,7 +58,6 @@ export default {
     }
   },
   created () {
-    localStorage.setItem('userId', 'loggedIn', 'Username')
     if (localStorage.loggedIn === 'true') {
       this.$router.push({ name: 'feed' })
     }
@@ -67,9 +66,10 @@ export default {
     async onSubmit () {
       if (this.accept === true) {
         if (this.email !== '' && this.password !== '') {
-          const response = await this.CheckCredentials()
-          if (response === true) {
-            localStorage.userId = await this.getUserId()
+          const response = await UserRepository.checkCredentials(this.email, this.password)
+          if (response.data === true) {
+            const response2 = await UserRepository.getId(this.email)
+            localStorage.userId = Number(response2.data)
             localStorage.loggedIn = 'true'
             const responsedata = await UserRepository.getUserById(localStorage.userId)
             localStorage.Username = responsedata.data.firstName
@@ -82,14 +82,6 @@ export default {
           console.log('A username and password must be present')
         }
       }
-    },
-    async CheckCredentials () {
-      const { data } = await UserRepository.checkCredentials(this.email, this.password)
-      return data
-    },
-    async getUserId () {
-      const { data } = await UserRepository.getId(this.email)
-      return data
     },
     onReset () {
       this.name = null

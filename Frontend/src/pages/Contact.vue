@@ -74,7 +74,7 @@ export default {
     }
   },
   created () {
-    if (!localStorage.loggedIn) {
+    if (localStorage.loggedIn !== 'true') {
       this.$router.push({ name: 'login' })
     }
   },
