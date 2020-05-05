@@ -73,6 +73,11 @@ export default {
       cancelAlert: false
     }
   },
+  created () {
+    if (!localStorage.loggedIn) {
+      this.$router.push({ name: 'login' })
+    }
+  },
   methods: {
     Cancel () {
       this.cancelAlert = true

@@ -111,6 +111,11 @@ export default {
       date: null
     }
   },
+  created () {
+    if (!localStorage.loggedIn) {
+      this.$router.push({ name: 'login' })
+    }
+  },
   methods: {
     Cancel () {
       this.cancelAlert = true

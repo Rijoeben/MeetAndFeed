@@ -59,6 +59,9 @@ export default {
   },
   created () {
     localStorage.setItem('userId', 'loggedIn', 'Username')
+    if (localStorage.loggedIn === 'true') {
+      this.$router.push({ name: 'feed' })
+    }
   },
   methods: {
     async onSubmit () {
@@ -66,13 +69,10 @@ export default {
         if (this.email !== '' && this.password !== '') {
           const response = await this.CheckCredentials()
           if (response === true) {
-            const response = await this.getUserId()
-            const loggedIn = true
-            localStorage.userId = response
-            localStorage.loggedIn = loggedIn
+            localStorage.userId = await this.getUserId()
+            localStorage.loggedIn = 'true'
             const responsedata = await UserRepository.getUserById(localStorage.userId)
             localStorage.Username = responsedata.data.firstName
-            console.log('succes')
             this.$emit('authenticated', true)
             this.$router.push({ name: 'feed' })
           } else {

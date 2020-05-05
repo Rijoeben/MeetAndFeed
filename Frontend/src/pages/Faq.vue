@@ -42,6 +42,11 @@ export default {
         }
       ]
     }
+  },
+  created () {
+    if (!localStorage.loggedIn) {
+      this.$router.push({ name: 'login' })
+    }
   }
 }
 </script>

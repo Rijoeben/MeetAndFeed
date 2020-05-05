@@ -14,7 +14,6 @@
 import FeedPost from 'components/FeedPost'
 import { RepositoryFactory } from './../repositories/repositoryFactory'
 const PostRepository = RepositoryFactory.get('posts')
-
 export default {
   name: 'Feed',
   components: {
@@ -25,6 +24,11 @@ export default {
       isFetching: true,
       Temp: [],
       Posts: []
+    }
+  },
+  created () {
+    if (localStorage.loggedIn !== 'true') {
+      this.$router.push({ name: 'login' })
     }
   },
   mounted () {

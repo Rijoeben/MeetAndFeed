@@ -40,6 +40,11 @@ export default {
       file: null
     }
   },
+  created () {
+    if (!localStorage.loggedIn) {
+      this.$router.push({ name: 'login' })
+    }
+  },
   methods: {
     RequestPassword () {
       return null
