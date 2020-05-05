@@ -18,118 +18,220 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
-                    b.Property<int>("AllergyId")
+                    b.Property<long>("AllergyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AllergyName")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("AllergyId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Allergies");
+
+                    b.HasData(
+                        new
+                        {
+                            AllergyId = 1L,
+                            AllergyName = "Cereals containing gluten"
+                        },
+                        new
+                        {
+                            AllergyId = 2L,
+                            AllergyName = "Crustaceans"
+                        },
+                        new
+                        {
+                            AllergyId = 3L,
+                            AllergyName = "Eggs"
+                        },
+                        new
+                        {
+                            AllergyId = 4L,
+                            AllergyName = "Fish"
+                        },
+                        new
+                        {
+                            AllergyId = 5L,
+                            AllergyName = "Peanuts"
+                        },
+                        new
+                        {
+                            AllergyId = 6L,
+                            AllergyName = "Soya"
+                        },
+                        new
+                        {
+                            AllergyId = 7L,
+                            AllergyName = "Lactose(Milk)"
+                        },
+                        new
+                        {
+                            AllergyId = 8L,
+                            AllergyName = "Nuts(Tree Nuts)"
+                        },
+                        new
+                        {
+                            AllergyId = 9L,
+                            AllergyName = "Celery"
+                        },
+                        new
+                        {
+                            AllergyId = 10L,
+                            AllergyName = "Mustard"
+                        },
+                        new
+                        {
+                            AllergyId = 11L,
+                            AllergyName = "Sesame"
+                        },
+                        new
+                        {
+                            AllergyId = 12L,
+                            AllergyName = "Sulphur Dioxide(Sulphite"
+                        },
+                        new
+                        {
+                            AllergyId = 13L,
+                            AllergyName = "Luping"
+                        },
+                        new
+                        {
+                            AllergyId = 14L,
+                            AllergyName = "Molluscs"
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.Post", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<long>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("AmountOfPeople")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Chef")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Dish")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("REAL");
+                    b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PostId");
 
                     b.ToTable("Posts");
-                });
 
-            modelBuilder.Entity("MAFDB.PostProduct", b =>
-                {
-                    b.Property<int>("PostId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("PostId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("PostProducts");
-                });
-
-            modelBuilder.Entity("MAFDB.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("MAFDB.ProductAllergy", b =>
-                {
-                    b.Property<int>("AllergyId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AllergyId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductAllergies");
+                    b.HasData(
+                        new
+                        {
+                            PostId = 1L,
+                            AmountOfPeople = 3,
+                            Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ballen in tomatensaus maar zonder saus",
+                            Dish = "Ballen in tomatensaus",
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            PostId = 2L,
+                            AmountOfPeople = 2,
+                            Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Spaghetti Bolognaise met gehak",
+                            Dish = "Spaghetti bolognaise",
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            PostId = 3L,
+                            AmountOfPeople = 5,
+                            Date = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Mijn geheime macaroni",
+                            Dish = "Macaroni",
+                            UserId = 3L
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.Review", b =>
                 {
-                    b.Property<int>("ReviewId")
+                    b.Property<long>("ReviewId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
+                    b.Property<long?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Score")
+                        .HasColumnType("REAL");
+
+                    b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ReviewId");
 
+                    b.HasIndex("PostId");
+
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            ReviewId = 1L,
+                            Content = "Ik vond het lekker",
+                            Score = 0f,
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            ReviewId = 2L,
+                            Content = "Ik vond het niet zo lekker",
+                            Score = 0f,
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            ReviewId = 3L,
+                            Content = "Hij kon niet van mijn lijf blijven, wel lekker eten",
+                            Score = 0f,
+                            UserId = 3L
+                        });
                 });
 
             modelBuilder.Entity("MAFDB.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("DickSize")
-                        .HasColumnType("REAL");
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<char>("Gender")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
@@ -138,102 +240,76 @@ namespace DAL.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("PostId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("Preference")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("MAFDB.UserAllergy", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AllergyId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserId", "AllergyId");
-
-                    b.HasIndex("AllergyId");
-
-                    b.ToTable("UserAllergies");
-                });
-
-            modelBuilder.Entity("MAFDB.UserPost", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserId", "PostId");
-
                     b.HasIndex("PostId");
 
-                    b.ToTable("UserPosts");
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1L,
+                            Address = "EersteStraat",
+                            Birthday = new DateTime(2000, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailAddress = "ruben.laureys@gmail.com",
+                            FirstName = "Ruben",
+                            Gender = 'M',
+                            LastName = "Laureys",
+                            Password = "Password123",
+                            Preference = false
+                        },
+                        new
+                        {
+                            UserId = 2L,
+                            Address = "TweedeStraat",
+                            Birthday = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailAddress = "jord.goossens@gmail.com",
+                            FirstName = "Jord",
+                            Gender = 'X',
+                            LastName = "Goossens",
+                            Password = "Password",
+                            Preference = true
+                        },
+                        new
+                        {
+                            UserId = 3L,
+                            Address = "DerdeStraat",
+                            Birthday = new DateTime(1969, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailAddress = "yannick.robijn@gmail.com",
+                            FirstName = "Yannick",
+                            Gender = 'V',
+                            LastName = "Robijn",
+                            Password = "StinkHoer",
+                            Preference = true
+                        });
                 });
 
-            modelBuilder.Entity("MAFDB.PostProduct", b =>
+            modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
-                    b.HasOne("MAFDB.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MAFDB.Product", "ProductName")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("MAFDB.User", null)
+                        .WithMany("Allergies")
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MAFDB.ProductAllergy", b =>
+            modelBuilder.Entity("MAFDB.Review", b =>
                 {
-                    b.HasOne("MAFDB.Allergy", "Allergy")
-                        .WithMany()
-                        .HasForeignKey("AllergyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MAFDB.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("MAFDB.Post", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("PostId");
                 });
 
-            modelBuilder.Entity("MAFDB.UserAllergy", b =>
+            modelBuilder.Entity("MAFDB.User", b =>
                 {
-                    b.HasOne("MAFDB.Allergy", "Allergy")
-                        .WithMany()
-                        .HasForeignKey("AllergyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MAFDB.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MAFDB.UserPost", b =>
-                {
-                    b.HasOne("MAFDB.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MAFDB.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("MAFDB.Post", null)
+                        .WithMany("Participants")
+                        .HasForeignKey("PostId");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
@@ -10,27 +11,33 @@ namespace DAL
     {
         private readonly MeetAndFeedDbContext ctx;
 
+        public ReviewRepository()
+        {
+            ctx = new MeetAndFeedDbContext();
+        }
         public IEnumerable<Review> ReadReview()
         {
-            return ctx.Reviews.AsEnumerable();
+            return ctx.Reviews.AsNoTracking().AsEnumerable();
         }
-        public Review CreateReview(Review review)
+        public Review AddReview(Review review)
         {
-            ctx.Add(review);
+            ctx.Reviews.Add(review);
             ctx.SaveChanges();
             return review;
         }
-
         public void UpdateReview(Review review)
         {
-            ctx.Add(review);
+            ctx.Reviews.Add(review);
             ctx.SaveChanges();
         }
-
         public void DeleteReview(Review review)
         {
-            ctx.Remove(review);
+            ctx.Reviews.Remove(review);
             ctx.SaveChanges();
+        }
+        public Review GetReview(long reviewId)
+        {
+            return ctx.Reviews.Find(reviewId);
         }
     }
 }

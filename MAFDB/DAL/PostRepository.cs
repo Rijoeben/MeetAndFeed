@@ -1,40 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using MAFDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class PostRepository : IpostRepository
+    public class PostRepository : IPostRepository
     {
 
         private readonly MeetAndFeedDbContext ctx;
 
+        public PostRepository()
+        {
+            ctx = new MeetAndFeedDbContext();
+        }
+        //Include(p => p.Participants).ThenInclude(p => p.Allergies) dees is echt nice want hier kunde leuke dingen mee doen 
         public IEnumerable<Post> ReadPosts()
         {
-            return ctx.Posts.AsEnumerable();
+            return ctx.Posts.Include(p => p.Reviews).Include(p => p.Participants).AsEnumerable();
         }
-
-        public Post CreatePost(Post post)
+        public Post AddPost(Post post)
         {
-            ctx.Add(post);
+            ctx.Posts.Add(post);
             ctx.SaveChanges();
             return post;
         }
-
         public void UpdatePost(Post post)
         {
-            ctx.Add(post);
+            ctx.Posts.Update(post);
             ctx.SaveChanges();
         }
-
-        public void DeletePost(Post post)
+        public void DeletePost(long postId)
         {
-            ctx.Remove(post);
+            ctx.Posts.Remove(GetPost(postId));
             ctx.SaveChanges();
         }
-        public Post GetPost()
-
+        public Post GetPost(long postId)
+        {
+            return ctx.Posts.Include(p => p.Reviews).First(p => p.PostId == postId);
+        }
+        public Post GetPostWithParticipant(long postId)
+        {
+            return ctx.Posts.Include(p => p.Participants).First(p => p.PostId == postId);
+        }
     }
 }

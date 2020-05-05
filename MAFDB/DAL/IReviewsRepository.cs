@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using MAFDB;
 
 namespace DAL
@@ -8,11 +6,9 @@ namespace DAL
         public interface IReviewRepository
         {
             IEnumerable<Review> ReadReview();
-
-            Review CreateReview(Review review);
-
+            Review AddReview(Review review);
             void UpdateReview(Review review);
-
             void DeleteReview(Review review);
+            Review GetReview(long reviewId);
         }
 }

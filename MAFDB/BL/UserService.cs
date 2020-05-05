@@ -1,7 +1,6 @@
 ﻿using MAFDB;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using DAL;
 
 namespace BL
@@ -9,8 +8,21 @@ namespace BL
     public class UserService : IUserService
     {
         private IUserRepository _repo;
+        public UserService()
+        {
+            _repo = new UserRepository();
+        }
+        public User GetUserByEmail(string emailAdress)
+        {
+<<<<<<< HEAD
+            var userWithEmail = _repo.SearchUserByEmailAddres(emailAdress);
+=======
+            var userWithEmail=_repo.SearchUserByEmailAddres(emailAdress);
+>>>>>>> 50e5ab562c45562f30ed2dad5df32eba87bdaad9
 
-        public User AddUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
+            return userWithEmail;
+        }
+        public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             User newUser = new User();
 
@@ -23,23 +35,56 @@ namespace BL
             newUser.Gender = gender;
             newUser.Birthday = dayOfBirth;
 
-            _repo.CreateUser(newUser);
+            _repo.AddUser(newUser);
             return newUser;
         }
-
-        public void RemoveUser(string userID)
+        public void RemoveUser(long userId)
         {
-            _repo.DeleteUser(userID);
+            _repo.DeleteUser(userId);
         }
-
         public IEnumerable<User> ListOfUsers()
         {
             return _repo.ReadUsers();
         }
-
-        public void UpdateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
+        public User ChangeUser(long userId, string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
-            throw new NotImplementedException();
+            User userToChange = ReadUser(userId);
+            if (userToChange != null) // Checkt of er een user is gevonden met de mee gegeven id
+            {
+                userToChange.FirstName = firstName;
+                userToChange.LastName = lastName;
+                userToChange.Address = address;
+                userToChange.EmailAddress = emailAddress;
+                userToChange.Preference = preference;
+                userToChange.Password = password;
+                userToChange.Gender = gender;
+                userToChange.Birthday = dayOfBirth;
+
+                _repo.UpdateUser(userToChange);
+                return userToChange;
+            }
+            else return null;
+
+        }
+        public User ReadUser(long userId)
+        {
+            return _repo.GetUser(userId);
+        }
+        public bool LoginBool(string emailAddress, string password)
+        {
+            
+            User userToLogin = _repo.SearchUserByEmailAddres(emailAddress); // User gaan zoeken aan de hanv van het gegeven email address
+            if (userToLogin == null) return false;
+            if (userToLogin.Password == password) return true;
+            else if (userToLogin.Password != password) return false;
+            else return false;
+        }
+        public long LoginId(string email,string password)
+        {
+            User userToLogin = _repo.SearchUserByEmailAddres(email);
+            if (userToLogin == null) return 0;
+            if (userToLogin.Password == password) return userToLogin.UserId;
+            else return 0;
         }
     }
 }

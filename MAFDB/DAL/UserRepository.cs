@@ -9,41 +9,41 @@ namespace DAL
 {
     public class UserRepository : IUserRepository
     {
-
         private readonly MeetAndFeedDbContext ctx;
-
         public UserRepository()
         {
             ctx = new MeetAndFeedDbContext();
         }
-
         public IEnumerable<User> ReadUsers()
         {
             return ctx.Users.AsEnumerable();
         }
-
-        public User CreateUser(User user)
+        public User AddUser(User user)
         {
-            ctx.Add(user);
+            ctx.Users.Add(user);
             ctx.SaveChanges();
             return user;
         }
-
         public void UpdateUser(User user)
         {
             ctx.Users.Update(user);
             ctx.SaveChanges();
         }
-
-        public void DeleteUser(string userID)
+        public void DeleteUser(long userId)
         {
-            ctx.Users.Remove(GetUser(userID));
+            ctx.Users.Remove(GetUser(userId));
             ctx.SaveChanges();
         }
-
-        public User GetUser(string userID)
+        public User GetUser(long userId)
         {
-            return ctx.Users.Find(userID);
+            return ctx.Users.Find(userId);
+        }
+        public User SearchUserByEmailAddres(string emailAddress)
+        {
+            User searchedUser = ctx.Users
+                .FirstOrDefault(u => string.Equals(u.EmailAddress, emailAddress)); //Zoekt naar de user met het gegeven email address
+
+            return searchedUser;       
         }
     }
 }
