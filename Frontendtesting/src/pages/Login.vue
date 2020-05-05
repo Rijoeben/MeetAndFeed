@@ -24,7 +24,7 @@
       <q-toggle v-model="accept" label="I accept the license and terms" />
 
       <div>
-        <q-btn label="Login" type="submit" color="primary"/>
+        <q-btn label="Login" type="submit" color="primary" @click="onSubmit"/>
         <q-btn label="Forgot password?" color="primary" flat class="RegBut"/>
       </div>
       <div>
@@ -57,20 +57,22 @@ export default {
       isPwd: true
     }
   },
-
+  created () {
+    if (localStorage.loggedIn === 'true') {
+      this.$router.push({ name: 'feed' })
+    }
+  },
   methods: {
-    async CheckCredentials () {
-      const { data } = await UserRepository.checkCredentials(this.email, this.password)
-      console.log(data)
-      return data
-    },
     async onSubmit () {
-      console.log(this.email + ' ' + this.password)
       if (this.accept === true) {
         if (this.email !== '' && this.password !== '') {
-          const response = await this.CheckCredentials()
-          if (response === true) {
-            console.log('succes')
+          const response = await UserRepository.checkCredentials(this.email, this.password)
+          if (response.data === true) {
+            const response2 = await UserRepository.getId(this.email)
+            localStorage.userId = Number(response2.data)
+            localStorage.loggedIn = 'true'
+            const responsedata = await UserRepository.getUserById(localStorage.userId)
+            localStorage.Username = responsedata.data.firstName
             this.$emit('authenticated', true)
             this.$router.push({ name: 'feed' })
           } else {

@@ -2,7 +2,7 @@
   <q-card class="my-card">
     <q-card-section>
       <div class="text-h6">{{ dish }}</div>
-      <div class="text-subtitle2">{{ postId }}</div>
+      <div class="text-subtitle2">{{ chef }}</div>
     </q-card-section>
     <q-card-actions class="buttons">
       <q-btn outline color="primary">Contact</q-btn>

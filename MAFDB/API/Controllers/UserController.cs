@@ -17,14 +17,14 @@ namespace API.Controllers
         {
             _userService = userService;
         }
-        [HttpGet]
+        [HttpGet("/listofusers")]
         public IActionResult GetListOfUsers()
         {
             var users = _userService.ListOfUsers();
             if (users == null) return NotFound();
             return Ok(users);
         }
-        [HttpGet("{id}")]
+        [HttpGet("/login/{id}")]
         public IActionResult GetUserById(long id)
         {
             var user = _userService.ReadUser(id);
@@ -46,6 +46,7 @@ namespace API.Controllers
 
             return Ok(UserTochange);
         }
+        [EnableCors]
         [HttpGet("{email}")]
         public IActionResult LoginID(string email)
         {

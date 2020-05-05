@@ -14,7 +14,6 @@
 import FeedPost from 'components/FeedPost'
 import { RepositoryFactory } from './../repositories/repositoryFactory'
 const PostRepository = RepositoryFactory.get('posts')
-
 export default {
   name: 'Feed',
   components: {
@@ -27,6 +26,11 @@ export default {
       Posts: []
     }
   },
+  created () {
+    if (localStorage.loggedIn !== 'true') {
+      this.$router.push({ name: 'login' })
+    }
+  },
   mounted () {
     this.fetchData().then(() => {
       this.isFetching = false
@@ -37,6 +41,12 @@ export default {
       const { data } = await PostRepository.getAllPosts()
       this.Temp = data
       for (let i = 0; i < this.Temp.length; i++) {
+        if (this.Temp[i].dish === null) {
+          this.Temp[i].dish = 'Unknown Dish'
+        }
+        if (this.Temp[i].chef === null) {
+          this.Temp[i].chef = 'Unknow Chef'
+        }
         this.Posts.push({
           dish: this.Temp[i].dish,
           chef: this.Temp[i].chef

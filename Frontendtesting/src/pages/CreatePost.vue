@@ -19,7 +19,7 @@
         <template v-slot:append>
           <q-icon name="event" class="cursor-pointer">
             <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-              <q-date v-model="date" mask="DD-MM-YYYY" @input="() => $refs.qDateProxy.hide()" />
+              <q-date v-model="date" mask="YYYY-MM-DD" @input="() => $refs.qDateProxy.hide()" />
             </q-popup-proxy>
           </q-icon>
         </template>
@@ -111,19 +111,23 @@ export default {
       date: null
     }
   },
+  created () {
+    if (!localStorage.loggedIn) {
+      this.$router.push({ name: 'login' })
+    }
+  },
   methods: {
     Cancel () {
       this.cancelAlert = true
     },
-    Post () {
+    async Post () {
       if (this.name !== '' && this.text !== '') {
         this.createAlert = true
-        this.date = this.date.toString()
-        this.date = this.date.split('-').join('')
+        // this.date = this.date.split('-').join('/')
         console.log(this.date)
-        const res = postRepository.createPost(this.dish, this.description, this.date.toString()).then(() => {
-          console.log(res.data)
-        })
+        const userId = Number(localStorage.userId)
+        const res = await postRepository.createPost(localStorage.Username, this.name, this.text, this.date.toString(), userId)
+        console.log(res)
       }
     },
     PushRouter () {

@@ -14,11 +14,7 @@ namespace BL
         }
         public User GetUserByEmail(string emailAdress)
         {
-<<<<<<< HEAD
             var userWithEmail = _repo.SearchUserByEmailAddres(emailAdress);
-=======
-            var userWithEmail=_repo.SearchUserByEmailAddres(emailAdress);
->>>>>>> 50e5ab562c45562f30ed2dad5df32eba87bdaad9
 
             return userWithEmail;
         }
