@@ -29,6 +29,8 @@ namespace API.Controllers
             if (allergies == null) return NotFound();
             return Ok(allergies);
         }
+        
+
         //[HttpGet("{id}")]
         //public IActionResult GetAllergyById(long id)
         //{

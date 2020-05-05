@@ -41,5 +41,7 @@ namespace DAL
             ctx.Allergies.Remove(allergy);
             ctx.SaveChanges();
         }
+        
+        
 }
 }
