@@ -13,6 +13,7 @@
          icon="menu"
          dense
          round
+         v-show="this.loggedIn === 'true'"
         />
       </q-toolbar>
     </q-header>
@@ -35,6 +36,12 @@
           :key="link.title"
           v-bind="link"
           class="link special_link"
+        />
+        <EssentialLink
+          v-for="link in logoutLink"
+          :key="link.title"
+          v-bind="link"
+          class="link"
         />
       </q-list>
     </q-drawer>
@@ -116,7 +123,24 @@ export default {
           title: 'Meet And Feed',
           link: '#/createpost'
         }
-      ]
+      ],
+      logoutLink: [
+        {
+          title: 'Logout',
+          link: ''
+        }
+      ],
+      loggedIn: null
+    }
+  },
+  created () {
+    this.loggedIn = localStorage.loggedIn
+  },
+  method: {
+    Logout () {
+      localStorage.userId = null
+      localStorage.loggedIn = 'false'
+      localStorage.Username = null
     }
   }
 }
