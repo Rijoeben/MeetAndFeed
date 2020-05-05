@@ -15,5 +15,6 @@ namespace BL
         public User ReadUser(long userId);
         public bool LoginBool(string emailAddress, string password);
         public long LoginId(string email, string password);
+        public User GetUserByEmail(string email);
     }
 }

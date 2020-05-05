@@ -15,11 +15,11 @@
           <q-checkbox v-model="crustaceans" label="Crustaceans" />
           <q-checkbox v-model="fish" label="Fish" />
       </div>
-      <q-input filled v-model="date" mask="date" :rules="['date']">
+      <q-input filled v-model="date">
         <template v-slot:append>
           <q-icon name="event" class="cursor-pointer">
             <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-              <q-date v-model="date" @input="() => $refs.qDateProxy.hide()" />
+              <q-date v-model="date" mask="DD-MM-YYYY" @input="() => $refs.qDateProxy.hide()" />
             </q-popup-proxy>
           </q-icon>
         </template>
@@ -92,7 +92,8 @@ h6 {
 
 <script>
 import { RepositoryFactory } from './../repositories/repositoryFactory'
-const PostRepository = RepositoryFactory.get('posts')
+import { date } from 'quasar'
+const postRepository = RepositoryFactory.get('posts')
 
 export default {
   name: 'CreatePost',
@@ -117,12 +118,19 @@ export default {
     Post () {
       if (this.name !== '' && this.text !== '') {
         this.createAlert = true
-        const res = PostRepository.createPost(this.dish, this.description, this.date)
-        console.log(res.data)
+        this.date = this.date.toString()
+        this.date = this.date.split('-').join('')
+        console.log(this.date)
+        const res = postRepository.createPost(this.dish, this.description, this.date.toString()).then(() => {
+          console.log(res.data)
+        })
       }
     },
     PushRouter () {
       this.$router.push({ name: 'feed' })
+    },
+    formattedDate () {
+      this.date = date.formatDate(this.date, 'DD/MM/YYYY')
     }
   }
 }

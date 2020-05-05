@@ -12,6 +12,12 @@ namespace BL
         {
             _repo = new UserRepository();
         }
+        public User GetUserByEmail(string emailAdress)
+        {
+            var userWithEmail=_repo.SearchUserByEmailAddres(emailAdress);
+
+            return userWithEmail;
+        }
         public User CreateUser(string firstName, string lastName, string address, string emailAddress, bool preference, string password, char gender, DateTime dayOfBirth)
         {
             User newUser = new User();
@@ -57,9 +63,9 @@ namespace BL
 
         }
         public User ReadUser(long userId)
-         {
+        {
             return _repo.GetUser(userId);
-         }
+        }
         public bool LoginBool(string emailAddress, string password)
         {
             
