@@ -108,6 +108,7 @@ namespace BL
                 }
 
                 _repo.UpdatePost(postToAdd);
+                succes = true;
             }            
             return succes;
         }
