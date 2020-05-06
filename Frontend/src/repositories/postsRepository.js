@@ -1,6 +1,6 @@
 import Repository from './Repository'
 const qs = require('querystring')
-const recource = '/Post'
+const recource = '/api/Post'
 export default {
   getAllPosts () {
     return Repository.get(`${recource}`)

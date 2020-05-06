@@ -5,8 +5,8 @@
       <div class="text-subtitle2">{{ chef }}</div>
     </q-card-section>
     <q-card-actions class="buttons">
-      <q-btn outline color="primary">Participate</q-btn>
-      <q-btn flat color="secondary" label="More info"></q-btn>
+      <q-btn outline color="primary" @click="AddParticipant">Participate</q-btn>
+      <q-btn flat color="secondary" label="More info" @click="PushRouter"></q-btn>
     </q-card-actions>
   </q-card>
 </template>
@@ -34,9 +34,16 @@
 </style>
 
 <script>
+import { RepositoryFactory } from './../repositories/repositoryFactory'
+const ParticipantRepository = RepositoryFactory.get('participant')
+
 export default {
   name: 'FeedPost',
   props: {
+    postId: {
+      type: Number,
+      required: true
+    },
     dish: {
       type: String,
       required: true
@@ -44,6 +51,15 @@ export default {
     chef: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    async AddParticipant () {
+      const { data } = await ParticipantRepository.UpdateParticipant(Number(localStorage.userId), Number(this.postId))
+      console.log(data)
+    },
+    PushRouter () {
+      this.$router.push({ name: 'post', params: { id: this.postId } })
     }
   }
 }
