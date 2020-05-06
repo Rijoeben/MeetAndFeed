@@ -34,6 +34,7 @@ namespace API.Controllers
             if (review == null) return NotFound();
             return Ok(review);
         }
+
         [HttpPost]
         public IActionResult MakeReview(string content, float score, long userId, long postId)
         {
