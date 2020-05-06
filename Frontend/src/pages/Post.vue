@@ -33,19 +33,24 @@
             <div v-for="(Review, index) in this.postData.reviews" :key="index">
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  <div class="text-h6">{{Review.firstname}}</div>
+                  <div class="text-h6">{{Review.name}}</div>
                 </q-card-section>
 
                 <q-card-section class="q-pt-none">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
+                  <q-rating
+                    v-model="ratingModel"
+                    value="5"
+                    size="2em"
+                    :max="5"
+                    color="primary"
+                    readonly
+                  />
                 </q-card-section>
 
                 <q-separator inset />
 
                 <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
+                  {{Review.content}}
                 </q-card-section>
               </q-card>
             </div>
@@ -69,7 +74,7 @@ export default {
       postId: null,
       temp: [],
       postData: [],
-      Reviews: []
+      ratingModel: 0
     }
   },
   async created () {
@@ -104,18 +109,20 @@ export default {
     },
     async FillReviewArray () {
       if (this.postData.reviews.length > 0) {
-        this.postData.reviews.forEach(async function (element) {
-          console.log(element)
-          // const name = await this.getUserForReview(element[3])
-          element.push({
-            name: 'test'
-          })
-        })
+        for (let i = 0; this.postData.reviews.length > i; i++) {
+          // console.log(this.postData.reviews[i])
+          const name = await this.getUserForReview(Number(this.postData.reviews[i].userId))
+          this.postData.reviews[i].name = name
+          this.postData.reviews[i].score = 3
+          console.log(this.postData.reviews[i])
+        }
+        // console.log(this.postData.reviews[0].content)
       }
     },
     async getUserForReview (userId) {
       const { data } = await UserRepository.getUserById(userId)
-      const fullname = data.firstname + ' ' + data.lastname
+      console.log(data)
+      const fullname = data.firstName + ' ' + data.lastName
       return fullname
     }
   }
