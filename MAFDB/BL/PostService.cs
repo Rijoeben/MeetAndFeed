@@ -64,7 +64,8 @@ namespace BL
 
             if(postToAdd.Reviews.Contains(addedReview))
             {
-                succes = false;
+                // throw new HttpException("Bad Request",HttpStatusCode.Conflict, null);
+                succes = true;
             }
             else
             {
@@ -109,7 +110,7 @@ namespace BL
 
                 _repo.UpdatePost(postToAdd);
                 succes = true;
-            }            
+            }
             return succes;
         }
         public IEnumerable<Post> ListOfPosts()
