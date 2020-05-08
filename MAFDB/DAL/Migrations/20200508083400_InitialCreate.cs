@@ -81,11 +81,18 @@ namespace DAL.Migrations
                     AllergyId = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AllergyName = table.Column<string>(nullable: true),
+                    PostId = table.Column<long>(nullable: true),
                     UserId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Allergies", x => x.AllergyId);
+                    table.ForeignKey(
+                        name: "FK_Allergies_Posts_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Posts",
+                        principalColumn: "PostId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Allergies_Users_UserId",
                         column: x => x.UserId,
@@ -96,73 +103,73 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 1L, "Cereals containing gluten", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 1L, "Cereals containing gluten", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 14L, "Molluscs", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 14L, "Molluscs", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 13L, "Luping", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 13L, "Luping", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 11L, "Sesame", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 11L, "Sesame", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 10L, "Mustard", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 10L, "Mustard", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 9L, "Celery", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 9L, "Celery", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 8L, "Nuts(Tree Nuts)", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 8L, "Nuts(Tree Nuts)", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 12L, "Sulphur Dioxide(Sulphite", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 6L, "Soya", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 6L, "Soya", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 5L, "Peanuts", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 5L, "Peanuts", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 4L, "Fish", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 4L, "Fish", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 3L, "Eggs", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 3L, "Eggs", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 2L, "Crustaceans", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 2L, "Crustaceans", null, null });
 
             migrationBuilder.InsertData(
                 table: "Allergies",
-                columns: new[] { "AllergyId", "AllergyName", "UserId" },
-                values: new object[] { 7L, "Lactose(Milk)", null });
+                columns: new[] { "AllergyId", "AllergyName", "PostId", "UserId" },
+                values: new object[] { 7L, "Lactose(Milk)", null, null });
 
             migrationBuilder.InsertData(
                 table: "Posts",
@@ -208,6 +215,11 @@ namespace DAL.Migrations
                 table: "Users",
                 columns: new[] { "UserId", "Address", "Birthday", "EmailAddress", "FirstName", "Gender", "LastName", "Password", "PostId", "Preference" },
                 values: new object[] { 3L, "DerdeStraat", new DateTime(1969, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "yannick.robijn@gmail.com", "Yannick", 'V', "Robijn", "StinkHoer", null, true });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Allergies_PostId",
+                table: "Allergies",
+                column: "PostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Allergies_UserId",

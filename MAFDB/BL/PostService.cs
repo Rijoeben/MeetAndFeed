@@ -14,6 +14,7 @@ namespace BL
         private IPostRepository _repo; // is nodig om de hier iets in te zetten. zonder dit krijg je null exception! geldt voor alle repositories
         private IReviewService _revService;
         private IUserService _userService;
+        private IAllergyService _allergyservice;
         public PostService()
         {
             _repo = new PostRepository();  //maakt gewoon een nieuwe repo aan zodat deze met de service laag kan communiceren. Dit verhelpt de Nullexception die je zou krijgen anders.
@@ -112,6 +113,19 @@ namespace BL
                 succes = true;
             }
             return succes;
+        }
+        public Post AddingAllergies(List<long> listIds,long postId)
+        {
+            var postToAdd = _repo.GetPost(postId);
+            var allergiesToAdd = _allergyservice.ListOfAllergiesOnPost(listIds);
+
+            foreach (var item in allergiesToAdd)
+            {
+                postToAdd.Allergies.Add(item);
+            }
+            _repo.UpdatePost(postToAdd);
+            return postToAdd;
+
         }
         public IEnumerable<Post> ListOfPosts()
         {

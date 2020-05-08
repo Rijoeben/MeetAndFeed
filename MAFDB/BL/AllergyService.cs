@@ -18,7 +18,6 @@ namespace BL
         {
             return _repo.ReadAllergy();
         }
-
         public IEnumerable<Allergy> ListOfAllergiesOnPost(List<long> listIds)
         {
             var lijst = _repo.ReadAllergy();
@@ -28,14 +27,13 @@ namespace BL
             {
                 for (int i = 0; i < listIds.Count; i++)
                 {
-                    if (item.AllergyId == listIds[i] )
+                    if (item.AllergyId == listIds[i])
                     {
                         allergyList.Append(item); //dictionary.Add(item.AllergyId, item.AllergyName);
                     }
                 }
             }
             return allergyList;
-
         }
     }
 }
