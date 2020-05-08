@@ -74,7 +74,7 @@ namespace API.Controllers
             var userToAppend = _postService.AddingParticipant(userId, postId);
             return Ok(userToAppend);
         }
-        [HttpPut("/Allergies/{Ids},{postId}")]
+        [HttpPut("/ToAddAllergies/{listIds},{postId}")]
         public IActionResult AppendAllergies(List<long> ids,long postId)
         {
             var allergiesToAppend = _postService.AddingAllergies(ids, postId);
