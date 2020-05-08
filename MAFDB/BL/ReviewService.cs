@@ -37,12 +37,13 @@ namespace BL
             }          
             
         }
-        public Review CreateReview(string content, float score)
+        public Review CreateReview(string content, float score,long userId)
         {
             Review newReview = new Review();
 
             newReview.Content = content;
-            newReview.Score = score;            
+            newReview.Score = score;
+            newReview.UserId = userId;
 
             _repo.AddReview(newReview);
             return newReview;
