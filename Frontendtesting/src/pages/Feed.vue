@@ -48,6 +48,7 @@ export default {
           this.Temp[i].chef = 'Unknow Chef'
         }
         this.Posts.push({
+          postId: this.Temp[i].postId,
           dish: this.Temp[i].dish,
           chef: this.Temp[i].chef
         })

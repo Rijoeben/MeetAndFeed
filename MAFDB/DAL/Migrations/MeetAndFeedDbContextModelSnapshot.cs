@@ -25,10 +25,15 @@ namespace DAL.Migrations
                     b.Property<string>("AllergyName")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("PostId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<long?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("AllergyId");
+
+                    b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
@@ -293,6 +298,10 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
+                    b.HasOne("MAFDB.Post", null)
+                        .WithMany("Allergies")
+                        .HasForeignKey("PostId");
+
                     b.HasOne("MAFDB.User", null)
                         .WithMany("Allergies")
                         .HasForeignKey("UserId");

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MeetAndFeedDbContext))]
-    [Migration("20200504141034_aanpassing")]
-    partial class aanpassing
+    [Migration("20200508083400_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,15 @@ namespace DAL.Migrations
                     b.Property<string>("AllergyName")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("PostId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<long?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("AllergyId");
+
+                    b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
@@ -295,6 +300,10 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("MAFDB.Allergy", b =>
                 {
+                    b.HasOne("MAFDB.Post", null)
+                        .WithMany("Allergies")
+                        .HasForeignKey("PostId");
+
                     b.HasOne("MAFDB.User", null)
                         .WithMany("Allergies")
                         .HasForeignKey("UserId");

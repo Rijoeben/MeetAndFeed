@@ -31,7 +31,7 @@ namespace DAL
             ctx.SaveChanges();
         }
 
-        public Allergy GetAllergy(string allergyId)
+        public Allergy GetAllergy(long allergyId)
         {
             return ctx.Allergies.Find(allergyId);
         }

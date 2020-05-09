@@ -7,9 +7,9 @@ export default {
     return Repository.get(`${recource}/${payload}`)
   },
   getId (email) {
-    return Repository.get(`${recource}/SessionId?email=${email}`)
+    return Repository.get(`${recource}/${email}`)
   },
   getUserById (userId) {
-    return Repository.get(`${recource}/${userId}`)
+    return Repository.get(`/login/${userId}`)
   }
 }

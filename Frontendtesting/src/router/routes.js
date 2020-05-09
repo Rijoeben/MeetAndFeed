@@ -1,4 +1,3 @@
-
 const routes = [
   {
     path: '/',
@@ -10,7 +9,8 @@ const routes = [
       { path: '/faq', name: 'faq', component: () => import('pages/Faq.vue') },
       { path: '/account', name: 'account', component: () => import('pages/Account.vue') },
       { path: '/contact', name: 'contact', component: () => import('pages/Contact.vue') },
-      { path: '/createpost', name: 'createpost', component: () => import('pages/CreatePost.vue') }
+      { path: '/createpost', name: 'createpost', component: () => import('pages/CreatePost.vue') },
+      { path: '/post/:id', name: 'post', component: () => import('pages/Post.vue') }
     ]
   }
 ]

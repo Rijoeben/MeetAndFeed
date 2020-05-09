@@ -41,12 +41,6 @@ namespace API.Controllers
             
             return Ok(post);
         }
-        [HttpGet("{postIds}")]
-        public IActionResult AddingAllergiesOnPost(List<long> listIds)
-        {
-            var postAllergies = _allergyService.ListOfAllergiesOnPost(listIds);
-            return Ok(postAllergies);
-        }
 
         [HttpPost]
         public IActionResult AddingPost(string chef, string dish, string description, DateTime date, int amountOfPeople, long userId)
@@ -80,7 +74,12 @@ namespace API.Controllers
             var userToAppend = _postService.AddingParticipant(userId, postId);
             return Ok(userToAppend);
         }
-
+        [HttpPut("/ToAddAllergies/{listIds},{postId}")]
+        public IActionResult AppendAllergies(string listIds,long postId)
+        {
+            var allergiesToAppend = _postService.AddingAllergies(listIds, postId);
+            return Ok(allergiesToAppend);
+        }
         [HttpDelete]
         public IActionResult DeletePost(long postId)
         {
