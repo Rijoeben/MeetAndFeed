@@ -74,10 +74,10 @@ namespace API.Controllers
             var userToAppend = _postService.AddingParticipant(userId, postId);
             return Ok(userToAppend);
         }
-        [HttpPut("/Allergies/{Ids},{postId}")]
-        public IActionResult AppendAllergies(List<long> ids,long postId)
+        [HttpPut("/ToAddAllergies/{listIds},{postId}")]
+        public IActionResult AppendAllergies(string listIds,long postId)
         {
-            var allergiesToAppend = _postService.AddingAllergies(ids, postId);
+            var allergiesToAppend = _postService.AddingAllergies(listIds, postId);
             return Ok(allergiesToAppend);
         }
         [HttpDelete]

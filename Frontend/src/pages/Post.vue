@@ -2,6 +2,7 @@
   <div class="q-pa-md">
     <q-card class="my-card">
       <q-card-section>
+        <div class="GoBack" @click="$router.push({ name: 'feed' })"><q-icon name="keyboard_backspace" class="backIcon" />Go back</div>
         <div class="text-h6 color-primary">{{postData.dish}}</div>
         <div class="text-subtitle2 color-secundary">by {{postData.chef}}</div>
         <div class="text-subtitle2 color-secundary">{{this.date}}</div>
@@ -37,13 +38,13 @@
             <div v-for="(Review, index) in this.postData.reviews" :key="index">
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  <div class="text-h6">{{Review.name}}</div>
+                  <div class="text-h6 color-primary">{{Review.name}}</div>
                 </q-card-section>
 
                 <q-card-section class="q-pt-none">
                   <q-rating
                     v-model="ratingModel"
-                    value="5"
+                    :value="Review.score"
                     size="2em"
                     :max="5"
                     color="primary"
@@ -79,6 +80,17 @@
 .seperator {
   margin: 7px 0px;
 }
+.backIcon {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.GoBack {
+  font-size: 14px;
+  color: #4A9DFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
 </style>
 <script>
 import { RepositoryFactory } from './../repositories/repositoryFactory'
@@ -92,7 +104,7 @@ export default {
       postId: null,
       temp: [],
       postData: [],
-      ratingModel: 0,
+      ratingModel: 2,
       date: null
     }
   },

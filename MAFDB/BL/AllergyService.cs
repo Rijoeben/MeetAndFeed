@@ -18,18 +18,20 @@ namespace BL
         {
             return _repo.ReadAllergy();
         }
-        public IEnumerable<Allergy> ListOfAllergiesOnPost(List<long> listIds)
+        public IEnumerable<Allergy> ListOfAllergiesOnPost(string listIds)
         {
             var lijst = _repo.ReadAllergy();
+            string[] strarr = listIds.Split(',');
             //Dictionary<long, string> dictionary = new Dictionary<long, string>();
             List<Allergy> allergyList = new List<Allergy>();
             foreach (var item in lijst)
             {
-                for (int i = 0; i < listIds.Count; i++)
+                for (int i = 0; i < strarr.Length; i++)
                 {
-                    if (item.AllergyId == listIds[i])
+                    long temp = long.Parse(strarr[i]);
+                    if (item.AllergyId == temp)
                     {
-                        allergyList.Append(item); //dictionary.Add(item.AllergyId, item.AllergyName);
+                        allergyList.Add(item); //dictionary.Add(item.AllergyId, item.AllergyName);
                     }
                 }
             }

@@ -36,9 +36,9 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeReview(string content, float score, long userId, long postId)
+        public IActionResult MakeReview(string content, float score, long userId)
         {
-            var reviewToAdd = _reviewService.CreateReview(content, score);
+            var reviewToAdd = _reviewService.CreateReview(content, score, userId);
 
             return Ok(reviewToAdd);
         }
