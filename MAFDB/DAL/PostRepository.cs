@@ -40,7 +40,7 @@ namespace DAL
         }
         public Post GetPost(long postId)
         {
-            return ctx.Posts.Include(p => p.Reviews).First(p => p.PostId == postId);
+            return ctx.Posts.Include(p => p.Reviews).Include(p => p.Participants).First(p => p.PostId == postId);
         }
         public Post GetPostWithParticipant(long postId)
         {

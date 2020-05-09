@@ -110,11 +110,7 @@ namespace BL
 
                 _repo.UpdatePost(postToAdd);
                 succes = true;
-<<<<<<< HEAD
             }
-=======
-            }            
->>>>>>> 27ea3b3c9e57aca30c5bb310c8ee5b3dbfdbd643
             return succes;
         }
         public IEnumerable<Post> ListOfPosts()
