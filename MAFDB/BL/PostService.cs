@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DAL;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Net;
 using MaxMind.GeoIP2.Exceptions;
@@ -20,6 +21,7 @@ namespace BL
             _repo = new PostRepository();  //maakt gewoon een nieuwe repo aan zodat deze met de service laag kan communiceren. Dit verhelpt de Nullexception die je zou krijgen anders.
             _revService = new ReviewService();
             _userService = new UserService();
+            _allergyservice = new AllergyService();
         }
         //zelfde principe geldt voor de repositories.
         public Post CreatePost(string chef, string dish, string description, DateTime date, int amountOfPeople, long userId)
@@ -114,15 +116,12 @@ namespace BL
             }
             return succes;
         }
-        public Post AddingAllergies(List<long> listIds,long postId)
+        public Post AddingAllergies(string listIds,long postId)
         {
             var postToAdd = _repo.GetPost(postId);
             var allergiesToAdd = _allergyservice.ListOfAllergiesOnPost(listIds);
 
-            foreach (var item in allergiesToAdd)
-            {
-                postToAdd.Allergies.Add(item);
-            }
+            postToAdd.Allergies = allergiesToAdd.ToList();
             _repo.UpdatePost(postToAdd);
             return postToAdd;
 

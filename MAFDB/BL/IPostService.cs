@@ -14,7 +14,7 @@ namespace BL
         public Post ReadPost(long postId);
         public bool AddingReview(long revId, long postId); //Geeft true terug als de review toe werd gevoegd. Als de review er al in stond geeft het false
         public bool AddingParticipant(long userId, long postId); //Geeft true terug als de User is toegevoed. Als de user al is toegevoed geeft dit een false terug
-        public Post AddingAllergies(List<long> ids, long postId);
+        public Post AddingAllergies(string ids, long postId);
 
     }
 }
