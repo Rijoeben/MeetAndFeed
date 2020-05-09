@@ -25,7 +25,7 @@
                     <q-avatar>
                     <img src="https://cdn.quasar.dev/img/avatar5.jpg">
                     </q-avatar>
-                    {{Participant.firstname}}
+                    {{Participant.firstName}} {{Participant.lastName}}
                 </q-chip>
             </div>
           </div>
