@@ -2,13 +2,16 @@
   <div class="q-pa-md">
     <q-card class="my-card">
       <q-card-section>
-        <div class="text-h6">{{postData.dish}}</div>
-        <div class="text-subtitle2">by {{postData.chef}}</div>
+        <div class="text-h6 color-primary">{{postData.dish}}</div>
+        <div class="text-subtitle2 color-secundary">by {{postData.chef}}</div>
+        <div class="text-subtitle2 color-secundary">{{this.date}}</div>
+        <q-separator class="seperator" />
+        <div class="text-subtitle2 color-secundary">{{postData.description}}</div>
       </q-card-section>
 
-      <q-tabs v-model="tab" active-color="primary">
-        <q-tab label="Participants" name="Participants" />
-        <q-tab label="Previous reviews" name="Reviews" />
+      <q-tabs v-model="tab" class="color-secundary" active-color="primary">
+        <q-tab :label="'Participants (' + this.postData.participants.length + '/' + this.postData.amountOfPeople +')'" name="Participants" />
+        <q-tab label="Reviews" name="Reviews" />
       </q-tabs>
 
       <q-separator />
@@ -26,6 +29,7 @@
             </div>
           </div>
           <div v-else>Be the first one to join</div>
+          <q-btn v-if="this.postData.participants.length < this.postData.amountOfPeople" outline color="primary" label="Participate" class="participateButton"/>
         </q-tab-panel>
 
         <q-tab-panel name="Reviews">
@@ -61,7 +65,21 @@
     </q-card>
   </div>
 </template>
-
+<style scoped>
+.participateButton {
+  margin-top: 15px;
+  margin-left: -2px;
+}
+.color-primary {
+  color: #4A9DFF;
+}
+.color-secundary {
+  color: #4A4A4A;
+}
+.seperator {
+  margin: 7px 0px;
+}
+</style>
 <script>
 import { RepositoryFactory } from './../repositories/repositoryFactory'
 const PostRepository = RepositoryFactory.get('posts')
@@ -74,12 +92,14 @@ export default {
       postId: null,
       temp: [],
       postData: [],
-      ratingModel: 0
+      ratingModel: 0,
+      date: null
     }
   },
   async created () {
     this.postId = this.$route.params.id
     await this.RequestData()
+    this.date = this.postData.date.substring(0, 10)
     await this.FillReviewArray()
   },
   methods: {
