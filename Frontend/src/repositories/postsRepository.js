@@ -24,5 +24,8 @@ export default {
       userId: userId1
     }
     return Repository.post(`${recource}?${qs.stringify(requestBody)}`, qs.stringify(requestBody), axiosConfig)
+  },
+  AppendReview (revId, postId) {
+    return Repository.put(`${recource}/${revId},${postId}`)
   }
 }

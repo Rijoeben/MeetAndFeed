@@ -60,6 +60,30 @@
             </div>
           </div>
           <div v-else>There are no reviews yet</div>
+          <q-btn outline color="primary" label="Create review" class="participateButton" @click="tempAddReview" />
+
+          <q-dialog v-model="prompt" persistent>
+            <q-card style="min-width: 350px">
+              <q-card-section>
+                <div class="text-h6 color-primary">Create review</div>
+              </q-card-section>
+              <q-card-section class="q-pt-none">
+                <q-rating
+                  v-model="createReviewScore"
+                  size="2em"
+                  :max="5"
+                  color="primary"
+                />
+                <q-input filled type="textarea" v-model="createReviewContent" label="Write your review" style="margin-top: 15px" />
+              </q-card-section>
+
+              <q-card-actions align="right" class="text-primary">
+                <q-btn flat label="Cancel" v-close-popup />
+                <q-btn flat label="Post review" v-close-popup @click="AddReview" />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
+
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -103,6 +127,7 @@ import { RepositoryFactory } from './../repositories/repositoryFactory'
 const PostRepository = RepositoryFactory.get('posts')
 const UserRepository = RepositoryFactory.get('user')
 const ParticipantRepository = RepositoryFactory.get('participant')
+const ReviewRepository = RepositoryFactory.get('review')
 
 export default {
   data () {
@@ -111,7 +136,11 @@ export default {
       postId: null,
       temp: [],
       postData: [],
-      date: null
+      date: null,
+
+      prompt: false,
+      createReviewContent: null,
+      createReviewScore: 0
     }
   },
   async created () {
@@ -167,6 +196,16 @@ export default {
       console.log(data)
       const fullname = data.firstName + ' ' + data.lastName
       return fullname
+    },
+    async AddReview () {
+      const respdata = await ReviewRepository.CreateReview(this.createReviewContent, this.createReviewScore, Number(localStorage.userId))
+      console.log(respdata.data)
+      const otherrespdata = await PostRepository.AppendReview(Number(respdata.data.reviewId), this.postId)
+      console.log(otherrespdata)
+      location.reload()
+    },
+    tempAddReview () {
+      this.prompt = true
     }
   }
 }
