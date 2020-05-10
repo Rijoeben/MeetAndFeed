@@ -43,9 +43,8 @@
 
                 <q-card-section class="q-pt-none">
                   <q-rating
-                    v-model="ratingModel"
-                    size="2em"
                     :value="Review.score"
+                    size="2em"
                     :max="5"
                     color="primary"
                     readonly
@@ -112,7 +111,6 @@ export default {
       postId: null,
       temp: [],
       postData: [],
-      ratingModel: 0,
       date: null
     }
   },
@@ -121,6 +119,7 @@ export default {
     await this.RequestData()
     this.date = this.postData.date.substring(0, 10)
     await this.FillReviewArray()
+    console.log(this.$data)
   },
   methods: {
     async RequestData () {
@@ -153,7 +152,6 @@ export default {
           // console.log(this.postData.reviews[i])
           const name = await this.getUserForReview(Number(this.postData.reviews[i].userId))
           this.postData.reviews[i].name = name
-          this.postData.reviews[i].score = 3
           console.log(this.postData.reviews[i])
         }
         // console.log(this.postData.reviews[0].content)
