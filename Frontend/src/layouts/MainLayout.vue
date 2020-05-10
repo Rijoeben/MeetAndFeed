@@ -13,7 +13,6 @@
          icon="menu"
          dense
          round
-         v-show="this.loggedIn === 'true'"
         />
       </q-toolbar>
     </q-header>

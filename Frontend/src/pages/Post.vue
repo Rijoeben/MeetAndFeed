@@ -20,8 +20,8 @@
       <q-tab-panels v-model="tab" animated infinite swipeable>
         <q-tab-panel name="Participants">
           <div v-if="this.postData.participants.length > 0">
-            <div v-for="(Participant, index) in this.postData.participants" :key="index">
-                <q-chip>
+            <div v-for="(Participant, index) in this.postData.participants" :key="index" class="margin-bottom">
+                <q-chip class="color-primary" size="md">
                     <q-avatar>
                     <img src="https://cdn.quasar.dev/img/avatar5.jpg">
                     </q-avatar>
@@ -30,7 +30,7 @@
             </div>
           </div>
           <div v-else>Be the first one to join</div>
-          <q-btn v-if="this.postData.participants.length < this.postData.amountOfPeople" outline color="primary" label="Participate" class="participateButton"/>
+          <q-btn v-if="this.postData.participants.length < this.postData.amountOfPeople" outline color="primary" label="Participate" class="participateButton" @click="AddParticipant" />
         </q-tab-panel>
 
         <q-tab-panel name="Reviews">
@@ -80,6 +80,9 @@
 .seperator {
   margin: 7px 0px;
 }
+.margin-bottom {
+  margin-bottom: 5px;
+}
 .backIcon {
   font-size: 20px;
   margin-right: 5px;
@@ -96,6 +99,7 @@
 import { RepositoryFactory } from './../repositories/repositoryFactory'
 const PostRepository = RepositoryFactory.get('posts')
 const UserRepository = RepositoryFactory.get('user')
+const ParticipantRepository = RepositoryFactory.get('participant')
 
 export default {
   data () {
@@ -150,6 +154,10 @@ export default {
         }
         // console.log(this.postData.reviews[0].content)
       }
+    },
+    async AddParticipant () {
+      const { data } = await ParticipantRepository.UpdateParticipant(Number(localStorage.userId), Number(this.postId))
+      console.log(data)
     },
     async getUserForReview (userId) {
       const { data } = await UserRepository.getUserById(userId)
