@@ -1,13 +1,13 @@
 <template>
-  <div class="q-pa-md">
+  <q-page class="q-pa-md" style="min-width: 100vw">
     <q-card class="my-card">
       <q-card-section>
         <div class="GoBack" @click="$router.push({ name: 'feed' })"><q-icon name="keyboard_backspace" class="backIcon" />Go back</div>
-        <div class="text-h6 color-primary">{{postData.dish}}</div>
-        <div class="text-subtitle2 color-secundary">by {{postData.chef}}</div>
+        <div class="text-h4 color-primary">{{postData.dish}}</div>
+        <div class="text-subtitle1 color-secundary">by {{postData.chef}}</div>
         <div class="text-subtitle2 color-secundary">{{this.date}}</div>
         <q-separator class="seperator" />
-        <div class="text-subtitle2 color-secundary">{{postData.description}}</div>
+        <div class="text-h6 color-secundary">{{postData.description}}</div>
       </q-card-section>
 
       <q-tabs v-model="tab" class="color-secundary" active-color="primary">
@@ -36,7 +36,7 @@
         <q-tab-panel name="Reviews">
           <div v-if="this.postData.reviews.length > 0">
             <div v-for="(Review, index) in this.postData.reviews" :key="index">
-              <q-card flat bordered class="my-card">
+              <q-card flat bordered class="my-card rating">
                 <q-card-section>
                   <div class="text-h6 color-primary">{{Review.name}}</div>
                 </q-card-section>
@@ -44,8 +44,8 @@
                 <q-card-section class="q-pt-none">
                   <q-rating
                     v-model="ratingModel"
-                    :value="Review.score"
                     size="2em"
+                    :value="Review.score"
                     :max="5"
                     color="primary"
                     readonly
@@ -64,7 +64,7 @@
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
-  </div>
+  </q-page>
 </template>
 <style scoped>
 .participateButton {
@@ -93,6 +93,10 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
+}
+.rating {
+  margin-bottom: 15px;
 }
 </style>
 <script>
@@ -108,7 +112,7 @@ export default {
       postId: null,
       temp: [],
       postData: [],
-      ratingModel: 2,
+      ratingModel: 0,
       date: null
     }
   },
@@ -158,6 +162,7 @@ export default {
     async AddParticipant () {
       const { data } = await ParticipantRepository.UpdateParticipant(Number(localStorage.userId), Number(this.postId))
       console.log(data)
+      location.reload()
     },
     async getUserForReview (userId) {
       const { data } = await UserRepository.getUserById(userId)

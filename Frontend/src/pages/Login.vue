@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <q-page class="q-pa-md" style="max-width: 400px">
     <div class="row justify-center">
       <h5>Login</h5>
     </div>
@@ -32,7 +32,7 @@
       </div>
     </q-form>
 
-  </div>
+  </q-page>
 </template>
 <style scoped>
 .RegBut {

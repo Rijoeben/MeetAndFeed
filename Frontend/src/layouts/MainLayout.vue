@@ -44,7 +44,7 @@
         />
       </q-list>
     </q-drawer>
-    <q-page-container>
+    <q-page-container class="full-width row justify-center items-start content-start" style="min-width: 100vw; padding-right: 0px;">
       <router-view />
     </q-page-container>
   </q-layout>

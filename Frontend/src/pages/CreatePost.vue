@@ -26,7 +26,7 @@
       </q-input>
       <q-input filled dense v-model="TotalParticipants" label="How many people do you want to invite?" />
       <q-input
-        v-model="text"
+        v-model="number"
         filled
         dense
         type="textarea"
