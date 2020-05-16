@@ -1,6 +1,6 @@
-# Meet And Feed (mafv3)
+# MeetAndFeed (meetandfeed)
 
-An app to connect
+an app to eat together
 
 ## Install the dependencies
 ```bash

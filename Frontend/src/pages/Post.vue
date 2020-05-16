@@ -7,7 +7,7 @@
         <div class="text-subtitle1 color-secundary">by {{postData.chef}}</div>
         <div class="text-subtitle2 color-secundary">{{this.date}}</div>
         <q-separator class="seperator" />
-        <div class="text-h6 color-secundary">{{postData.description}}</div>
+        <div class="text-h6 description color-secundary">{{postData.description}}</div>
       </q-card-section>
 
       <q-tabs v-model="tab" class="color-secundary" active-color="primary">
@@ -120,6 +120,9 @@
 }
 .rating {
   margin-bottom: 15px;
+}
+.description {
+  font-weight: 400;
 }
 </style>
 <script>

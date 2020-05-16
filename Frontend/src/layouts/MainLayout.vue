@@ -36,12 +36,6 @@
           v-bind="link"
           class="link special_link"
         />
-        <EssentialLink
-          v-for="link in logoutLink"
-          :key="link.title"
-          v-bind="link"
-          class="link"
-        />
       </q-list>
     </q-drawer>
     <q-page-container class="full-width row justify-center items-start content-start" style="min-width: 100vw; padding-right: 0px;">
@@ -123,24 +117,11 @@ export default {
           link: '#/createpost'
         }
       ],
-      logoutLink: [
-        {
-          title: 'Logout',
-          link: ''
-        }
-      ],
       loggedIn: null
     }
   },
   created () {
     this.loggedIn = localStorage.loggedIn
-  },
-  method: {
-    Logout () {
-      localStorage.userId = null
-      localStorage.loggedIn = 'false'
-      localStorage.Username = null
-    }
   }
 }
 </script>

@@ -21,6 +21,7 @@
         </div>
 
         <q-btn color="primary" label="Save Changes" @click="SaveChanges" />
+        <q-btn flat color="primary" label="Logout" @click="Logout" />
       </q-form>
     </div>
   </div>
@@ -51,6 +52,12 @@ export default {
     },
     SaveChanges () {
       this.$router.push({ name: 'feed' })
+    },
+    Logout () {
+      localStorage.userId = null
+      localStorage.loggedIn = 'false'
+      localStorage.Username = null
+      this.$router.push({ name: 'login' })
     }
   }
 }

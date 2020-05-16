@@ -70,7 +70,7 @@ export default {
           if (response.data === true) {
             const response2 = await UserRepository.getId(this.email)
             localStorage.userId = Number(response2.data)
-            localStorage.loggedIn = 'true'
+            localStorage.setItem('loggedIn', 'true')
             const responsedata = await UserRepository.getUserById(localStorage.userId)
             localStorage.Username = responsedata.data.firstName
             this.$emit('authenticated', true)
